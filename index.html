@@ -19,10 +19,11 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--txt);font-size:14px}
-.app{max-width:920px;margin:0 auto;padding:16px}
+.app{max-width:1200px;margin:0 auto;padding:20px 28px}
+@media(max-width:900px){.app{padding:14px 16px}}
 
-.navbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--surf);border:0.5px solid var(--bdr);border-radius:12px;margin-bottom:16px;gap:12px;flex-wrap:wrap}
-.logo-img{height:38px;object-fit:contain}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:var(--surf);border:0.5px solid var(--bdr);border-radius:12px;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+.logo-img{height:44px;object-fit:contain}
 .nav-center{flex:1;text-align:center}
 .nav-title{font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
 .nav-code{font-size:14px;font-weight:500;color:var(--g1)}
@@ -33,13 +34,13 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:v
 .btn-pdf-top{padding:6px 16px;border-radius:20px;font-size:12px;cursor:pointer;border:none;background:var(--g1);color:#fff;font-weight:500}
 .btn-pdf-top:hover{background:var(--g2)}
 
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-@media(max-width:600px){.grid2,.grid3,.grid4{grid-template-columns:1fr}.navbar{flex-direction:column;text-align:center}}
-@media(max-width:800px){.grid4{grid-template-columns:1fr 1fr}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:640px){.grid2,.grid3,.grid4{grid-template-columns:1fr}.navbar{flex-direction:column;text-align:center}}
+@media(max-width:900px){.grid4{grid-template-columns:1fr 1fr}}
 
-.card{background:var(--surf);border:0.5px solid var(--bdr);border-radius:var(--r);padding:16px;margin-bottom:12px}
+.card{background:var(--surf);border:0.5px solid var(--bdr);border-radius:var(--r);padding:18px 20px;margin-bottom:12px}
 .card-header{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:0.5px solid var(--bdr)}
 .card-icon{width:28px;height:28px;border-radius:6px;background:var(--g3);display:flex;align-items:center;justify-content:center}
 [data-dark] .card-icon{background:#0d3d0d}
@@ -74,12 +75,12 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:v
 .btn-add:hover{background:var(--g2)}
 
 .tbl-scroll{overflow-x:auto;border-radius:8px;border:0.5px solid var(--bdr)}
-table{width:100%;border-collapse:collapse;font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
 thead tr{background:var(--hdr)}
-thead th{padding:8px 7px;color:var(--hdrT);font-weight:500;text-align:center;white-space:nowrap;font-size:11.5px}
+thead th{padding:9px 8px;color:var(--hdrT);font-weight:500;text-align:center;white-space:nowrap;font-size:12px}
 tbody tr:nth-child(even){background:var(--g4)}
 [data-dark] tbody tr:nth-child(even){background:#1a2a1a}
-tbody td{padding:5px 7px;border-bottom:0.5px solid var(--bdr);vertical-align:middle}
+tbody td{padding:6px 8px;border-bottom:0.5px solid var(--bdr);vertical-align:middle}
 .tc{text-align:center}.tr{text-align:right}
 input.qty{width:50px;text-align:center;background:var(--inp);border:0.5px solid var(--bdr);border-radius:4px;padding:3px 4px;font-size:12px;color:var(--txt)}
 select.dsc{background:var(--inp);border:0.5px solid var(--bdr);border-radius:4px;padding:3px;font-size:11px;color:var(--txt)}
@@ -94,14 +95,18 @@ input.price-manual{width:72px;text-align:right;background:var(--inp);border:0.5p
 [data-dark] .bg{background:#083020;color:#5dcaa5}
 [data-dark] .bp{background:#0c2040;color:#85b7eb}
 
-.totals{margin-top:14px}
-.tot-r{display:flex;justify-content:space-between;align-items:center;padding:9px 16px;border:0.5px solid var(--bdr);border-top:none}
-.tot-r:first-child{border-top:0.5px solid var(--bdr);border-radius:8px 8px 0 0}
+.totals{margin-top:16px;display:flex;justify-content:flex-end}
+.totals-box{width:380px;border:0.5px solid var(--bdr);border-radius:8px;overflow:hidden}
+.tot-r{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-bottom:0.5px solid var(--bdr)}
+.tot-r:last-child{border-bottom:none}
 .tot-r.t-sub{background:var(--surf2)}
 .tot-r.t-pp{background:var(--pp-bg)}
 .tot-r.t-pp span{color:var(--pp-t)}
-.tot-r.t-neto{background:var(--neto-bg);border-radius:0 0 8px 8px;border-color:transparent}
+.tot-r.t-neto{background:var(--neto-bg)}
 .tot-r.t-neto span{color:var(--neto-t);font-weight:500;font-size:15px}
+.pp-input-wrap{display:flex;align-items:center;gap:6px}
+.pp-pct-input{width:54px;text-align:center;background:var(--inp);border:0.5px solid var(--bdr);border-radius:4px;padding:3px 6px;font-size:12px;color:var(--pp-t);font-weight:600}
+[data-dark] .pp-pct-input{border-color:#555}
 .lbl{font-size:13px;color:var(--muted)}
 .val{font-weight:500;font-size:13px}
 .t-neto .lbl{color:var(--neto-t);font-size:14px}
@@ -111,8 +116,8 @@ input.price-manual{width:72px;text-align:right;background:var(--inp);border:0.5p
 .btn-pdf{background:var(--g1);color:#fff;border:none;border-radius:8px;padding:10px 22px;cursor:pointer;font-size:13px;font-weight:500}
 .btn-pdf:hover{background:var(--g2)}
 
-.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
-@media(max-width:520px){.stat-grid{grid-template-columns:1fr}}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+@media(max-width:640px){.stat-grid{grid-template-columns:1fr 1fr}}
 .stat-card{background:var(--surf2);border-radius:8px;padding:12px 14px;text-align:center}
 .stat-num{font-size:20px;font-weight:500;color:var(--g1)}
 [data-dark] .stat-num{color:#a3d977}
@@ -161,6 +166,15 @@ input.price-manual{width:72px;text-align:right;background:var(--inp);border:0.5p
 <div class="stat-grid" id="stat-grid">
   <div class="stat-card"><div class="stat-num" id="s-items">0</div><div class="stat-lbl">productos</div></div>
   <div class="stat-card"><div class="stat-num" id="s-total">S/. 0</div><div class="stat-lbl">subtotal</div></div>
+  <div class="stat-card" style="cursor:pointer" title="Click para editar el % de pronto pago" onclick="document.getElementById('pp-pct').focus()">
+    <div class="stat-num" style="display:flex;align-items:center;justify-content:center;gap:4px">
+      <input id="pp-pct-top" type="number" min="0" max="100" step="0.5" value="0"
+        style="width:52px;text-align:center;background:transparent;border:none;border-bottom:2px solid var(--g1);font-size:20px;font-weight:500;color:var(--g1);padding:0;font-family:inherit"
+        oninput="syncPPInput('top')" onclick="event.stopPropagation()">
+      <span style="font-size:14px;color:var(--g1)">%</span>
+    </div>
+    <div class="stat-lbl">pronto pago</div>
+  </div>
   <div class="stat-card"><div class="stat-num" id="s-neto">S/. 0</div><div class="stat-lbl">total neto</div></div>
 </div>
 
@@ -232,9 +246,19 @@ input.price-manual{width:72px;text-align:right;background:var(--inp);border:0.5p
     <tbody id="det-body"></tbody>
   </table></div>
   <div class="totals">
-    <div class="tot-r t-sub"><span class="lbl">Subtotal</span><span class="val" id="t-sub">S/. 0.00</span></div>
-    <div class="tot-r t-pp"><span class="lbl" style="color:var(--pp-t)">Desc. pronto pago (3%)</span><span class="val" style="color:var(--pp-t)" id="t-pp">-S/. 0.00</span></div>
-    <div class="tot-r t-neto"><span class="lbl">Total neto a pagar</span><span class="val" id="t-neto">S/. 0.00</span></div>
+    <div class="totals-box">
+      <div class="tot-r t-sub"><span class="lbl">Subtotal</span><span class="val" id="t-sub">S/. 0.00</span></div>
+      <div class="tot-r t-pp">
+        <span class="lbl pp-input-wrap" style="color:var(--pp-t)">
+          Desc. pronto pago
+          <input id="pp-pct" class="pp-pct-input" type="number" min="0" max="100" step="0.5" value="0"
+            title="Porcentaje de descuento pronto pago" oninput="syncPPInput('main')">
+          <span style="color:var(--pp-t);font-size:12px">%</span>
+        </span>
+        <span class="val" style="color:var(--pp-t)" id="t-pp">-S/. 0.00</span>
+      </div>
+      <div class="tot-r t-neto"><span class="lbl">Total neto a pagar</span><span class="val" id="t-neto">S/. 0.00</span></div>
+    </div>
   </div>
   <div class="field" style="margin-top:14px"><label>Comentarios</label><textarea id="obs" placeholder="Condiciones especiales, notas de entrega, acuerdos comerciales..." style="min-height:60px"></textarea></div>
   </div>
@@ -494,6 +518,23 @@ function renderDet(){
   calcTot();
 }
 
+function syncPPInput(source){
+  const topEl = document.getElementById('pp-pct-top');
+  const mainEl = document.getElementById('pp-pct');
+  if(!topEl || !mainEl) return;
+  if(source==='top'){
+    mainEl.value = topEl.value;
+  } else {
+    topEl.value = mainEl.value;
+  }
+  calcTot();
+}
+
+function getPPPct(){
+  const el = document.getElementById('pp-pct');
+  return Math.min(100, Math.max(0, parseFloat(el?.value)||0));
+}
+
 function calcTot(){
   let sub=0;
   cart.forEach(r=>{
@@ -504,9 +545,10 @@ function calcTot(){
     const el=document.getElementById('tot-'+r.id);
     if(el)el.textContent='S/. '+tot.toFixed(2);
   });
-  const pp=sub*0.03,neto=sub-pp;
+  const ppPct=getPPPct();
+  const pp=sub*(ppPct/100),neto=sub-pp;
   document.getElementById('t-sub').textContent='S/. '+sub.toFixed(2);
-  document.getElementById('t-pp').textContent='-S/. '+pp.toFixed(2);
+  document.getElementById('t-pp').textContent=ppPct>0?'-S/. '+pp.toFixed(2):'S/. 0.00';
   document.getElementById('t-neto').textContent='S/. '+neto.toFixed(2);
   document.getElementById('s-items').textContent=cart.reduce((a,r)=>a+r.qty,0);
   document.getElementById('s-total').textContent='S/. '+sub.toFixed(2);
@@ -535,10 +577,12 @@ function exportPDF(){
   const snapshot = {
     razon,ruc,tel,vend,dir,cod,pago,catcli,fecha,obs,
     vendorCode: currentVendorCode,
+    ppPct: ppPct,
     cart: cart.map(r=>({idx:r.idx,qty:r.qty,disc:r.disc}))
   };
 
   let sub=0,filas='';
+  const ppPct=getPPPct();
   cart.forEach((r,i)=>{
     const p=PRODS[r.idx];
     const pd=p.p*(1-r.disc/100);
@@ -557,7 +601,8 @@ function exportPDF(){
       <td style="text-align:right;font-weight:600;padding:7px 8px;color:#1a5c1a">S/. ${tot.toFixed(2)}</td>
     </tr>`;
   });
-  const pp=sub*0.03,neto=sub-pp;
+  const pp=sub*(ppPct/100),neto=sub-pp;
+  const ppLabel = ppPct>0 ? `Desc. pronto pago (${ppPct}%)` : 'Desc. pronto pago';
 
   // Folder name for instructions
   const folderName = currentVendorCode
@@ -618,7 +663,7 @@ function exportPDF(){
   </table>
   <div class="tot-wrap"><div class="tot-box">
     <div class="tot-r tot-sub"><span style="color:#666">Subtotal</span><span style="font-weight:500">S/. ${sub.toFixed(2)}</span></div>
-    <div class="tot-r tot-pp"><span style="color:#7a5c00">Desc. pronto pago (3%)</span><span style="color:#7a5c00;font-weight:500">-S/. ${pp.toFixed(2)}</span></div>
+    <div class="tot-r tot-pp"><span style="color:#7a5c00">${ppLabel}</span><span style="color:#7a5c00;font-weight:500">${ppPct>0?'-S/. '+pp.toFixed(2):'S/. 0.00'}</span></div>
     <div class="tot-r tot-neto"><span>Total neto a pagar</span><span>S/. ${neto.toFixed(2)}</span></div>
   </div></div>
   ${obs?`<div class="obs-box"><strong>Comentarios:</strong> ${obs}</div>`:''}
@@ -693,6 +738,13 @@ function loadQuote(input){
       document.getElementById('codigo').value = snap.cod||'';
       document.getElementById('nav-code').textContent = snap.cod||'';
       if(snap.vendorCode) currentVendorCode = snap.vendorCode;
+      // Restaurar % pronto pago
+      if(snap.ppPct != null){
+        const ppEl = document.getElementById('pp-pct');
+        const ppTopEl = document.getElementById('pp-pct-top');
+        if(ppEl) ppEl.value = snap.ppPct;
+        if(ppTopEl) ppTopEl.value = snap.ppPct;
+      }
 
       // Restaurar carrito
       cart=[];rid=0;
@@ -726,6 +778,7 @@ function clearAll(){
   ['razon','ruc','tel','dir','obs','buscar'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   ['pago','catcli','fcat','fmarca'].forEach(id=>{const e=document.getElementById(id);if(e)e.selectedIndex=0;});
   document.getElementById('fecha').value=new Date().toISOString().split('T')[0];
+  ['pp-pct','pp-pct-top'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='0';});
   vis=[...PRODS];
   renderCat();renderDet();
 }
