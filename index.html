@@ -41,7 +41,11 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:v
 @media(max-width:900px){.grid4{grid-template-columns:1fr 1fr}}
 
 .card{background:var(--surf);border:0.5px solid var(--bdr);border-radius:var(--r);padding:18px 20px;margin-bottom:12px}
-.card-header{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:0.5px solid var(--bdr)}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:0.5px solid var(--bdr);cursor:pointer;user-select:none}
+.card-header:hover .card-chevron{background:var(--g3);border-color:var(--g2)}
+.card-header:hover .card-chevron svg{stroke:var(--g1)}
+[data-dark] .card-header:hover .card-chevron{background:#0d3d0d;border-color:#2d7a2d}
+[data-dark] .card-header:hover .card-chevron svg{stroke:#a3d977}
 .card-icon{width:28px;height:28px;border-radius:6px;background:var(--g3);display:flex;align-items:center;justify-content:center}
 [data-dark] .card-icon{background:#0d3d0d}
 .card-icon svg{width:15px;height:15px;fill:var(--g1)}
@@ -49,13 +53,16 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:v
 .card-title{font-size:11px;font-weight:500;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase}
 
 /* Collapsible cards */
-.card-header{cursor:pointer;user-select:none}
-.card-header:hover{opacity:.85}
-.card-chevron{margin-left:auto;font-size:14px;color:var(--muted);transition:transform .25s}
+.card-chevron{margin-left:auto;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--surf2);border:0.5px solid var(--bdr);transition:transform .25s,background .2s,border-color .2s;flex-shrink:0}
+.card-chevron svg{width:11px;height:11px;fill:none;stroke:var(--muted);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.card:not(.collapsed) .card-chevron{background:var(--g3);border-color:var(--g2)}
+.card:not(.collapsed) .card-chevron svg{stroke:var(--g1)}
+[data-dark] .card:not(.collapsed) .card-chevron{background:#0d3d0d;border-color:#2d7a2d}
+[data-dark] .card:not(.collapsed) .card-chevron svg{stroke:#a3d977}
+.card.collapsed .card-chevron{transform:rotate(-90deg)}
 .card-body{transition:max-height .3s ease,opacity .3s ease;overflow:hidden}
 .card.collapsed .card-body{max-height:0!important;opacity:0;pointer-events:none}
-.card.collapsed .card-chevron{transform:rotate(-90deg)}
-.card-header-summary{font-size:11px;color:var(--muted);margin-left:8px;display:none}
+.card-header-summary{font-size:11px;color:var(--muted);margin-left:4px;display:none;font-style:italic}
 .card.collapsed .card-header-summary{display:inline}
 
 /* Fix dark mode description text */
@@ -111,10 +118,21 @@ input.price-manual{width:72px;text-align:right;background:var(--inp);border:0.5p
 .val{font-weight:500;font-size:13px}
 .t-neto .lbl{color:var(--neto-t);font-size:14px}
 
-.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;justify-content:flex-end}
-.btn-clear{background:var(--surf2);border:0.5px solid var(--bdr);border-radius:8px;padding:10px 18px;cursor:pointer;font-size:13px;color:var(--muted)}
-.btn-pdf{background:var(--g1);color:#fff;border:none;border-radius:8px;padding:10px 22px;cursor:pointer;font-size:13px;font-weight:500}
-.btn-pdf:hover{background:var(--g2)}
+.card-status{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500;letter-spacing:.3px;background:var(--g3);color:var(--g1);border:0.5px solid var(--g2);white-space:nowrap}
+[data-dark] .card-status{background:#0d3d0d;color:#a3d977;border-color:#2d7a2d}
+.empty-cart{text-align:center;padding:32px 16px;color:var(--muted)}
+.empty-cart svg{width:40px;height:40px;fill:var(--bdr);margin-bottom:10px}
+.empty-cart p{font-size:13px}
+/* Botones de acción mejorados */
+.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+.btn-clear{background:var(--surf2);border:0.5px solid var(--bdr);border-radius:8px;padding:10px 18px;cursor:pointer;font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:6px;transition:background .15s,border-color .15s}
+.btn-clear:hover{background:var(--bdr)}
+.btn-save{background:var(--surf2);border:1.5px solid var(--g1);border-radius:8px;padding:10px 18px;cursor:pointer;font-size:13px;color:var(--g1);font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:background .15s}
+.btn-save:hover{background:var(--g3)}
+[data-dark] .btn-save{border-color:#a3d977;color:#a3d977}
+[data-dark] .btn-save:hover{background:#0d3d0d}
+.btn-pdf{background:var(--g1);color:#fff;border:none;border-radius:8px;padding:10px 22px;cursor:pointer;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:7px;transition:background .15s,box-shadow .15s}
+.btn-pdf:hover{background:var(--g2);box-shadow:0 2px 8px rgba(26,92,26,.3)}
 
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
 @media(max-width:640px){.stat-grid{grid-template-columns:1fr 1fr}}
@@ -183,7 +201,7 @@ input.price-manual{width:72px;text-align:right;background:var(--inp);border:0.5p
     <div class="card-icon"><svg viewBox="0 0 16 16"><path d="M8 1a5 5 0 100 10A5 5 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8zm7 1V5h2v4H7zm0 2h2v-1.5H7V11z"/></svg></div>
     <span class="card-title">Datos del cliente</span>
     <span class="card-header-summary" id="sum-cliente"></span>
-    <span class="card-chevron">&#8964;</span>
+    <span class="card-chevron"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></span>
   </div>
   <div class="card-body" id="body-card-cliente">
   <div class="grid2" style="gap:10px;margin-bottom:10px">
@@ -201,7 +219,7 @@ input.price-manual{width:72px;text-align:right;background:var(--inp);border:0.5p
     <div class="card-icon"><svg viewBox="0 0 16 16"><path d="M1 2a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H2a1 1 0 01-1-1V2zm0 4.5a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H2a1 1 0 01-1-1v-2zm0 4.5a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H2a1 1 0 01-1-1v-2z"/></svg></div>
     <span class="card-title">Datos de la orden</span>
     <span class="card-header-summary" id="sum-orden"></span>
-    <span class="card-chevron">&#8964;</span>
+    <span class="card-chevron"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></span>
   </div>
   <div class="card-body" id="body-card-orden">
   <div class="grid4">
@@ -218,7 +236,7 @@ input.price-manual{width:72px;text-align:right;background:var(--inp);border:0.5p
     <div class="card-icon"><svg viewBox="0 0 16 16"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zm1 11.5H7v-4h2v4zm0-5.5H7V4h2v2z"/></svg></div>
     <span class="card-title">Catálogo de productos</span>
     <span class="card-header-summary" id="sum-catalogo"></span>
-    <span class="card-chevron">&#8964;</span>
+    <span class="card-chevron"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></span>
   </div>
   <div class="card-body" id="body-card-catalogo">
   <div class="search-wrap">
@@ -238,7 +256,7 @@ input.price-manual{width:72px;text-align:right;background:var(--inp);border:0.5p
     <div class="card-icon"><svg viewBox="0 0 16 16"><path d="M0 2.5A.5.5 0 01.5 2H2a.5.5 0 01.485.379L2.89 4H14.5a.5.5 0 01.485.621l-1.5 6A.5.5 0 0113 11H4a.5.5 0 01-.485-.379L1.61 3H.5a.5.5 0 01-.5-.5zM3.14 5l1.25 5H12.61l1.25-5H3.14zM5 13a1 1 0 100 2 1 1 0 000-2zm-2 1a2 2 0 114 0 2 2 0 01-4 0zm9-1a1 1 0 100 2 1 1 0 000-2zm-2 1a2 2 0 114 0 2 2 0 01-4 0z"/></svg></div>
     <span class="card-title">Detalle de cotización</span>
     <span class="card-header-summary" id="sum-detalle"></span>
-    <span class="card-chevron">&#8964;</span>
+    <span class="card-chevron"><svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></span>
   </div>
   <div class="card-body" id="body-card-detalle">
   <div class="tbl-scroll"><table id="det-tbl">
@@ -265,12 +283,23 @@ input.price-manual{width:72px;text-align:right;background:var(--inp);border:0.5p
 </div>
 
 <div class="actions">
-  <button class="btn-clear" onclick="clearAll()">Limpiar formulario</button>
-  <label class="btn-clear" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px" title="Cargar una cotización guardada para editar">
-    📂 Cargar cotización
+  <button class="btn-clear" onclick="clearAll()" title="Limpiar todo el formulario">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 010-2h3a1 1 0 011-1h2a1 1 0 011 1h3a1 1 0 011 1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3a.5.5 0 000 1h11a.5.5 0 000-1h-11z"/></svg>
+    Limpiar
+  </button>
+  <label class="btn-clear" style="cursor:pointer" title="Cargar una cotización guardada para editar">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 1.146a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8.5 2.707V11.5a.5.5 0 01-1 0V2.707L5.354 4.854a.5.5 0 11-.708-.708l3-3z"/></svg>
+    Cargar cotización
     <input type="file" id="file-load" accept=".html" style="display:none" onchange="loadQuote(this)">
   </label>
-  <button class="btn-pdf" onclick="exportPDF()">Exportar PDF</button>
+  <button class="btn-save" onclick="saveQuote()" title="Descarga un .html para recuperar y editar esta cotización luego">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M2 1a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V2a1 1 0 00-1-1H9.5a1 1 0 00-1 1v7.293l2.646-2.647a.5.5 0 01.708.708l-3.5 3.5a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L7.5 9.293V2a2 2 0 012-2H14a2 2 0 012 2v12a2 2 0 01-2 2H2a2 2 0 01-2-2V2a2 2 0 012-2h2.5a.5.5 0 010 1H2z"/></svg>
+    Guardar cotización
+  </button>
+  <button class="btn-pdf" onclick="exportPDF()" title="Genera el PDF e incluye el archivo .html de respaldo">
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M14 4.5V14a2 2 0 01-2 2H4a2 2 0 01-2-2V2a2 2 0 012-2h5.5L14 4.5zm-3 0A1.5 1.5 0 019.5 3V1H4a1 1 0 00-1 1v12a1 1 0 001 1h8a1 1 0 001-1V4.5h-2z"/><path d="M4.603 14.087a.81.81 0 01-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 011.482-.645 19.697 19.697 0 001.062-2.227 7.269 7.269 0 01-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 01.477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 00.98 1.686 5.753 5.753 0 011.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 01-.354.416.856.856 0 01-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 01-.911-.95 11.651 11.651 0 00-1.997.406 11.307 11.307 0 01-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 01-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 00.035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 00.45-.606zm1.64-1.33a12.71 12.71 0 011.01-.193 11.744 11.744 0 01-.51-.858 20.801 20.801 0 01-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 00.07-.015.307.307 0 00.094-.125.436.436 0 00.059-.2.095.095 0 00-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 00-.612-.053zM8.078 7.8a6.7 6.7 0 00.2-.828c.031-.188.043-.343.038-.465a.613.613 0 00-.032-.198.517.517 0 00-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"/></svg>
+    Exportar PDF
+  </button>
 </div>
 </div>
 
@@ -491,6 +520,16 @@ function updPdto(id, v){
 function renderDet(){
   const b=document.getElementById('det-body');
   b.innerHTML='';
+  if(!cart.length){
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td colspan="9" class="empty-cart">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M0 1.5A.5.5 0 01.5 1H2a.5.5 0 01.485.379L2.89 3H14.5a.5.5 0 01.485.621l-1.5 6A.5.5 0 0113 10H4a.5.5 0 01-.485-.379L1.61 3H.5a.5.5 0 01-.5-.5zM3.14 4l1.25 5H12.61l1.25-5H3.14zM5 13a1 1 0 100 2 1 1 0 000-2zm-2 1a2 2 0 114 0 2 2 0 01-4 0zm9-1a1 1 0 100 2 1 1 0 000-2zm-2 1a2 2 0 114 0 2 2 0 01-4 0z"/></svg>
+      <p>Aún no hay productos. Búscalos en el catálogo y presiona <strong>+ Agregar</strong>.</p>
+    </td>`;
+    b.appendChild(tr);
+    calcTot();
+    return;
+  }
   cart.forEach((r,i)=>{
     const p=PRODS[r.idx];
     const pd=p.p*(1-r.disc/100);
@@ -560,8 +599,8 @@ function calcTot(){
 }
 
 // ─── EXPORT / SAVE ───────────────────────────────────────────────────
-function exportPDF(){
-  if(!cart.length){alert('Agrega al menos un producto antes de exportar.');return;}
+// ─── HELPER: construye el HTML de la cotización ──────────────────────
+function buildQuoteHTML(){
   const razon=document.getElementById('razon').value||'—';
   const ruc=document.getElementById('ruc').value||'—';
   const tel=document.getElementById('tel').value||'—';
@@ -572,16 +611,13 @@ function exportPDF(){
   const catcli=document.getElementById('catcli').value||'—';
   const fecha=document.getElementById('fecha').value||'—';
   const obs=document.getElementById('obs').value||'';
-
-  // ── ppPct DEBE declararse ANTES de usarse en snapshot
   const ppPct=getPPPct();
 
-  // Build snapshot data embedded in the HTML for reload
-  const snapshot = {
+  const snapshot={
     razon,ruc,tel,vend,dir,cod,pago,catcli,fecha,obs,
-    vendorCode: currentVendorCode,
-    ppPct: ppPct,
-    cart: cart.map(r=>({idx:r.idx,qty:r.qty,disc:r.disc}))
+    vendorCode:currentVendorCode,
+    ppPct,
+    cart:cart.map(r=>({idx:r.idx,qty:r.qty,disc:r.disc}))
   };
 
   let sub=0,filas='';
@@ -606,12 +642,7 @@ function exportPDF(){
   const pp=sub*(ppPct/100),neto=sub-pp;
   const ppLabel = ppPct>0 ? `Desc. pronto pago (${ppPct}%)` : 'Desc. pronto pago';
 
-  // Folder name for instructions
-  const folderName = currentVendorCode
-    ? 'SOLPET_COTIZACIONES_'+currentVendorCode
-    : 'SOLPET_COTIZACIONES';
-
-  const html=`<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Cotizacion ${cod}</title>
+  return {html:`<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Cotizacion ${cod}</title>
   <!-- SOLPET_SNAPSHOT:${JSON.stringify(snapshot)} -->
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -632,23 +663,16 @@ function exportPDF(){
     thead th{color:#fff;padding:8px 8px;font-weight:500;text-align:center}
     tbody tr td{padding:7px 6px}
     .tot-wrap{display:flex;justify-content:flex-end}
-    .tot-box{width:300px;border:0.5px solid #e0e0dc;border-radius:8px;overflow:hidden}
-    .tot-r{display:flex;justify-content:space-between;padding:8px 14px;border-bottom:0.5px solid #e0e0dc}
+    .tot-box{width:320px;border:0.5px solid #e0e0dc;border-radius:8px;overflow:hidden}
+    .tot-r{display:flex;justify-content:space-between;padding:9px 16px;border-bottom:0.5px solid #e0e0dc}
     .tot-r:last-child{border-bottom:none}
     .tot-sub{background:#f8f8f6}
     .tot-pp{background:#fef9e7}
-    .tot-pp span{color:#7a5c00}
     .tot-neto{background:#1a5c1a}
     .tot-neto span{color:#fff;font-weight:700;font-size:13px}
     .obs-box{margin-top:14px;padding:10px 14px;background:#fafafa;border:0.5px solid #e0e0dc;border-radius:6px;font-size:11px;color:#555}
-    .footer{margin-top:28px;text-align:center;font-size:10px;color:#aaa;border-top:0.5px solid #e0e0dc;padding-top:12px}
-    .print-tip{margin:16px 0;padding:10px 16px;background:#fffbeb;border:1px solid #f59e0b;border-radius:6px;font-size:11px;color:#92400e;text-align:center}
-    .folder-tip{margin-top:20px;padding:10px 14px;background:#fffbeb;border:0.5px solid #f59e0b;border-radius:6px;font-size:10.5px;color:#92400e;display:none}
-    @media print{
-      body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-      .print-tip{display:none!important}
-      .folder-tip{display:none!important}
-    }
+    .footer{margin-top:24px;text-align:center;font-size:10px;color:#aaa;border-top:0.5px solid #e0e0dc;padding-top:10px}
+    @media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
   </style></head><body><div class="page">
   <div class="hdr">
     <div class="hdr-left"><img src="${LOGO_B64}" alt="Solpet"><div style="font-size:10px;color:#888;margin-top:4px">by SOLVET</div></div>
@@ -671,19 +695,56 @@ function exportPDF(){
   <div class="tot-wrap"><div class="tot-box">
     <div class="tot-r tot-sub"><span style="color:#666">Subtotal</span><span style="font-weight:500">S/. ${sub.toFixed(2)}</span></div>
     <div class="tot-r tot-pp"><span style="color:#7a5c00">${ppLabel}</span><span style="color:#7a5c00;font-weight:500">${ppPct>0?'-S/. '+pp.toFixed(2):'S/. 0.00'}</span></div>
-    <div class="tot-r tot-neto"><span>Total neto a pagar</span><span>S/. ${neto.toFixed(2)}</span></div>
+    <div class="tot-r tot-neto"><span style="color:#fff">Total neto a pagar</span><span>S/. ${neto.toFixed(2)}</span></div>
   </div></div>
   ${obs?`<div class="obs-box"><strong>Comentarios:</strong> ${obs}</div>`:''}
-  <div class="print-tip">💡 Para guardar como PDF: en el diálogo de impresión selecciona <strong>"Guardar como PDF"</strong> como destino / impresora.</div>
   <div class="footer">Documento generado por SolPet &bull; ${new Date().toLocaleString('es-PE')}</div>
-  </div>
-  <script>window.onload=function(){
-    var tip=document.getElementById('folder-tip');
-    if(tip&&document.referrer==='')tip.style.display='block';
-  };<\/script>
-  </body></html>`;
+  </div></body></html>`, cod};
+}
 
-  // ── 1. Descargar el archivo HTML (backup / recarga)
+// ─── EXPORTAR PDF + guardar HTML de respaldo ─────────────────────────
+function exportPDF(){
+  if(!cart.length){alert('Agrega al menos un producto antes de exportar.');return;}
+  const {html, cod} = buildQuoteHTML();
+
+  // 1. Descargar HTML de respaldo automáticamente
+  const htmlBlob = new Blob([html], {type:'text/html;charset=utf-8'});
+  const htmlUrl  = URL.createObjectURL(htmlBlob);
+  const a = document.createElement('a');
+  a.href = a.download = '';   // init
+  a.href = htmlUrl;
+  a.download = cod + '.html';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(htmlUrl); a.remove(); }, 800);
+
+  // 2. Abrir ventana de impresión (el usuario elige "Guardar como PDF")
+  //    Usamos iframe oculto en lugar de window.open para evitar bloqueo de popups
+  //    y para que el diálogo de impresión aparezca directamente.
+  const pdfBlob = new Blob([html], {type:'text/html;charset=utf-8'});
+  const pdfUrl  = URL.createObjectURL(pdfBlob);
+
+  let iframe = document.getElementById('_print_frame');
+  if(iframe) iframe.remove();
+  iframe = document.createElement('iframe');
+  iframe.id = '_print_frame';
+  iframe.style.cssText = 'position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;border:none;opacity:0;pointer-events:none';
+  iframe.src = pdfUrl;
+  document.body.appendChild(iframe);
+
+  iframe.addEventListener('load', function(){
+    setTimeout(()=>{
+      iframe.contentWindow.focus();
+      iframe.contentWindow.print();
+      setTimeout(()=>{ URL.revokeObjectURL(pdfUrl); }, 4000);
+    }, 400);
+  });
+}
+
+// ─── GUARDAR COTIZACIÓN (para recuperar y editar luego) ──────────────
+function saveQuote(){
+  if(!cart.length){alert('Agrega al menos un producto antes de guardar.');return;}
+  const {html, cod} = buildQuoteHTML();
   const blob = new Blob([html], {type:'text/html;charset=utf-8'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -691,51 +752,7 @@ function exportPDF(){
   a.download = cod + '.html';
   document.body.appendChild(a);
   a.click();
-  setTimeout(()=>{ a.remove(); }, 500);
-
-  // ── 2. Instrucciones de carpeta (solo primera vez por vendedor)
-  const folderName = currentVendorCode
-    ? 'SOLPET_COTIZACIONES_'+currentVendorCode
-    : 'SOLPET_COTIZACIONES';
-  const tipKey = 'solpet_folder_tip_'+currentVendorCode;
-  if(!localStorage.getItem(tipKey)){
-    localStorage.setItem(tipKey,'1');
-    setTimeout(()=>{
-      alert(
-        '📁 Primera cotización exportada!\n\n'+
-        'Para organizar tus archivos:\n'+
-        '1. Abre la carpeta de Descargas en tu equipo\n'+
-        '2. Crea una carpeta llamada:\n   '+folderName+'\n'+
-        '3. Mueve el archivo "'+cod+'.html" a esa carpeta\n\n'+
-        'A partir de ahora guarda siempre tus cotizaciones en esa carpeta.\n'+
-        'Puedes cargarlas de vuelta al programa con el botón "📂 Cargar cotización".'
-      );
-    }, 800);
-  }
-
-  // ── 3. Abrir en nueva ventana usando Blob URL y luego imprimir
-  //    (document.write en ventana nueva falla en navegadores modernos)
-  const printBlob = new Blob([html], {type:'text/html;charset=utf-8'});
-  const printUrl = URL.createObjectURL(printBlob);
-  const w = window.open(printUrl, '_blank');
-  if(!w){
-    alert('⚠️ Permite ventanas emergentes en tu navegador para poder imprimir / guardar como PDF.\n\nEl archivo HTML ya fue descargado en tu carpeta de Descargas.');
-    URL.revokeObjectURL(printUrl);
-    URL.revokeObjectURL(url);
-    return;
-  }
-  // Esperar a que cargue el blob y luego imprimir
-  w.addEventListener('load', function(){
-    setTimeout(()=>{
-      w.focus();
-      w.print();
-      // Limpiar blob URLs después de imprimir
-      setTimeout(()=>{
-        URL.revokeObjectURL(printUrl);
-        URL.revokeObjectURL(url);
-      }, 2000);
-    }, 400);
-  });
+  setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 500);
 }
 
 // ─── CARGAR COTIZACIÓN GUARDADA ──────────────────────────────────────
@@ -746,15 +763,13 @@ function loadQuote(input){
   reader.onload = function(e){
     try {
       const content = e.target.result;
-      // Extract snapshot from HTML comment
       const match = content.match(/<!--\s*SOLPET_SNAPSHOT:([\s\S]*?)\s*-->/);
-      if(!match) {
-        alert('Este archivo no parece ser una cotización SolPet válida o fue generado con una versión anterior.');
+      if(!match){
+        alert('Este archivo no parece ser una cotización SolPet válida.');
         return;
       }
       const snap = JSON.parse(match[1]);
 
-      // Restaurar campos de texto
       const fields = {razon:'razon',ruc:'ruc',tel:'tel',dir:'dir',pago:'pago',catcli:'catcli',fecha:'fecha',obs:'obs'};
       Object.entries(fields).forEach(([k,id])=>{
         const el=document.getElementById(id);
@@ -764,15 +779,13 @@ function loadQuote(input){
       document.getElementById('codigo').value = snap.cod||'';
       document.getElementById('nav-code').textContent = snap.cod||'';
       if(snap.vendorCode) currentVendorCode = snap.vendorCode;
-      // Restaurar % pronto pago
       if(snap.ppPct != null){
-        const ppEl = document.getElementById('pp-pct');
-        const ppTopEl = document.getElementById('pp-pct-top');
-        if(ppEl) ppEl.value = snap.ppPct;
-        if(ppTopEl) ppTopEl.value = snap.ppPct;
+        const ppEl=document.getElementById('pp-pct');
+        const ppTopEl=document.getElementById('pp-pct-top');
+        if(ppEl) ppEl.value=snap.ppPct;
+        if(ppTopEl) ppTopEl.value=snap.ppPct;
       }
 
-      // Restaurar carrito
       cart=[];rid=0;
       (snap.cart||[]).forEach(r=>{
         cart.push({id:++rid, idx:r.idx, qty:r.qty, disc:r.disc||0});
