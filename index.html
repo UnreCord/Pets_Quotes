@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Cotizador SolPet</title>
     <style>
         :root {
@@ -58,18 +58,13 @@
             color: var(--txt);
             font-size: 14px;
             transition: background 0.3s, color 0.3s;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .app {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px 28px
-        }
-
-        @media(max-width:900px) {
-            .app {
-                padding: 14px 16px
-            }
         }
 
         .navbar {
@@ -168,26 +163,6 @@
             gap: 12px
         }
 
-        @media(max-width:640px) {
-
-            .grid2,
-            .grid3,
-            .grid4 {
-                grid-template-columns: 1fr
-            }
-
-            .navbar {
-                flex-direction: column;
-                text-align: center
-            }
-        }
-
-        @media(max-width:900px) {
-            .grid4 {
-                grid-template-columns: 1fr 1fr
-            }
-        }
-
         .card {
             background: var(--surf);
             border: 0.5px solid var(--bdr);
@@ -258,7 +233,6 @@
             text-transform: uppercase
         }
 
-        /* Collapsible cards */
         .card-chevron {
             margin-left: auto;
             display: flex;
@@ -329,7 +303,6 @@
             display: inline
         }
 
-        /* Fix dark mode description text */
         [data-dark] td {
             color: var(--txt)
         }
@@ -356,7 +329,7 @@
             background: var(--inp);
             border: 0.5px solid var(--bdr);
             border-radius: 6px;
-            padding: 7px 10px;
+            padding: 8px 10px;
             font-size: 13px;
             color: var(--txt);
             width: 100%;
@@ -386,7 +359,7 @@
             background: var(--surf2);
             border: 0.5px solid var(--bdr);
             color: var(--muted);
-            padding: 0 10px;
+            padding: 0 12px;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
@@ -436,7 +409,8 @@
         .tbl-scroll {
             overflow-x: auto;
             border-radius: 8px;
-            border: 0.5px solid var(--bdr)
+            border: 0.5px solid var(--bdr);
+            -webkit-overflow-scrolling: touch;
         }
 
         table {
@@ -469,7 +443,7 @@
         }
 
         tbody td {
-            padding: 6px 8px;
+            padding: 8px;
             border-bottom: 0.5px solid var(--bdr);
             vertical-align: middle
         }
@@ -483,13 +457,13 @@
         }
 
         input.qty {
-            width: 50px;
+            width: 56px;
             text-align: center;
             background: var(--inp);
             border: 0.5px solid var(--bdr);
             border-radius: 4px;
-            padding: 3px 4px;
-            font-size: 12px;
+            padding: 5px 4px;
+            font-size: 13px;
             color: var(--txt)
         }
 
@@ -499,23 +473,14 @@
             outline: none;
         }
 
-        select.dsc {
-            background: var(--inp);
-            border: 0.5px solid var(--bdr);
-            border-radius: 4px;
-            padding: 3px;
-            font-size: 11px;
-            color: var(--txt)
-        }
-
         input.dsc-manual {
-            width: 58px;
+            width: 60px;
             text-align: center;
             background: var(--inp);
             border: 0.5px solid var(--bdr);
             border-radius: 4px;
-            padding: 3px 4px;
-            font-size: 12px;
+            padding: 5px 4px;
+            font-size: 13px;
             color: var(--txt)
         }
 
@@ -526,13 +491,13 @@
         }
 
         input.price-manual {
-            width: 72px;
+            width: 80px;
             text-align: right;
             background: var(--inp);
             border: 0.5px solid var(--g2);
             border-radius: 4px;
-            padding: 3px 4px;
-            font-size: 12px;
+            padding: 5px 4px;
+            font-size: 13px;
             color: var(--txt)
         }
 
@@ -546,9 +511,9 @@
             border: none;
             cursor: pointer;
             color: var(--del);
-            font-size: 13px;
+            font-size: 15px;
             line-height: 1;
-            padding: 2px 4px;
+            padding: 4px 8px;
             border-radius: 4px;
             transition: background 0.2s;
         }
@@ -564,7 +529,7 @@
         .badge {
             display: inline-block;
             font-size: 10px;
-            padding: 2px 7px;
+            padding: 3px 7px;
             border-radius: 10px;
             font-weight: 500;
             letter-spacing: .3px
@@ -607,7 +572,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 18px;
+            padding: 12px 18px;
             border-bottom: 0.5px solid var(--bdr)
         }
 
@@ -634,7 +599,7 @@
         .tot-r.t-neto span {
             color: var(--neto-t);
             font-weight: 500;
-            font-size: 15px
+            font-size: 16px
         }
 
         .pp-input-wrap {
@@ -644,13 +609,13 @@
         }
 
         .pp-pct-input {
-            width: 54px;
+            width: 60px;
             text-align: center;
             background: var(--inp);
             border: 0.5px solid var(--bdr);
             border-radius: 4px;
-            padding: 3px 6px;
-            font-size: 12px;
+            padding: 5px 6px;
+            font-size: 13px;
             color: var(--pp-t);
             font-weight: 600
         }
@@ -666,30 +631,12 @@
 
         .val {
             font-weight: 500;
-            font-size: 13px
+            font-size: 14px
         }
 
         .t-neto .lbl {
             color: var(--neto-t);
             font-size: 14px
-        }
-
-        .card-status {
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-weight: 500;
-            letter-spacing: .3px;
-            background: var(--g3);
-            color: var(--g1);
-            border: 0.5px solid var(--g2);
-            white-space: nowrap
-        }
-
-        [data-dark] .card-status {
-            background: #0d3d0d;
-            color: #a3d977;
-            border-color: #2d7a2d
         }
 
         .empty-cart {
@@ -718,37 +665,29 @@
             align-items: center
         }
 
-        .btn-clear {
+        .btn-action {
             background: var(--surf2);
             border: 0.5px solid var(--bdr);
             border-radius: 8px;
-            padding: 10px 18px;
+            padding: 12px 18px;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 13.5px;
+            font-weight: 500;
             color: var(--muted);
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
             transition: background .15s, border-color .15s
         }
 
-        .btn-clear:hover {
+        .btn-action:hover {
             background: var(--bdr)
         }
 
         .btn-save {
-            background: var(--surf2);
             border: 1.5px solid var(--g1);
-            border-radius: 8px;
-            padding: 10px 18px;
-            cursor: pointer;
-            font-size: 13px;
             color: var(--g1);
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: background .15s
         }
 
         .btn-save:hover {
@@ -768,15 +707,6 @@
             background: var(--g1);
             color: #fff;
             border: none;
-            border-radius: 8px;
-            padding: 10px 22px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            transition: background .15s, box-shadow .15s
         }
 
         .btn-pdf:hover {
@@ -788,15 +718,6 @@
             background: #25D366;
             color: #fff;
             border: none;
-            border-radius: 8px;
-            padding: 10px 18px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            transition: background .15s
         }
 
         .btn-wa:hover {
@@ -810,32 +731,12 @@
             margin-bottom: 12px
         }
 
-        @media(max-width:640px) {
-            .stat-grid {
-                grid-template-columns: 1fr 1fr
-            }
-        }
-
         .stat-card {
             background: var(--surf2);
             border-radius: 8px;
             padding: 12px 14px;
             text-align: center;
             transition: background 0.3s;
-        }
-
-        @media print {
-
-            .navbar,
-            .actions,
-            .card-header .card-chevron {
-                display: none !important
-            }
-
-            .card.collapsed .card-body {
-                max-height: none !important;
-                opacity: 1 !important
-            }
         }
 
         .stat-num {
@@ -852,6 +753,131 @@
             font-size: 11px;
             color: var(--muted);
             margin-top: 2px
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(0, 0, 0, .6);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(3px);
+            padding: 14px;
+        }
+
+        .modal-box {
+            background: var(--bg);
+            color: var(--txt);
+            border-radius: 12px;
+            padding: 24px;
+            width: 100%;
+            max-width: 420px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, .3)
+        }
+
+        .saved-card {
+            background: var(--surf2);
+            border: 0.5px solid var(--bdr);
+            padding: 14px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .saved-card-hdr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        .saved-card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--txt)
+        }
+
+        .saved-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px
+        }
+
+        /* ====== MOBILE RESPONSIVE MEDIA QUERIES ====== */
+        @media(max-width: 768px) {
+            .app {
+                padding: 10px 14px;
+            }
+
+            .grid2,
+            .grid3,
+            .grid4 {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+                gap: 14px;
+                padding: 16px;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .totals-box {
+                width: 100%;
+            }
+
+            /* Botones 100% ancho para pulgares */
+            .actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-action {
+                width: 100%;
+                justify-content: center;
+                padding: 14px;
+                font-size: 14px;
+            }
+
+            /* Anti-Zoom en iOS (Fuente a 16px) */
+            .field input,
+            .field select,
+            .field textarea,
+            input.qty,
+            input.dsc-manual,
+            input.price-manual,
+            .pp-pct-input {
+                font-size: 16px !important;
+                padding: 10px;
+            }
+        }
+
+        @media print {
+
+            .navbar,
+            .actions,
+            .card-header .card-chevron {
+                display: none !important
+            }
+
+            .card.collapsed .card-body {
+                max-height: none !important;
+                opacity: 1 !important
+            }
         }
     </style>
 </head>
@@ -875,22 +901,17 @@
                 <button class="btn-sm" id="vend-btn" onclick="openVendorModal()" title="Configurar vendedor">👤
                     Vendedor</button>
                 <button class="btn-sm" id="theme-btn" onclick="toggleTheme()">Modo oscuro</button>
-                <button class="btn-pdf-top" onclick="exportPDF()">Exportar PDF</button>
             </div>
         </div>
 
-        <div id="vendor-modal"
-            style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.5);align-items:center;justify-content:center; backdrop-filter: blur(2px);">
-            <div id="vendor-modal-box"
-                style="background:#fff;border-radius:12px;padding:28px 32px;max-width:420px;width:92%;box-shadow:0 8px 40px rgba(0,0,0,.3)">
-                <div style="font-weight:600;font-size:15px;margin-bottom:6px">Configurar vendedor</div>
-                <div style="font-size:12px;color:#666;margin-bottom:18px">Selecciona tu perfil. El correlativo se
-                    guardará en este dispositivo de forma persistente.</div>
-                <div style="margin-bottom:14px">
-                    <label
-                        style="font-size:11px;color:#6b7280;font-weight:500;display:block;margin-bottom:4px">Vendedor</label>
-                    <select id="vend-select" onchange="previewCode()"
-                        style="width:100%;padding:8px 10px;border:0.5px solid #e2e2dc;border-radius:6px;font-size:13px;background:#fffde7">
+        <div id="vendor-modal" class="modal-overlay">
+            <div id="vendor-modal-box" class="modal-box">
+                <div style="font-weight:600;font-size:16px;margin-bottom:6px">Configurar vendedor</div>
+                <div style="font-size:13px;color:var(--muted);margin-bottom:20px">Selecciona tu perfil. El correlativo
+                    se guardará en este dispositivo.</div>
+                <div class="field" style="margin-bottom:14px">
+                    <label>Vendedor</label>
+                    <select id="vend-select" onchange="previewCode()" style="background:var(--inp)">
                         <option value="">— Seleccionar —</option>
                         <option value="JO|Junior Oviedo">Junior Oviedo</option>
                         <option value="MS|Matias Segura">Matias Segura</option>
@@ -900,13 +921,25 @@
                         <option value="RC|Rodrigo Caceres">Rodrigo Caceres</option>
                     </select>
                 </div>
-                <div id="vend-preview" style="font-size:12px;color:#6b7280;margin-bottom:18px;min-height:18px"></div>
+                <div id="vend-preview" style="font-size:13px;color:var(--muted);margin-bottom:20px;min-height:18px">
+                </div>
                 <div style="display:flex;gap:10px;justify-content:flex-end">
-                    <button onclick="closeVendorModal()"
-                        style="padding:8px 18px;border-radius:8px;border:0.5px solid #e2e2dc;background:#f1f1ee;color:#1c1c1c;cursor:pointer;font-size:13px">Cancelar</button>
-                    <button onclick="saveVendor()"
-                        style="padding:8px 18px;border-radius:8px;border:none;background:#1a5c1a;color:#fff;cursor:pointer;font-size:13px;font-weight:500">Guardar
-                        y generar código</button>
+                    <button onclick="closeVendorModal()" class="btn-action">Cancelar</button>
+                    <button onclick="saveVendor()" class="btn-action btn-pdf">Guardar Perfil</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="saved-modal" class="modal-overlay">
+            <div class="modal-box" style="height: 85vh;">
+                <div style="font-weight:600;font-size:16px;margin-bottom:6px">Mis Cotizaciones Guardadas</div>
+                <div style="font-size:13px;color:var(--muted);margin-bottom:14px">Almacenadas en la memoria de este
+                    celular.</div>
+                <div id="saved-list"
+                    style="overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px;padding-right:4px;"></div>
+                <div style="margin-top:16px;">
+                    <button onclick="closeSavedModal()" class="btn-action" style="width:100%">Volver al
+                        cotizador</button>
                 </div>
             </div>
         </div>
@@ -924,7 +957,7 @@
                 onclick="document.getElementById('pp-pct').focus()">
                 <div class="stat-num" style="display:flex;align-items:center;justify-content:center;gap:4px">
                     <input id="pp-pct-top" type="number" min="0" max="100" step="0.5" value="0"
-                        style="width:52px;text-align:center;background:transparent;border:none;border-bottom:2px solid var(--g1);font-size:20px;font-weight:500;color:var(--g1);padding:0;font-family:inherit"
+                        style="width:56px;text-align:center;background:transparent;border:none;border-bottom:2px solid var(--g1);font-size:20px;font-weight:500;color:var(--g1);padding:0;font-family:inherit"
                         oninput="syncPPInput('top')" onclick="event.stopPropagation()" onfocus="this.select()">
                     <span style="font-size:14px;color:var(--g1)">%</span>
                 </div>
@@ -1117,7 +1150,7 @@
         </div>
 
         <div class="actions">
-            <button class="btn-clear" onclick="clearAll()" title="Limpiar todo el formulario">
+            <button class="btn-action" onclick="clearAll()" title="Limpiar todo el formulario">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
                     <path
                         d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z" />
@@ -1126,42 +1159,58 @@
                 </svg>
                 Limpiar
             </button>
-            <label class="btn-clear" style="cursor:pointer" title="Cargar una cotización guardada para editar">
+
+            <button class="btn-action" id="btn-load-mobile" onclick="openSavedModal()" style="display:none;"
+                title="Ver cotizaciones guardadas en este celular">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
                     <path
                         d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z" />
                     <path
                         d="M7.646 1.146a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8.5 2.707V11.5a.5.5 0 01-1 0V2.707L5.354 4.854a.5.5 0 11-.708-.708l3-3z" />
                 </svg>
-                Cargar cotización
-                <input type="file" id="file-load" accept=".html" style="display:none" onchange="loadQuote(this)">
+                Cargar Guardadas
+            </button>
+
+            <label class="btn-action" id="btn-load-desktop" style="cursor:pointer"
+                title="Cargar un archivo .html guardado">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                    <path
+                        d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z" />
+                    <path
+                        d="M7.646 1.146a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8.5 2.707V11.5a.5.5 0 01-1 0V2.707L5.354 4.854a.5.5 0 11-.708-.708l3-3z" />
+                </svg>
+                Cargar Archivo
+                <input type="file" id="file-load" accept=".html" style="display:none"
+                    onchange="loadQuoteFromFile(this)">
             </label>
-            <button class="btn-save" onclick="copySummary()" title="Copiar un resumen de texto al portapapeles">
+
+            <button class="btn-action btn-save" onclick="copySummary()"
+                title="Copiar un resumen de texto al portapapeles">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
                     <path
                         d="M4 1.5H3a2 2 0 00-2 2V14a2 2 0 002 2h10a2 2 0 002-2V3.5a2 2 0 00-2-2h-1v1h1a1 1 0 011 1V14a1 1 0 01-1 1H3a1 1 0 01-1-1V3.5a1 1 0 011-1h1v-1z" />
                     <path d="M9.5 1h-3a1 1 0 00-1 1v1h5V2a1 1 0 00-1-1zm-4 3h5v1h-5V4z" />
                 </svg>
-                Copiar Texto
+                Copiar
             </button>
-            <button class="btn-save" onclick="saveQuote()"
-                title="Descarga un .html para recuperar y editar esta cotización luego">
+            <button class="btn-action btn-save" onclick="smartSaveQuote()"
+                title="Guarda la cotización (En celular se guarda en memoria, en PC descarga el archivo)">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
                     <path
                         d="M2 1a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V2a1 1 0 00-1-1H9.5a1 1 0 00-1 1v7.293l2.646-2.647a.5.5 0 01.708.708l-3.5 3.5a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L7.5 9.293V2a2 2 0 012-2H14a2 2 0 012 2v12a2 2 0 01-2 2H2a2 2 0 01-2-2V2a2 2 0 012-2h2.5a.5.5 0 010 1H2z" />
                 </svg>
                 Guardar
             </button>
-            <button class="btn-pdf" onclick="exportPDF()" title="Genera el PDF e incluye el archivo .html de respaldo">
+            <button class="btn-action btn-pdf" onclick="exportPDF()" title="Genera el PDF de la cotización">
                 <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor">
                     <path
                         d="M14 4.5V14a2 2 0 01-2 2H4a2 2 0 01-2-2V2a2 2 0 012-2h5.5L14 4.5zm-3 0A1.5 1.5 0 019.5 3V1H4a1 1 0 00-1 1v12a1 1 0 001 1h8a1 1 0 001-1V4.5h-2z" />
                     <path
                         d="M4.603 14.087a.81.81 0 01-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 011.482-.645 19.697 19.697 0 001.062-2.227 7.269 7.269 0 01-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 01.477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 00.98 1.686 5.753 5.753 0 011.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 01-.354.416.856.856 0 01-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 01-.911-.95 11.651 11.651 0 00-1.997.406 11.307 11.307 0 01-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 01-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 00.035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 00.45-.606zm1.64-1.33a12.71 12.71 0 011.01-.193 11.744 11.744 0 01-.51-.858 20.801 20.801 0 01-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 00.07-.015.307.307 0 00.094-.125.436.436 0 00.059-.2.095.095 0 00-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 00-.612-.053zM8.078 7.8a6.7 6.7 0 00.2-.828c.031-.188.043-.343.038-.465a.613.613 0 00-.032-.198.517.517 0 00-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z" />
                 </svg>
-                PDF
+                Ver PDF
             </button>
-            <button class="btn-wa" onclick="shareWhatsApp()" title="Enviar resumen rápido por WhatsApp">
+            <button class="btn-action btn-wa" onclick="shareWhatsApp()" title="Enviar a cliente por WhatsApp">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path
                         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
@@ -1219,13 +1268,13 @@
         ];
 
         let cart = [], rid = 0, dark = false, vis = [...PRODS];
+        const isMobileDevice = () => window.innerWidth <= 768 || /Mobi|Android|iPhone/i.test(navigator.userAgent);
 
-        // Formateador de moneda Helper
+        // Formateador de moneda
         function formatMoney(n) {
             return 'S/. ' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
-        // Función para limpiar texto en búsquedas (quita tildes y mayúsculas)
         function normalizeString(str) {
             return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
         }
@@ -1253,8 +1302,7 @@
         }
 
         function openVendorModal() {
-            const modal = document.getElementById('vendor-modal');
-            modal.style.display = 'flex';
+            document.getElementById('vendor-modal').style.display = 'flex';
             if (currentVendorCode) {
                 const sel = document.getElementById('vend-select');
                 for (let o of sel.options) { if (o.value.startsWith(currentVendorCode + '|')) sel.value = o.value; }
@@ -1275,8 +1323,7 @@
             const periodKey = month + year;
             const stored = JSON.parse(localStorage.getItem(v.key) || '{}');
             const nextSeq = (stored.periodKey === periodKey ? stored.seq : 0) + 1;
-            const preview = code + '-' + month + year + '-' + String(nextSeq).padStart(4, '0');
-            document.getElementById('vend-preview').textContent = 'Próximo código: ' + preview;
+            document.getElementById('vend-preview').textContent = 'Próximo: ' + code + '-' + month + year + '-' + String(nextSeq).padStart(4, '0');
         }
 
         function saveVendor() {
@@ -1292,6 +1339,7 @@
             document.getElementById('nav-code').textContent = cod;
             document.getElementById('vendedor').value = name;
             closeVendorModal();
+            showToast('👤 Vendedor configurado', 'success');
         }
 
         // ─── THEME ──────────────────────────────────────────────────────────
@@ -1300,10 +1348,6 @@
             document.getElementById('app').toggleAttribute('data-dark', dark);
             document.getElementById('theme-btn').textContent = dark ? 'Modo claro' : 'Modo oscuro';
             localStorage.setItem('solpet_theme', dark ? 'dark' : 'light');
-
-            const box = document.getElementById('vendor-modal-box');
-            box.style.background = dark ? '#202020' : '#fff';
-            box.style.color = dark ? '#eee' : '#1c1c1c';
         }
 
         function loadThemePref() {
@@ -1334,11 +1378,8 @@
             else el.textContent = '';
         }
 
-        // ─── BADGE ──────────────────────────────────────────────────────────
         function badge(c) {
-            return c === 'Gato'
-                ? `<span class="badge bg">Gato</span>`
-                : `<span class="badge bp">Perro</span>`;
+            return c === 'Gato' ? `<span class="badge bg">Gato</span>` : `<span class="badge bp">Perro</span>`;
         }
 
         // ─── FILTER / RENDER CATALOG ─────────────────────────────────────────
@@ -1377,12 +1418,12 @@
                   <td style="font-size:11.5px">${p.d}</td>
                   <td class="tr" style="white-space:nowrap;font-weight:500">${formatMoney(p.p)}</td>
                   <td class="tr" style="white-space:nowrap;color:var(--muted);font-size:11.5px">${formatMoney(sinIgv)}</td>
-                  <td class="tc"><button class="btn-add" style="padding:4px 10px;font-size:11px" onclick="addCart(${idx}, this)">+ Agregar</button></td>`;
+                  <td class="tc"><button class="btn-add" style="padding:6px 12px;font-size:12px" onclick="addCart(${idx}, this)">+ Agregar</button></td>`;
                 b.appendChild(tr);
             });
             if (vis.length > 18) {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td colspan="6" style="text-align:center;color:var(--muted);font-size:12px;padding:8px">... ${vis.length - 18} más — refina la búsqueda</td>`;
+                tr.innerHTML = `<td colspan="6" style="text-align:center;color:var(--muted);font-size:12px;padding:12px">... ${vis.length - 18} más — refina la búsqueda</td>`;
                 b.appendChild(tr);
             }
         }
@@ -1394,15 +1435,14 @@
             else { cart.push({ id: ++rid, idx, qty: 1, disc: 0 }); }
             renderDet();
 
-            // Feedback visual para el vendedor
             if (btn) {
                 const originalText = btn.innerHTML;
-                btn.innerHTML = "✅ Agregado";
+                btn.innerHTML = "✅ Listo";
                 btn.style.background = "#2d7a2d";
                 setTimeout(() => {
                     btn.innerHTML = originalText;
                     btn.style.background = "";
-                }, 800);
+                }, 700);
             }
         }
 
@@ -1525,7 +1565,7 @@
             if (sumDet) sumDet.textContent = cart.length ? '— ' + cart.length + ' producto(s) · ' + formatMoney(sub) : '';
         }
 
-        // ─── TEXT GENERATORS (WHATSAPP & COPY) ───────────────────────────────
+        // ─── GENERADORES DE TEXTO (WHATSAPP & COPY) ──────────────────────────
         function getSummaryText() {
             const cod = document.getElementById('codigo').value;
             const razon = document.getElementById('razon').value || 'Sin nombre';
@@ -1545,14 +1585,24 @@
 
             text += `\n*Total Final: ${total}*\n`;
             if (obs) text += `\nComentarios: ${obs}\n`;
-
             return text;
         }
 
         function shareWhatsApp() {
             if (!cart.length) { alert('Agrega al menos un producto para enviar.'); return; }
-            const text = getSummaryText();
-            window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+
+            const razon = document.getElementById('razon').value || '';
+            const saludo = `¡Hola${razon ? ' ' + razon : ''}! Te adjunto la cotización en PDF con el detalle de los productos. Quedo atento a cualquier consulta. 📄👇`;
+
+            const textoCompleto = saludo + "\n\n" + getSummaryText();
+            navigator.clipboard.writeText(textoCompleto).catch(e => { });
+
+            exportPDF(); // Genera y pide guardar PDF
+
+            setTimeout(() => {
+                window.open('https://wa.me/?text=' + encodeURIComponent(saludo), '_blank');
+                showToast('Abriendo WhatsApp. ¡Solo pega y adjunta el PDF!', 'success', 5000);
+            }, 1200);
         }
 
         function copySummary() {
@@ -1560,31 +1610,177 @@
             const text = getSummaryText();
             navigator.clipboard.writeText(text).then(() => {
                 showToast('📋 Resumen copiado al portapapeles', 'success');
-            }).catch(err => {
-                alert('Error al copiar: ' + err);
+            }).catch(err => alert('Error al copiar: ' + err));
+        }
+
+        // ─── OBTENER OBJETO SNAPSHOT ─────────────────────────────────────────
+        function getSnapshotObj() {
+            return {
+                razon: document.getElementById('razon').value || '—',
+                ruc: document.getElementById('ruc').value || '—',
+                tel: document.getElementById('tel').value || '—',
+                vend: document.getElementById('vendedor').value || '—',
+                dir: document.getElementById('dir').value || '—',
+                cod: document.getElementById('codigo').value,
+                pago: document.getElementById('pago').value || '—',
+                catcli: document.getElementById('catcli').value || '—',
+                fecha: document.getElementById('fecha').value || '—',
+                obs: document.getElementById('obs').value || '',
+                vendorCode: currentVendorCode,
+                ppPct: getPPPct(),
+                cart: cart.map(r => ({ idx: r.idx, qty: r.qty, disc: r.disc }))
+            };
+        }
+
+        // ─── GUARDADO INTELIGENTE (MOBILE VS PC) ──────────────────────────────
+        function smartSaveQuote() {
+            if (!cart.length) { alert('Agrega al menos un producto antes de guardar.'); return; }
+
+            if (isMobileDevice()) {
+                // Guardado Móvil (LocalStorage)
+                const snap = getSnapshotObj();
+                let saved = JSON.parse(localStorage.getItem('solpet_saved_quotes') || '[]');
+                // Remover si ya existe una con el mismo código
+                saved = saved.filter(s => s.cod !== snap.cod);
+                saved.push({
+                    cod: snap.cod,
+                    razon: snap.razon,
+                    total: document.getElementById('t-neto').textContent,
+                    date: new Date().toLocaleDateString('es-PE'),
+                    timestamp: Date.now(),
+                    snap: snap
+                });
+                localStorage.setItem('solpet_saved_quotes', JSON.stringify(saved));
+                showToast('📱 Cotización guardada en tu celular', 'success');
+            } else {
+                // Guardado PC (Archivo HTML)
+                const { html, cod } = buildQuoteHTML();
+                const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = cod + '.html';
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 500);
+                showToast('💻 Cotización descargada como archivo', 'success');
+            }
+        }
+
+        // ─── MODAL MIS COTIZACIONES GUARDADAS (MOBILE) ───────────────────────
+        function openSavedModal() {
+            const listEl = document.getElementById('saved-list');
+            listEl.innerHTML = '';
+            const saved = JSON.parse(localStorage.getItem('solpet_saved_quotes') || '[]');
+
+            if (saved.length === 0) {
+                listEl.innerHTML = '<div style="text-align:center;color:#888;padding:20px;">No hay cotizaciones guardadas aún.</div>';
+            } else {
+                // Ordenar de más reciente a más antigua
+                saved.sort((a, b) => b.timestamp - a.timestamp).forEach((item, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'saved-card';
+                    card.innerHTML = `
+                <div class="saved-card-hdr"><span>${item.date}</span><span style="color:var(--g1);font-weight:600">${item.cod}</span></div>
+                <div class="saved-card-title">${item.razon !== '—' ? item.razon : 'Cliente sin nombre'}</div>
+                <div style="font-size:13px;color:var(--muted)">Total: ${item.total}</div>
+                <div class="saved-actions">
+                    <button class="btn-action" style="flex:1;padding:8px" onclick="loadFromMemory(${index})">📂 Cargar</button>
+                    <button class="btn-action" style="color:var(--del);padding:8px" onclick="deleteFromMemory(${index})">🗑️</button>
+                </div>
+            `;
+                    listEl.appendChild(card);
+                });
+            }
+            document.getElementById('saved-modal').style.display = 'flex';
+        }
+
+        function closeSavedModal() {
+            document.getElementById('saved-modal').style.display = 'none';
+        }
+
+        function loadFromMemory(index) {
+            let saved = JSON.parse(localStorage.getItem('solpet_saved_quotes') || '[]');
+            // Se ordena igual que en la vista para asegurar el índice
+            saved.sort((a, b) => b.timestamp - a.timestamp);
+            const item = saved[index];
+            if (item) {
+                applySnapshot(item.snap);
+                closeSavedModal();
+                showToast('✅ Cotización cargada', 'success');
+            }
+        }
+
+        function deleteFromMemory(index) {
+            if (!confirm('¿Seguro que deseas eliminar esta cotización de tu celular?')) return;
+            let saved = JSON.parse(localStorage.getItem('solpet_saved_quotes') || '[]');
+            saved.sort((a, b) => b.timestamp - a.timestamp);
+            saved.splice(index, 1);
+            localStorage.setItem('solpet_saved_quotes', JSON.stringify(saved));
+            openSavedModal(); // Refrescar lista
+        }
+
+        // ─── CARGAR COTIZACIÓN DESDE ARCHIVO HTML (PC) ───────────────────────
+        function loadQuoteFromFile(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const content = e.target.result;
+                    const match = content.match();
+                    if (!match) { alert('Archivo inválido.'); return; }
+
+                    const snap = JSON.parse(match[1]);
+                    applySnapshot(snap);
+                    showToast('✅ Cotización cargada desde archivo', 'success');
+                } catch (err) {
+                    alert('Error al leer el archivo: ' + err.message);
+                }
+                input.value = '';
+            };
+            reader.readAsText(file);
+        }
+
+        // Helper para rellenar formulario desde un Snapshot (Memory o HTML)
+        function applySnapshot(snap) {
+            const fields = { razon: 'razon', ruc: 'ruc', tel: 'tel', dir: 'dir', pago: 'pago', catcli: 'catcli', fecha: 'fecha', obs: 'obs' };
+            Object.entries(fields).forEach(([k, id]) => {
+                const el = document.getElementById(id);
+                if (el && snap[k] && snap[k] !== '—') el.value = snap[k];
+            });
+            document.getElementById('vendedor').value = snap.vend || '';
+            document.getElementById('codigo').value = snap.cod || '';
+            document.getElementById('nav-code').textContent = snap.cod || '';
+            if (snap.vendorCode) currentVendorCode = snap.vendorCode;
+            if (snap.ppPct != null) {
+                const ppEl = document.getElementById('pp-pct');
+                const ppTopEl = document.getElementById('pp-pct-top');
+                if (ppEl) ppEl.value = snap.ppPct;
+                if (ppTopEl) ppTopEl.value = snap.ppPct;
+            }
+
+            cart = []; rid = 0;
+            (snap.cart || []).forEach(r => {
+                cart.push({ id: ++rid, idx: r.idx, qty: r.qty, disc: r.disc || 0 });
+            });
+            renderDet();
+            updateSummary('card-cliente', 'sum-cliente');
+
+            ['card-cliente', 'card-orden', 'card-detalle'].forEach(id => {
+                const card = document.getElementById(id);
+                const body = document.getElementById('body-' + id);
+                if (card && card.classList.contains('collapsed')) {
+                    card.classList.remove('collapsed');
+                    if (body) { body.style.maxHeight = ''; body.style.opacity = '1'; }
+                }
             });
         }
 
-        // ─── EXPORT / SAVE HTML / PDF ─────────────────────────────────────────
+        // ─── BUILD HTML Y EXPORT PDF ──────────────────────────────────────────
         function buildQuoteHTML() {
-            const razon = document.getElementById('razon').value || '—';
-            const ruc = document.getElementById('ruc').value || '—';
-            const tel = document.getElementById('tel').value || '—';
-            const vend = document.getElementById('vendedor').value || '—';
-            const dir = document.getElementById('dir').value || '—';
-            const cod = document.getElementById('codigo').value;
-            const pago = document.getElementById('pago').value || '—';
-            const catcli = document.getElementById('catcli').value || '—';
-            const fecha = document.getElementById('fecha').value || '—';
-            const obs = document.getElementById('obs').value || '';
-            const ppPct = getPPPct();
-
-            const snapshot = {
-                razon, ruc, tel, vend, dir, cod, pago, catcli, fecha, obs,
-                vendorCode: currentVendorCode,
-                ppPct,
-                cart: cart.map(r => ({ idx: r.idx, qty: r.qty, disc: r.disc }))
-            };
+            const snap = getSnapshotObj();
+            const cod = snap.cod;
 
             let sub = 0, filas = '';
             cart.forEach((r, i) => {
@@ -1606,6 +1802,7 @@
       <td style="text-align:right;font-weight:600;padding:7px 8px;color:#1a5c1a">${formatMoney(tot)}</td>
     </tr>`;
             });
+            const ppPct = snap.ppPct;
             const pp = sub * (ppPct / 100), neto = sub - pp;
             const igv = sub - sub / 1.18;
             const subNeto = sub / 1.18;
@@ -1649,14 +1846,14 @@
     <div class="hdr-right"><div class="order-title">Orden de Pedido</div><div class="order-meta">Código: <strong>${cod}</strong></div><div class="order-meta">Fecha: <strong>${new Date().toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' })}</strong></div></div>
   </div>
   <div class="meta-grid">
-    <div class="meta-item"><span>Cliente:</span><strong>${razon}</strong></div>
-    <div class="meta-item"><span>Forma de pago:</span><strong>${pago}</strong></div>
-    <div class="meta-item"><span>RUC / DNI:</span><strong>${ruc}</strong></div>
-    <div class="meta-item"><span>Cat. cliente:</span><strong>${catcli}</strong></div>
-    <div class="meta-item"><span>Teléfono:</span><strong>${tel}</strong></div>
-    <div class="meta-item"><span>Fecha entrega:</span><strong>${fecha}</strong></div>
-    <div class="meta-item"><span>Vendedor:</span><strong>${vend}</strong></div>
-    <div class="meta-item meta-full"><span>Dirección:</span><strong>${dir}</strong></div>
+    <div class="meta-item"><span>Cliente:</span><strong>${snap.razon}</strong></div>
+    <div class="meta-item"><span>Forma de pago:</span><strong>${snap.pago}</strong></div>
+    <div class="meta-item"><span>RUC / DNI:</span><strong>${snap.ruc}</strong></div>
+    <div class="meta-item"><span>Cat. cliente:</span><strong>${snap.catcli}</strong></div>
+    <div class="meta-item"><span>Teléfono:</span><strong>${snap.tel}</strong></div>
+    <div class="meta-item"><span>Fecha entrega:</span><strong>${snap.fecha}</strong></div>
+    <div class="meta-item"><span>Vendedor:</span><strong>${snap.vend}</strong></div>
+    <div class="meta-item meta-full"><span>Dirección:</span><strong>${snap.dir}</strong></div>
   </div>
   <table>
     <thead><tr>
@@ -1677,37 +1874,15 @@
     <div class="tot-r tot-pp"><span style="color:#7a5c00">${ppLabel}</span><span style="color:#7a5c00;font-weight:500">${ppPct > 0 ? '-' + formatMoney(pp) : formatMoney(0)}</span></div>
     <div class="tot-r tot-neto"><span style="color:#fff">Total Neto Final</span><span>${formatMoney(neto)}</span></div>
   </div></div>
-  ${obs ? `<div class="obs-box"><strong>Comentarios:</strong> ${obs}</div>` : ''}
+  ${snap.obs ? `<div class="obs-box"><strong>Comentarios:</strong> ${snap.obs}</div>` : ''}
   <div class="footer">Documento generado por SolPet &bull; ${new Date().toLocaleString('es-PE')}</div>
   </div></body></html>`, cod
             };
         }
 
-        // ─── TOAST NOTIFICATIONS ────────────────────────────────────────────
-        function showToast(msg, type = 'info', duration = 3500) {
-            let container = document.getElementById('_toast_container');
-            if (!container) {
-                container = document.createElement('div');
-                container.id = '_toast_container';
-                container.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none';
-                document.body.appendChild(container);
-            }
-            const t = document.createElement('div');
-            const bg = type === 'success' ? '#1a5c1a' : type === 'error' ? '#dc2626' : '#374151';
-            t.style.cssText = `background:${bg};color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;transform:translateY(8px);transition:opacity .2s,transform .2s;pointer-events:auto;max-width:320px`;
-            t.textContent = msg;
-            container.appendChild(t);
-            requestAnimationFrame(() => { t.style.opacity = '1'; t.style.transform = 'translateY(0)'; });
-            setTimeout(() => {
-                t.style.opacity = '0'; t.style.transform = 'translateY(8px)';
-                setTimeout(() => t.remove(), 250);
-            }, duration);
-        }
-
-        // ─── EXPORTAR PDF ────────────────────────────────────────────────────
         function exportPDF() {
             if (!cart.length) { alert('Agrega al menos un producto antes de exportar.'); return; }
-            const { html, cod } = buildQuoteHTML();
+            const { html } = buildQuoteHTML();
 
             const iframe = document.createElement('iframe');
             iframe.style.position = 'fixed';
@@ -1724,81 +1899,10 @@
             iframe.contentWindow.focus();
             setTimeout(() => {
                 iframe.contentWindow.print();
-                showToast('📄 Diálogo de impresión abierto', 'success');
                 setTimeout(() => document.body.removeChild(iframe), 5000);
             }, 500);
         }
 
-        // ─── GUARDAR COTIZACIÓN (para recuperar y editar luego) ──────────────
-        function saveQuote() {
-            if (!cart.length) { alert('Agrega al menos un producto antes de guardar.'); return; }
-            const { html, cod } = buildQuoteHTML();
-            const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = cod + '.html';
-            document.body.appendChild(a);
-            a.click();
-            setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 500);
-            showToast('💾 Cotización guardada como ' + cod + '.html', 'success');
-        }
-
-        // ─── CARGAR COTIZACIÓN GUARDADA ──────────────────────────────────────
-        function loadQuote(input) {
-            const file = input.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                try {
-                    const content = e.target.result;
-                    const match = content.match();
-                    if (!match) {
-                        alert('Este archivo no parece ser una cotización SolPet válida.');
-                        return;
-                    }
-                    const snap = JSON.parse(match[1]);
-
-                    const fields = { razon: 'razon', ruc: 'ruc', tel: 'tel', dir: 'dir', pago: 'pago', catcli: 'catcli', fecha: 'fecha', obs: 'obs' };
-                    Object.entries(fields).forEach(([k, id]) => {
-                        const el = document.getElementById(id);
-                        if (el && snap[k] && snap[k] !== '—') el.value = snap[k];
-                    });
-                    document.getElementById('vendedor').value = snap.vend || '';
-                    document.getElementById('codigo').value = snap.cod || '';
-                    document.getElementById('nav-code').textContent = snap.cod || '';
-                    if (snap.vendorCode) currentVendorCode = snap.vendorCode;
-                    if (snap.ppPct != null) {
-                        const ppEl = document.getElementById('pp-pct');
-                        const ppTopEl = document.getElementById('pp-pct-top');
-                        if (ppEl) ppEl.value = snap.ppPct;
-                        if (ppTopEl) ppTopEl.value = snap.ppPct;
-                    }
-
-                    cart = []; rid = 0;
-                    (snap.cart || []).forEach(r => {
-                        cart.push({ id: ++rid, idx: r.idx, qty: r.qty, disc: r.disc || 0 });
-                    });
-                    renderDet();
-                    updateSummary('card-cliente', 'sum-cliente');
-
-                    ['card-cliente', 'card-orden', 'card-detalle'].forEach(id => {
-                        const card = document.getElementById(id);
-                        const body = document.getElementById('body-' + id);
-                        if (card && card.classList.contains('collapsed')) {
-                            card.classList.remove('collapsed');
-                            if (body) { body.style.maxHeight = ''; body.style.opacity = '1'; }
-                        }
-                    });
-
-                    showToast('✅ Cotización "' + snap.cod + '" cargada correctamente', 'success');
-                } catch (err) {
-                    alert('Error al leer el archivo: ' + err.message);
-                }
-                input.value = '';
-            };
-            reader.readAsText(file);
-        }
         function clearAll() {
             if (!confirm('Limpiar todo el formulario?')) return;
             cart = [];
@@ -1812,10 +1916,7 @@
 
         // ─── PREVENIR PÉRDIDA DE DATOS ───────────────────────────────────────
         window.addEventListener('beforeunload', function (e) {
-            if (cart.length > 0) {
-                e.preventDefault();
-                e.returnValue = '';
-            }
+            if (cart.length > 0) { e.preventDefault(); e.returnValue = ''; }
         });
 
         // ─── INIT ────────────────────────────────────────────────────────────
@@ -1827,6 +1928,16 @@
 
         window.addEventListener('load', () => {
             loadThemePref();
+
+            // Adaptar botones "Cargar" según dispositivo
+            if (isMobileDevice()) {
+                document.getElementById('btn-load-desktop').style.display = 'none';
+                document.getElementById('btn-load-mobile').style.display = 'inline-flex';
+            } else {
+                document.getElementById('btn-load-desktop').style.display = 'inline-flex';
+                document.getElementById('btn-load-mobile').style.display = 'none';
+            }
+
             if (!currentVendorCode) {
                 openVendorModal();
             } else {
@@ -1839,8 +1950,6 @@
                 }
             }
         });
-
-        document.getElementById('vend-select').addEventListener('change', previewCode);
 
         renderCat(); renderDet();
     </script>
