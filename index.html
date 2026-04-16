@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Cotizador SolPet</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         :root {
             --g1: #1a5c1a;
@@ -840,7 +841,6 @@
                 width: 100%;
             }
 
-            /* Botones 100% ancho para pulgares */
             .actions {
                 flex-direction: column;
                 align-items: stretch;
@@ -853,7 +853,6 @@
                 font-size: 14px;
             }
 
-            /* Anti-Zoom en iOS (Fuente a 16px) */
             .field input,
             .field select,
             .field textarea,
@@ -1270,7 +1269,6 @@
         let cart = [], rid = 0, dark = false, vis = [...PRODS];
         const isMobileDevice = () => window.innerWidth <= 768 || /Mobi|Android|iPhone/i.test(navigator.userAgent);
 
-        // Formateador de moneda
         function formatMoney(n) {
             return 'S/. ' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
@@ -1565,7 +1563,7 @@
             if (sumDet) sumDet.textContent = cart.length ? '— ' + cart.length + ' producto(s) · ' + formatMoney(sub) : '';
         }
 
-        // ─── GENERADORES DE TEXTO (WHATSAPP & COPY) ──────────────────────────
+        // ─── GENERADORES DE TEXTO ──────────────────────────
         function getSummaryText() {
             const cod = document.getElementById('codigo').value;
             const razon = document.getElementById('razon').value || 'Sin nombre';
@@ -1588,21 +1586,64 @@
             return text;
         }
 
+        // ─── COMPARTIR WHATSAPP (MÓVIL API NATIVA / PC TRADICIONAL) ─────────
         function shareWhatsApp() {
             if (!cart.length) { alert('Agrega al menos un producto para enviar.'); return; }
 
             const razon = document.getElementById('razon').value || '';
-            const saludo = `¡Hola${razon ? ' ' + razon : ''}! Te adjunto la cotización en PDF con el detalle de los productos. Quedo atento a cualquier consulta. 📄👇`;
+            const saludo = `¡Hola${razon ? ' ' + razon : ''}! Te adjunto la cotización con el detalle de los productos. Quedo atento a cualquier consulta. 📄👇`;
 
+            // Copiamos al portapapeles por seguridad
             const textoCompleto = saludo + "\n\n" + getSummaryText();
             navigator.clipboard.writeText(textoCompleto).catch(e => { });
 
-            exportPDF(); // Genera y pide guardar PDF
+            if (isMobileDevice() && window.html2pdf) {
+                showToast('Preparando PDF para WhatsApp...', 'info', 3000);
 
-            setTimeout(() => {
-                window.open('https://wa.me/?text=' + encodeURIComponent(saludo), '_blank');
-                showToast('Abriendo WhatsApp. ¡Solo pega y adjunta el PDF!', 'success', 5000);
-            }, 1200);
+                const { html, cod } = buildQuoteHTML();
+                const opt = {
+                    margin: 0,
+                    filename: cod + '.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+
+                // Generamos el Blob del PDF
+                html2pdf().set(opt).from(tempDiv).output('blob').then(function (pdfBlob) {
+                    const file = new File([pdfBlob], cod + '.pdf', { type: 'application/pdf' });
+
+                    // Verificamos si el navegador móvil permite compartir archivos nativamente
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        navigator.share({
+                            title: 'Cotización ' + cod,
+                            text: saludo,
+                            files: [file]
+                        }).then(() => {
+                            showToast('✅ Opciones de compartir abiertas', 'success');
+                        }).catch(err => {
+                            console.log('Error o cancelado al compartir:', err);
+                        });
+                    } else {
+                        // Fallback si no soporta Web Share API con archivos
+                        html2pdf().set(opt).from(tempDiv).save().then(() => {
+                            showToast('PDF Descargado. Abriendo WhatsApp...', 'success');
+                            setTimeout(() => {
+                                window.open('https://wa.me/?text=' + encodeURIComponent(saludo), '_blank');
+                            }, 1000);
+                        });
+                    }
+                });
+            } else {
+                // Lógica para Computadora (Windows/Mac)
+                exportPDF();
+                setTimeout(() => {
+                    window.open('https://wa.me/?text=' + encodeURIComponent(saludo), '_blank');
+                }, 1500);
+            }
         }
 
         function copySummary() {
@@ -1637,10 +1678,8 @@
             if (!cart.length) { alert('Agrega al menos un producto antes de guardar.'); return; }
 
             if (isMobileDevice()) {
-                // Guardado Móvil (LocalStorage)
                 const snap = getSnapshotObj();
                 let saved = JSON.parse(localStorage.getItem('solpet_saved_quotes') || '[]');
-                // Remover si ya existe una con el mismo código
                 saved = saved.filter(s => s.cod !== snap.cod);
                 saved.push({
                     cod: snap.cod,
@@ -1653,7 +1692,6 @@
                 localStorage.setItem('solpet_saved_quotes', JSON.stringify(saved));
                 showToast('📱 Cotización guardada en tu celular', 'success');
             } else {
-                // Guardado PC (Archivo HTML)
                 const { html, cod } = buildQuoteHTML();
                 const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
                 const url = URL.createObjectURL(blob);
@@ -1667,7 +1705,6 @@
             }
         }
 
-        // ─── MODAL MIS COTIZACIONES GUARDADAS (MOBILE) ───────────────────────
         function openSavedModal() {
             const listEl = document.getElementById('saved-list');
             listEl.innerHTML = '';
@@ -1676,7 +1713,6 @@
             if (saved.length === 0) {
                 listEl.innerHTML = '<div style="text-align:center;color:#888;padding:20px;">No hay cotizaciones guardadas aún.</div>';
             } else {
-                // Ordenar de más reciente a más antigua
                 saved.sort((a, b) => b.timestamp - a.timestamp).forEach((item, index) => {
                     const card = document.createElement('div');
                     card.className = 'saved-card';
@@ -1701,7 +1737,6 @@
 
         function loadFromMemory(index) {
             let saved = JSON.parse(localStorage.getItem('solpet_saved_quotes') || '[]');
-            // Se ordena igual que en la vista para asegurar el índice
             saved.sort((a, b) => b.timestamp - a.timestamp);
             const item = saved[index];
             if (item) {
@@ -1717,10 +1752,9 @@
             saved.sort((a, b) => b.timestamp - a.timestamp);
             saved.splice(index, 1);
             localStorage.setItem('solpet_saved_quotes', JSON.stringify(saved));
-            openSavedModal(); // Refrescar lista
+            openSavedModal();
         }
 
-        // ─── CARGAR COTIZACIÓN DESDE ARCHIVO HTML (PC) ───────────────────────
         function loadQuoteFromFile(input) {
             const file = input.files[0];
             if (!file) return;
@@ -1742,7 +1776,6 @@
             reader.readAsText(file);
         }
 
-        // Helper para rellenar formulario desde un Snapshot (Memory o HTML)
         function applySnapshot(snap) {
             const fields = { razon: 'razon', ruc: 'ruc', tel: 'tel', dir: 'dir', pago: 'pago', catcli: 'catcli', fecha: 'fecha', obs: 'obs' };
             Object.entries(fields).forEach(([k, id]) => {
@@ -1813,8 +1846,8 @@
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     @page { margin: 0; } 
-    body{font-family:Arial,sans-serif;font-size:12px;color:#1c1c1c;background:#fff; padding: 15mm;}
-    .page{max-width:900px;margin:0 auto}
+    body{margin:0;padding:0;background:#fff;}
+    .page{max-width:900px;margin:0 auto; font-family:Arial,sans-serif;font-size:12px;color:#1c1c1c; padding: 15mm;}
     .hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;padding-bottom:16px;border-bottom:2px solid #1a5c1a}
     .hdr-left img{height:44px;object-fit:contain}
     .hdr-right{text-align:right}
@@ -1882,25 +1915,39 @@
 
         function exportPDF() {
             if (!cart.length) { alert('Agrega al menos un producto antes de exportar.'); return; }
-            const { html } = buildQuoteHTML();
+            const { html, cod } = buildQuoteHTML();
 
-            const iframe = document.createElement('iframe');
-            iframe.style.position = 'fixed';
-            iframe.style.width = '0';
-            iframe.style.height = '0';
-            iframe.style.border = 'none';
-            document.body.appendChild(iframe);
+            if (isMobileDevice() && window.html2pdf) {
+                showToast('Descargando archivo PDF...', 'info', 3000);
+                const opt = {
+                    margin: 0,
+                    filename: cod + '.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                html2pdf().set(opt).from(tempDiv).save().then(() => showToast('✅ Archivo Guardado', 'success'));
+            } else {
+                const iframe = document.createElement('iframe');
+                iframe.style.position = 'fixed';
+                iframe.style.width = '0';
+                iframe.style.height = '0';
+                iframe.style.border = 'none';
+                document.body.appendChild(iframe);
 
-            const doc = iframe.contentWindow.document;
-            doc.open();
-            doc.write(html);
-            doc.close();
+                const doc = iframe.contentWindow.document;
+                doc.open();
+                doc.write(html);
+                doc.close();
 
-            iframe.contentWindow.focus();
-            setTimeout(() => {
-                iframe.contentWindow.print();
-                setTimeout(() => document.body.removeChild(iframe), 5000);
-            }, 500);
+                iframe.contentWindow.focus();
+                setTimeout(() => {
+                    iframe.contentWindow.print();
+                    setTimeout(() => document.body.removeChild(iframe), 5000);
+                }, 500);
+            }
         }
 
         function clearAll() {
@@ -1914,14 +1961,12 @@
             renderCat(); renderDet();
         }
 
-        // ─── PREVENIR PÉRDIDA DE DATOS ───────────────────────────────────────
         window.addEventListener('beforeunload', function (e) {
             if (cart.length > 0) { e.preventDefault(); e.returnValue = ''; }
         });
 
         // ─── INIT ────────────────────────────────────────────────────────────
         document.getElementById('fecha').value = new Date().toISOString().split('T')[0];
-
         const tempCod = 'SP-' + new Date().getFullYear() + '-????';
         document.getElementById('codigo').value = tempCod;
         document.getElementById('nav-code').textContent = tempCod;
@@ -1929,7 +1974,6 @@
         window.addEventListener('load', () => {
             loadThemePref();
 
-            // Adaptar botones "Cargar" según dispositivo
             if (isMobileDevice()) {
                 document.getElementById('btn-load-desktop').style.display = 'none';
                 document.getElementById('btn-load-mobile').style.display = 'inline-flex';
