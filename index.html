@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -19,1118 +18,188 @@
       --blanco: #ffffff;
       --rojo: #dc2626;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Lato', sans-serif;
-      background: #eef2f7;
-      color: var(--texto);
-      min-height: 100vh;
-      padding: 16px 10px 80px;
-      line-height: 1.45;
-    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Lato',sans-serif;background:#eef2f7;color:var(--texto);min-height:100vh;padding:16px 10px 80px;line-height:1.45;}
 
     /* ── MODAL VENDEDOR ── */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 23, 42, .55);
-      backdrop-filter: blur(4px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-
-    .modal-box {
-      background: #fff;
-      padding: 30px 28px;
-      border-radius: 6px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      border: 1px solid var(--borde);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, .15);
-    }
-
-    .modal-logo {
-      margin-bottom: 14px;
-    }
-
-    .modal-logo img {
-      width: 100px;
-      height: auto;
-    }
-
-    .modal-box h3 {
-      color: var(--texto);
-      margin-bottom: 4px;
-      font-weight: 900;
-      font-size: 17px;
-      letter-spacing: -.3px;
-    }
-
-    .modal-box p {
-      color: var(--texto-claro);
-      font-size: 12px;
-      margin-bottom: 18px;
-    }
-
-    .modal-sel {
-      width: 100%;
-      padding: 9px 12px;
-      border: 1.5px solid var(--borde);
-      border-radius: 5px;
-      font-family: 'Lato';
-      font-size: 13px;
-      color: var(--texto);
-      margin-bottom: 12px;
-      outline: none;
-      background: #fff;
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-    }
-
-    .modal-sel:focus {
-      border-color: var(--verde);
-    }
-
-    .btn-ingresar {
-      background: var(--verde);
-      color: #fff;
-      border: none;
-      padding: 11px 20px;
-      width: 100%;
-      border-radius: 5px;
-      font-weight: 700;
-      font-size: 13px;
-      cursor: pointer;
-      transition: background .2s;
-    }
-
-    .btn-ingresar:hover {
-      background: var(--verde-oscuro);
-    }
+    .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,23,42,.55);backdrop-filter:blur(4px);display:flex;justify-content:center;align-items:center;z-index:9999;}
+    .modal-box{background:#fff;padding:30px 28px;border-radius:6px;width:90%;max-width:400px;text-align:center;border:1px solid var(--borde);box-shadow:0 20px 60px rgba(0,0,0,.15);}
+    .modal-logo{margin-bottom:14px;}
+    .modal-logo img{width:100px;height:auto;}
+    .modal-box h3{color:var(--texto);margin-bottom:4px;font-weight:900;font-size:17px;letter-spacing:-.3px;}
+    .modal-box p{color:var(--texto-claro);font-size:12px;margin-bottom:18px;}
+    .modal-sel{width:100%;padding:9px 12px;border:1.5px solid var(--borde);border-radius:5px;font-family:'Lato';font-size:13px;color:var(--texto);margin-bottom:12px;outline:none;background:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
+    .modal-sel:focus{border-color:var(--verde);}
+    .btn-ingresar{background:var(--verde);color:#fff;border:none;padding:11px 20px;width:100%;border-radius:5px;font-weight:700;font-size:13px;cursor:pointer;transition:background .2s;}
+    .btn-ingresar:hover{background:var(--verde-oscuro);}
 
     /* ── MODAL FIRMA ── */
-    .firma-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      background: rgba(0, 0, 0, .65);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(5px);
-      padding: 14px;
-    }
-
-    .firma-box {
-      background: #fff;
-      border-radius: 16px;
-      padding: 24px 22px 20px;
-      width: 100%;
-      max-width: 500px;
-      box-shadow: 0 16px 56px rgba(0, 0, 0, .4);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .firma-canvas-wrap {
-      border: 2px dashed var(--verde);
-      border-radius: 12px;
-      background: #fff;
-      position: relative;
-      overflow: hidden;
-      touch-action: none;
-    }
-
-    #firma-canvas {
-      display: block;
-      width: 100%;
-      cursor: crosshair;
-      touch-action: none;
-    }
-
-    .firma-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      flex-direction: column;
-      gap: 8px;
-      transition: opacity .2s;
-    }
-
-    .firma-placeholder span {
-      font-size: 12px;
-      color: #aaa;
-    }
-
-    .firma-color-btn {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      border: 2px solid transparent;
-      cursor: pointer;
-      transition: transform .15s, border-color .15s;
-    }
-
-    .firma-color-btn.active {
-      border-color: var(--verde);
-      transform: scale(1.15);
-    }
-
-    .firma-pen-size {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--texto-claro);
-      flex: 1;
-    }
-
-    .firma-pen-size input[type=range] {
-      flex: 1;
-      accent-color: var(--verde);
-    }
-
-    .firma-pen-dot {
-      border-radius: 50%;
-      align-self: center;
-      transition: width .15s, height .15s;
-    }
+    .firma-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;backdrop-filter:blur(5px);padding:14px;}
+    .firma-box{background:#fff;border-radius:16px;padding:24px 22px 20px;width:100%;max-width:500px;box-shadow:0 16px 56px rgba(0,0,0,.4);display:flex;flex-direction:column;gap:16px;}
+    .firma-canvas-wrap{border:2px dashed var(--verde);border-radius:12px;background:#fff;position:relative;overflow:hidden;touch-action:none;}
+    #firma-canvas{display:block;width:100%;cursor:crosshair;touch-action:none;}
+    .firma-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;flex-direction:column;gap:8px;transition:opacity .2s;}
+    .firma-placeholder span{font-size:12px;color:#aaa;}
+    .firma-color-btn{width:26px;height:26px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:transform .15s,border-color .15s;}
+    .firma-color-btn.active{border-color:var(--verde);transform:scale(1.15);}
+    .firma-pen-size{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--texto-claro);flex:1;}
+    .firma-pen-size input[type=range]{flex:1;accent-color:var(--verde);}
+    .firma-pen-dot{border-radius:50%;align-self:center;transition:width .15s,height .15s;}
 
     /* ── MULTISELECT MARCA ── */
-    .multiselect-wrap {
-      position: relative;
-      display: inline-block;
-    }
-
-    .multiselect-btn {
-      border: 1.5px solid var(--borde);
-      border-radius: 5px;
-      padding: 6px 28px 6px 10px;
-      font-family: 'Lato';
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--texto);
-      background: #fff;
-      cursor: pointer;
-      outline: none;
-      white-space: nowrap;
-      min-width: 130px;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 9px center;
-    }
-
-    .multiselect-btn:focus,
-    .multiselect-btn.open {
-      border-color: var(--verde);
-    }
-
-    .multiselect-badge {
-      background: var(--verde);
-      color: #fff;
-      border-radius: 20px;
-      padding: 1px 6px;
-      font-size: 9px;
-      font-weight: 900;
-    }
-
-    .multiselect-dropdown {
-      position: absolute;
-      top: calc(100% + 4px);
-      left: 0;
-      background: #fff;
-      border: 1.5px solid var(--verde);
-      border-radius: 6px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, .1);
-      z-index: 500;
-      min-width: 220px;
-      max-height: 260px;
-      overflow-y: auto;
-      display: none;
-      padding: 4px 0;
-    }
-
-    .multiselect-dropdown.open {
-      display: block;
-    }
-
-    .multiselect-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--texto);
-      transition: background .1s;
-    }
-
-    .multiselect-item:hover {
-      background: var(--verde-claro);
-    }
-
-    .multiselect-item input[type=checkbox] {
-      accent-color: var(--verde);
-      width: 13px;
-      height: 13px;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .multiselect-item.all-item {
-      border-bottom: 1px solid var(--borde);
-      font-weight: 700;
-      color: var(--verde);
-    }
+    .multiselect-wrap{position:relative;display:inline-block;}
+    .multiselect-btn{border:1.5px solid var(--borde);border-radius:5px;padding:6px 28px 6px 10px;font-family:'Lato';font-size:11px;font-weight:700;color:var(--texto);background:#fff;cursor:pointer;outline:none;white-space:nowrap;min-width:130px;text-align:left;display:flex;align-items:center;gap:6px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+    .multiselect-btn:focus,.multiselect-btn.open{border-color:var(--verde);}
+    .multiselect-badge{background:var(--verde);color:#fff;border-radius:20px;padding:1px 6px;font-size:9px;font-weight:900;}
+    .multiselect-dropdown{position:absolute;top:calc(100% + 4px);left:0;background:#fff;border:1.5px solid var(--verde);border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.1);z-index:500;min-width:220px;max-height:260px;overflow-y:auto;display:none;padding:4px 0;}
+    .multiselect-dropdown.open{display:block;}
+    .multiselect-item{display:flex;align-items:center;gap:8px;padding:7px 12px;cursor:pointer;font-size:11px;font-weight:600;color:var(--texto);transition:background .1s;}
+    .multiselect-item:hover{background:var(--verde-claro);}
+    .multiselect-item input[type=checkbox]{accent-color:var(--verde);width:13px;height:13px;cursor:pointer;flex-shrink:0;}
+    .multiselect-item.all-item{border-bottom:1px solid var(--borde);font-weight:700;color:var(--verde);}
 
     /* ── HOJA ── */
-    .hoja {
-      max-width: 900px;
-      margin: 0 auto;
-      background: var(--blanco);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, .07), 0 1px 4px rgba(0, 0, 0, .04);
-      border-radius: 2px;
-      border-top: 4px solid var(--verde);
-    }
+    .hoja{max-width:900px;margin:0 auto;background:var(--blanco);box-shadow:0 4px 24px rgba(0,0,0,.07),0 1px 4px rgba(0,0,0,.04);border-radius:2px;border-top:4px solid var(--verde);}
 
     /* ── CABECERA ── */
-    .cabecera {
-      padding: 18px 28px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--borde);
-      background: linear-gradient(135deg, #fafffe 0%, #f0faf5 100%);
-    }
-
-    .cabecera-izq {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .cabecera-logo {
-      width: 88px;
-      height: auto;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .logo-divider {
-      width: 1px;
-      height: 40px;
-      background: var(--borde);
-      flex-shrink: 0;
-    }
-
-    .empresa-info h1 {
-      font-size: 12px;
-      color: var(--texto);
-      font-weight: 900;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      margin-bottom: 3px;
-    }
-
-    .empresa-info p {
-      font-size: 9.5px;
-      color: var(--texto-claro);
-      line-height: 1.55;
-    }
-
-    .cotizacion-box {
-      text-align: right;
-      flex-shrink: 0;
-    }
-
-    .cotizacion-box h2 {
-      font-size: 8px;
-      text-transform: uppercase;
-      color: var(--texto-claro);
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 4px;
-    }
-
-    .cotizacion-box .numero {
-      font-size: 12px;
-      font-weight: 700;
-      color: #64748b;
-      letter-spacing: .5px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .cotizacion-badge {
-      display: inline-block;
-      background: var(--verde-claro);
-      color: var(--verde);
-      font-size: 8px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      padding: 2px 7px;
-      border-radius: 20px;
-      margin-top: 5px;
-    }
+    .cabecera{padding:18px 28px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--borde);background:linear-gradient(135deg,#fafffe 0%,#f0faf5 100%);}
+    .cabecera-izq{display:flex;gap:14px;align-items:center;}
+    .cabecera-logo{width:88px;height:auto;object-fit:contain;flex-shrink:0;}
+    .logo-divider{width:1px;height:40px;background:var(--borde);flex-shrink:0;}
+    .empresa-info h1{font-size:12px;color:var(--texto);font-weight:900;letter-spacing:.5px;text-transform:uppercase;margin-bottom:3px;}
+    .empresa-info p{font-size:9.5px;color:var(--texto-claro);line-height:1.55;}
+    .cotizacion-box{text-align:right;flex-shrink:0;}
+    .cotizacion-box h2{font-size:8px;text-transform:uppercase;color:var(--texto-claro);font-weight:700;letter-spacing:2px;margin-bottom:4px;}
+    .cotizacion-box .numero{font-size:12px;font-weight:700;color:#64748b;letter-spacing:.5px;font-variant-numeric:tabular-nums;}
+    .cotizacion-badge{display:inline-block;background:var(--verde-claro);color:var(--verde);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:2px 7px;border-radius:20px;margin-top:5px;}
 
     /* ── META ── */
-    .meta-wrap {
-      background: #fafbfc;
-      border-bottom: 1px solid var(--borde);
-      padding: 0 28px;
-    }
-
-    .meta {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      align-items: stretch;
-    }
-
-    .meta-campo {
-      padding: 9px 12px 9px 0;
-      border-right: 1px solid var(--borde);
-    }
-
-    .meta-campo:nth-child(1) {
-      grid-column: span 4;
-      padding-left: 0;
-      border-bottom: 1px solid var(--borde);
-    }
-
-    .meta-campo:nth-child(2) {
-      grid-column: span 2;
-      padding-right: 0;
-      border-right: none;
-      border-bottom: 1px solid var(--borde);
-      padding-left: 12px;
-    }
-
-    .meta-campo:nth-child(3) {
-      grid-column: span 2;
-      padding-left: 0;
-    }
-
-    .meta-campo:nth-child(4) {
-      grid-column: span 2;
-      padding-left: 12px;
-      padding-right: 12px;
-    }
-
-    .meta-campo:nth-child(5) {
-      grid-column: span 2;
-      padding-right: 0;
-      border-right: none;
-      padding-left: 12px;
-    }
-
-    .meta-label {
-      font-size: 8px;
-      font-weight: 700;
-      color: var(--texto-claro);
-      text-transform: uppercase;
-      margin-bottom: 3px;
-      letter-spacing: .8px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .meta-label-dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--verde);
-      display: inline-block;
-      flex-shrink: 0;
-    }
-
-    .meta-input {
-      border: none;
-      border-bottom: 1.5px solid transparent;
-      font-family: 'Lato', sans-serif;
-      font-size: 11.5px;
-      color: var(--texto);
-      font-weight: 700;
-      padding: 2px 0;
-      outline: none;
-      background: transparent;
-      transition: border-color .2s;
-      width: 100%;
-      line-height: 1.4;
-    }
-
-    .meta-input:focus {
-      border-bottom-color: var(--verde);
-    }
-
-    .meta-input::placeholder {
-      font-weight: 400;
-      color: #c0cdd8;
-    }
+    .meta-wrap{background:#fafbfc;border-bottom:1px solid var(--borde);padding:0 28px;}
+    .meta{display:grid;grid-template-columns:repeat(6,1fr);align-items:stretch;}
+    .meta-campo{padding:9px 12px 9px 0;border-right:1px solid var(--borde);}
+    .meta-campo:nth-child(1){grid-column:span 4;padding-left:0;border-bottom:1px solid var(--borde);}
+    .meta-campo:nth-child(2){grid-column:span 2;padding-right:0;border-right:none;border-bottom:1px solid var(--borde);padding-left:12px;}
+    .meta-campo:nth-child(3){grid-column:span 2;padding-left:0;}
+    .meta-campo:nth-child(4){grid-column:span 2;padding-left:12px;padding-right:12px;}
+    .meta-campo:nth-child(5){grid-column:span 2;padding-right:0;border-right:none;padding-left:12px;}
+    .meta-label{font-size:8px;font-weight:700;color:var(--texto-claro);text-transform:uppercase;margin-bottom:3px;letter-spacing:.8px;display:flex;align-items:center;gap:4px;}
+    .meta-label-dot{width:4px;height:4px;border-radius:50%;background:var(--verde);display:inline-block;flex-shrink:0;}
+    .meta-input{border:none;border-bottom:1.5px solid transparent;font-family:'Lato',sans-serif;font-size:11.5px;color:var(--texto);font-weight:700;padding:2px 0;outline:none;background:transparent;transition:border-color .2s;width:100%;line-height:1.4;}
+    .meta-input:focus{border-bottom-color:var(--verde);}
+    .meta-input::placeholder{font-weight:400;color:#c0cdd8;}
 
     /* ── FILTROS ── */
-    .filtros-wrap {
-      padding: 10px 28px;
-      border-bottom: 1px solid var(--borde);
-      background: #fafbfc;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .filtros-label {
-      font-size: 9px;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--texto-claro);
-      letter-spacing: .8px;
-      white-space: nowrap;
-    }
-
-    .filtro-select {
-      border: 1.5px solid var(--borde);
-      border-radius: 5px;
-      padding: 6px 28px 6px 10px;
-      font-family: 'Lato';
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--texto);
-      background: #fff;
-      cursor: pointer;
-      outline: none;
-      transition: .2s;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 9px center;
-    }
-
-    .filtro-select:focus {
-      border-color: var(--verde);
-    }
-
-    .filtro-divider {
-      width: 1px;
-      height: 20px;
-      background: var(--borde);
-    }
-
-    .filtro-search {
-      border: 1.5px solid var(--borde);
-      border-radius: 5px;
-      padding: 6px 10px;
-      font-family: 'Lato';
-      font-size: 11px;
-      outline: none;
-      width: 180px;
-      transition: .2s;
-    }
-
-    .filtro-search:focus {
-      border-color: var(--verde);
-    }
-
-    .sel-info {
-      font-size: 11px;
-      color: var(--texto-claro);
-      margin-left: auto;
-      white-space: nowrap;
-    }
-
-    .sel-info strong {
-      color: var(--verde);
-    }
+    .filtros-wrap{padding:10px 28px;border-bottom:1px solid var(--borde);background:#fafbfc;display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+    .filtros-label{font-size:9px;font-weight:700;text-transform:uppercase;color:var(--texto-claro);letter-spacing:.8px;white-space:nowrap;}
+    .filtro-select{border:1.5px solid var(--borde);border-radius:5px;padding:6px 28px 6px 10px;font-family:'Lato';font-size:11px;font-weight:700;color:var(--texto);background:#fff;cursor:pointer;outline:none;transition:.2s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+    .filtro-select:focus{border-color:var(--verde);}
+    .filtro-divider{width:1px;height:20px;background:var(--borde);}
+    .filtro-search{border:1.5px solid var(--borde);border-radius:5px;padding:6px 10px;font-family:'Lato';font-size:11px;outline:none;width:180px;transition:.2s;}
+    .filtro-search:focus{border-color:var(--verde);}
+    .sel-info{font-size:11px;color:var(--texto-claro);margin-left:auto;white-space:nowrap;}
+    .sel-info strong{color:var(--verde);}
 
     /* ── TABLA ── */
-    .tabla-wrap {
-      padding: 16px 28px 0;
-    }
-
-    .tabla-titulo {
-      font-size: 9px;
-      font-weight: 700;
-      color: var(--texto-claro);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .tabla-titulo::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--borde);
-    }
-
-    .tabla-scroll {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 700px;
-    }
-
-    thead th {
-      background: var(--gris-fondo);
-      color: var(--texto-claro);
-      font-size: 7.5px;
-      text-transform: uppercase;
-      padding: 6px 5px;
-      text-align: center;
-      border-bottom: 2px solid var(--verde);
-      border-top: 1px solid var(--borde);
-      letter-spacing: .8px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    thead th.th-left {
-      text-align: left;
-    }
-
-    tbody tr {
-      border-bottom: 1px solid #f1f5f9;
-      transition: background .15s;
-    }
-
-    tbody tr:hover {
-      background: #f7fdf9;
-    }
-
-    tbody tr.fila-venta-on {
-      background: #f0fdf4;
-    }
-
-    tbody tr.sin-resultados td {
-      text-align: center;
-      padding: 24px;
-      color: var(--texto-claro);
-      font-size: 12px;
-    }
-
-    td {
-      padding: 4px 4px;
-      vertical-align: middle;
-    }
+    .tabla-wrap{padding:16px 28px 0;}
+    .tabla-titulo{font-size:9px;font-weight:700;color:var(--texto-claro);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+    .tabla-titulo::after{content:'';flex:1;height:1px;background:var(--borde);}
+    .tabla-scroll{overflow-x:auto;}
+    table{width:100%;border-collapse:collapse;min-width:700px;}
+    thead th{background:var(--gris-fondo);color:var(--texto-claro);font-size:7.5px;text-transform:uppercase;padding:6px 5px;text-align:center;border-bottom:2px solid var(--verde);border-top:1px solid var(--borde);letter-spacing:.8px;font-weight:700;white-space:nowrap;}
+    thead th.th-left{text-align:left;}
+    tbody tr{border-bottom:1px solid #f1f5f9;transition:background .15s;}
+    tbody tr:hover{background:#f7fdf9;}
+    tbody tr.fila-venta-on{background:#f0fdf4;}
+    tbody tr.sin-resultados td{text-align:center;padding:24px;color:var(--texto-claro);font-size:12px;}
+    td{padding:4px 4px;vertical-align:middle;}
 
     /* Botones toggle */
-    .btn-toggle {
-      border: 1.5px solid var(--borde);
-      border-radius: 4px;
-      padding: 3px 8px;
-      font-family: 'Lato';
-      font-size: 9.5px;
-      font-weight: 700;
-      cursor: pointer;
-      background: #fff;
-      color: var(--texto-claro);
-      transition: .15s;
-      white-space: nowrap;
-      letter-spacing: .3px;
-      width: 46px;
-    }
-
-    .btn-toggle:hover {
-      border-color: var(--verde);
-      color: var(--verde);
-    }
-
-    .btn-toggle.on-venta {
-      background: var(--verde);
-      border-color: var(--verde);
-      color: #fff;
-    }
-
-    .btn-toggle.on-bon {
-      background: var(--amarillo);
-      border-color: var(--amarillo);
-      color: #7a4f00;
-    }
-
-    .td-toggle {
-      text-align: center;
-      width: 54px;
-    }
+    .btn-toggle{border:1.5px solid var(--borde);border-radius:4px;padding:3px 8px;font-family:'Lato';font-size:9.5px;font-weight:700;cursor:pointer;background:#fff;color:var(--texto-claro);transition:.15s;white-space:nowrap;letter-spacing:.3px;width:46px;}
+    .btn-toggle:hover{border-color:var(--verde);color:var(--verde);}
+    .btn-toggle.on-venta{background:var(--verde);border-color:var(--verde);color:#fff;}
+    .btn-toggle.on-bon{background:var(--amarillo);border-color:var(--amarillo);color:#7a4f00;}
+    .td-toggle{text-align:center;width:54px;}
 
     /* C.SAP */
-    .td-csap {
-      text-align: center;
-      font-size: 9px;
-      font-weight: 700;
-      color: var(--texto-claro);
-      font-variant-numeric: tabular-nums;
-      letter-spacing: .3px;
-      white-space: nowrap;
-    }
+    .td-csap{text-align:center;font-size:9px;font-weight:700;color:var(--texto-claro);font-variant-numeric:tabular-nums;letter-spacing:.3px;white-space:nowrap;}
 
     /* Desc */
-    .td-desc {
-      font-size: 10px;
-      color: var(--texto);
-      line-height: 1.3;
-    }
+    .td-desc{font-size:10px;color:var(--texto);line-height:1.3;}
 
     /* Inputs cantidad */
-    .cant-input {
-      width: 52px;
-      border: 1.5px solid var(--borde);
-      border-radius: 4px;
-      text-align: center;
-      font-size: 11px;
-      font-weight: 700;
-      font-family: 'Lato';
-      padding: 4px 3px;
-      outline: none;
-      background: #fff;
-      color: var(--texto);
-      transition: border-color .2s;
-      display: block;
-      margin: 0 auto;
-    }
-
-    .cant-input:focus {
-      border-color: var(--verde);
-    }
-
-    .cant-input.bon-input:focus {
-      border-color: var(--amarillo);
-    }
-
-    .cant-input:disabled {
-      background: #f8fafc;
-      color: #c0cdd8;
-      border-color: #f1f5f9;
-      cursor: not-allowed;
-    }
-
-    .cant-input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-    }
-
-    .td-cant {
-      text-align: center;
-    }
+    .cant-input{width:52px;border:1.5px solid var(--borde);border-radius:4px;text-align:center;font-size:11px;font-weight:700;font-family:'Lato';padding:4px 3px;outline:none;background:#fff;color:var(--texto);transition:border-color .2s;display:block;margin:0 auto;}
+    .cant-input:focus{border-color:var(--verde);}
+    .cant-input.bon-input:focus{border-color:var(--amarillo);}
+    .cant-input:disabled{background:#f8fafc;color:#c0cdd8;border-color:#f1f5f9;cursor:not-allowed;}
+    .cant-input::-webkit-inner-spin-button{-webkit-appearance:none;}
+    .td-cant{text-align:center;}
 
     /* Precio / Total */
-    .precio-cell {
-      font-size: 10.5px;
-      font-weight: 700;
-      color: var(--texto);
-      text-align: right;
-      padding-right: 7px;
-      white-space: nowrap;
-    }
-
-    .total-cell {
-      font-size: 10.5px;
-      font-weight: 700;
-      color: var(--verde);
-      text-align: right;
-      padding-right: 8px;
-      white-space: nowrap;
-    }
-
-    .total-cell.cero {
-      color: #c0cdd8;
-      font-weight: 400;
-    }
+    .precio-cell{font-size:10.5px;font-weight:700;color:var(--texto);text-align:right;padding-right:7px;white-space:nowrap;}
+    .total-cell{font-size:10.5px;font-weight:700;color:var(--verde);text-align:right;padding-right:8px;white-space:nowrap;}
+    .total-cell.cero{color:#c0cdd8;font-weight:400;}
 
     /* ── TOTALES ── */
-    .totales-bloque {
-      display: flex;
-      justify-content: flex-end;
-      padding: 4px 28px 16px;
-      background: var(--blanco);
-    }
-
-    .totales-tabla {
-      width: 220px;
-    }
-
-    .totales-inner {
-      background: var(--gris-fondo);
-      border: 1px solid var(--borde);
-      border-radius: 5px;
-      overflow: hidden;
-    }
-
-    .total-final {
-      background: var(--verde);
-      padding: 10px 12px !important;
-      border-bottom: none !important;
-    }
-
-    .total-final .t-label {
-      color: rgba(255, 255, 255, .85);
-      font-size: 9px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-    }
-
-    .total-final .t-valor {
-      font-size: 15px;
-      color: #fff;
-      font-weight: 900;
-    }
-
-    .totales-fila-usd {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 12px;
-      font-size: 11.5px;
-    }
-
-    .t-label {
-      color: var(--texto-claro);
-      font-weight: 400;
-    }
-
-    .t-valor {
-      font-weight: 700;
-      color: var(--texto);
-    }
+    .totales-bloque{display:flex;justify-content:flex-end;padding:4px 28px 16px;background:var(--blanco);}
+    .totales-tabla{width:220px;}
+    .totales-inner{background:var(--gris-fondo);border:1px solid var(--borde);border-radius:5px;overflow:hidden;}
+    .total-final{background:var(--verde);padding:10px 12px!important;border-bottom:none!important;}
+    .total-final .t-label{color:rgba(255,255,255,.85);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;}
+    .total-final .t-valor{font-size:15px;color:#fff;font-weight:900;}
+    .totales-fila-usd{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;font-size:11.5px;}
+    .t-label{color:var(--texto-claro);font-weight:400;}
+    .t-valor{font-weight:700;color:var(--texto);}
 
     /* ── FIRMA ── */
-    .firma-section {
-      padding: 0 28px 14px;
-    }
-
-    .firma-preview-solo {
-      display: inline-block;
-      border: .5px solid var(--borde);
-      border-radius: 6px;
-      background: #fff;
-      padding: 4px;
-      margin-top: 8px;
-    }
-
-    .firma-preview-solo img {
-      max-height: 60px;
-      max-width: 180px;
-      display: block;
-    }
-
-    .btn-firma-open {
-      background: transparent;
-      border: 1.5px dashed var(--verde);
-      color: var(--verde);
-      font-weight: 700;
-      font-family: 'Lato';
-      font-size: 11px;
-      padding: 9px 18px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: .2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-firma-open:hover {
-      background: var(--verde-claro);
-    }
+    .firma-section{padding:0 28px 14px;}
+    .firma-preview-solo{display:inline-block;border:.5px solid var(--borde);border-radius:6px;background:#fff;padding:4px;margin-top:8px;}
+    .firma-preview-solo img{max-height:60px;max-width:180px;display:block;}
+    .btn-firma-open{background:transparent;border:1.5px dashed var(--verde);color:var(--verde);font-weight:700;font-family:'Lato';font-size:11px;padding:9px 18px;border-radius:6px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:6px;}
+    .btn-firma-open:hover{background:var(--verde-claro);}
 
     /* ── INFO FINAL (segunda página) ── */
-    .segunda-pagina {
-      background: #fff;
-    }
-
-    .info-final-wrap {
-      border-top: 3px solid var(--verde);
-      padding: 22px 28px;
-    }
-
-    .fila-condiciones {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 20px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--borde);
-    }
-
-    .seccion-titulo {
-      font-size: 8.5px;
-      color: var(--verde);
-      text-transform: uppercase;
-      font-weight: 900;
-      margin-bottom: 10px;
-      letter-spacing: 1.5px;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .seccion-titulo-icon {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--verde);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .condiciones ul {
-      list-style: none;
-      padding: 0;
-      font-size: 10.5px;
-      color: var(--texto);
-      line-height: 1.6;
-    }
-
-    .condiciones ul li {
-      padding: 4px 0;
-      border-bottom: 1px solid #f1f5f9;
-      display: flex;
-      gap: 7px;
-      align-items: flex-start;
-    }
-
-    .condiciones ul li::before {
-      content: '';
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--amarillo);
-      flex-shrink: 0;
-      margin-top: 5px;
-    }
-
-    .condiciones ul li:last-child {
-      border-bottom: none;
-    }
-
-    .comentarios-input {
-      width: 100%;
-      border: 1.5px solid var(--borde);
-      padding: 8px 10px;
-      font-family: 'Lato';
-      font-size: 11px;
-      background: var(--gris-fondo);
-      outline: none;
-      resize: vertical;
-      min-height: 68px;
-      border-radius: 4px;
-      color: var(--texto);
-      line-height: 1.5;
-      transition: .2s;
-    }
-
-    .comentarios-input:focus {
-      border-color: var(--verde);
-      background: #fff;
-    }
-
-    .comentarios-input::placeholder {
-      color: #c0cdd8;
-    }
-
-    #obs-print-block {
-      display: none;
-      white-space: pre-wrap;
-      font-size: 11px;
-      color: var(--texto);
-      line-height: 1.5;
-      padding: 4px 0;
-    }
+    .segunda-pagina{background:#fff;}
+    .info-final-wrap{border-top:3px solid var(--verde);padding:22px 28px;}
+    .fila-condiciones{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--borde);}
+    .seccion-titulo{font-size:8.5px;color:var(--verde);text-transform:uppercase;font-weight:900;margin-bottom:10px;letter-spacing:1.5px;display:flex;align-items:center;gap:7px;}
+    .seccion-titulo-icon{width:16px;height:16px;border-radius:50%;background:var(--verde);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .condiciones ul{list-style:none;padding:0;font-size:10.5px;color:var(--texto);line-height:1.6;}
+    .condiciones ul li{padding:4px 0;border-bottom:1px solid #f1f5f9;display:flex;gap:7px;align-items:flex-start;}
+    .condiciones ul li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--amarillo);flex-shrink:0;margin-top:5px;}
+    .condiciones ul li:last-child{border-bottom:none;}
+    .comentarios-input{width:100%;border:1.5px solid var(--borde);padding:8px 10px;font-family:'Lato';font-size:11px;background:var(--gris-fondo);outline:none;resize:vertical;min-height:68px;border-radius:4px;color:var(--texto);line-height:1.5;transition:.2s;}
+    .comentarios-input:focus{border-color:var(--verde);background:#fff;}
+    .comentarios-input::placeholder{color:#c0cdd8;}
+    #obs-print-block{display:none;white-space:pre-wrap;font-size:11px;color:var(--texto);line-height:1.5;padding:4px 0;}
 
     /* ── BANCOS ── */
-    .bancos-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .banco-bloque {
-      background: var(--gris-fondo);
-      border: 1px solid var(--borde);
-      border-radius: 6px;
-      overflow: hidden;
-      display: inline-block;
-      width: auto;
-      min-width: 380px;
-      max-width: 100%;
-    }
-
-    .banco-header {
-      padding: 6px 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid var(--borde);
-    }
-
-    .banco-header-soles {
-      background: #fff8e8;
-    }
-
-    .banco-header-usd {
-      background: #eef9f3;
-    }
-
-    .banco-badge {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 20px;
-      font-size: 8.5px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .badge-soles {
-      background: var(--amarillo);
-      color: #7a4f00;
-    }
-
-    .badge-usd {
-      background: var(--verde);
-      color: #fff;
-    }
-
-    .banco-col-header {
-      display: grid;
-      grid-template-columns: 90px 150px 180px;
-      padding: 5px 12px 4px;
-      border-bottom: 1px solid var(--borde);
-      background: #f1f5f9;
-    }
-
-    .banco-col-header span {
-      font-size: 8px;
-      font-weight: 700;
-      color: var(--texto-claro);
-      text-transform: uppercase;
-      letter-spacing: .8px;
-    }
-
-    .banco-body {
-      padding: 2px 0;
-    }
-
-    .banco-item {
-      display: grid;
-      grid-template-columns: 90px 150px 180px;
-      font-size: 10px;
-      padding: 5px 12px;
-      border-bottom: 1px solid #f1f5f9;
-      align-items: center;
-    }
-
-    .banco-item:last-child {
-      border-bottom: none;
-    }
-
-    .banco-item strong {
-      color: var(--texto);
-      font-weight: 900;
-      font-size: 10px;
-    }
-
-    .banco-item .cuenta {
-      color: var(--texto-claro);
-      font-size: 10px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .banco-item .cci {
-      color: var(--texto-claro);
-      font-size: 9.5px;
-      font-variant-numeric: tabular-nums;
-      padding-left: 8px;
-    }
+    .bancos-stack{display:flex;flex-direction:column;gap:12px;}
+    .banco-bloque{background:var(--gris-fondo);border:1px solid var(--borde);border-radius:6px;overflow:hidden;display:inline-block;width:auto;min-width:380px;max-width:100%;}
+    .banco-header{padding:6px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--borde);}
+    .banco-header-soles{background:#fff8e8;}
+    .banco-header-usd{background:#eef9f3;}
+    .banco-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:8.5px;font-weight:900;letter-spacing:1px;text-transform:uppercase;}
+    .badge-soles{background:var(--amarillo);color:#7a4f00;}
+    .badge-usd{background:var(--verde);color:#fff;}
+    .banco-col-header{display:grid;grid-template-columns:90px 150px 180px;padding:5px 12px 4px;border-bottom:1px solid var(--borde);background:#f1f5f9;}
+    .banco-col-header span{font-size:8px;font-weight:700;color:var(--texto-claro);text-transform:uppercase;letter-spacing:.8px;}
+    .banco-body{padding:2px 0;}
+    .banco-item{display:grid;grid-template-columns:90px 150px 180px;font-size:10px;padding:5px 12px;border-bottom:1px solid #f1f5f9;align-items:center;}
+    .banco-item:last-child{border-bottom:none;}
+    .banco-item strong{color:var(--texto);font-weight:900;font-size:10px;}
+    .banco-item .cuenta{color:var(--texto-claro);font-size:10px;font-variant-numeric:tabular-nums;}
+    .banco-item .cci{color:var(--texto-claro);font-size:9.5px;font-variant-numeric:tabular-nums;padding-left:8px;}
 
     /* ── BARRA ── */
-    .barra-controles {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, .95);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 -1px 0 var(--borde), 0 -8px 24px rgba(0, 0, 0, .06);
-      display: flex;
-      padding: 10px 14px;
-      z-index: 1000;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .btn {
-      padding: 10px 22px;
-      border: none;
-      border-radius: 5px;
-      font-weight: 700;
-      font-family: 'Lato';
-      font-size: 12px;
-      cursor: pointer;
-      transition: .2s;
-      letter-spacing: .3px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-pdf {
-      background: var(--verde);
-      color: #fff;
-      flex: 1;
-      max-width: 240px;
-      justify-content: center;
-    }
-
-    .btn-pdf:hover {
-      background: var(--verde-oscuro);
-    }
-
-    .btn-limpiar {
-      background: transparent;
-      color: var(--texto-claro);
-      border: 1.5px solid var(--borde);
-    }
-
-    .btn-limpiar:hover {
-      background: var(--gris-fondo);
-      color: var(--texto);
-    }
+    .barra-controles{position:fixed;bottom:0;left:0;width:100%;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);box-shadow:0 -1px 0 var(--borde),0 -8px 24px rgba(0,0,0,.06);display:flex;padding:10px 14px;z-index:1000;justify-content:center;gap:8px;}
+    .btn{padding:10px 22px;border:none;border-radius:5px;font-weight:700;font-family:'Lato';font-size:12px;cursor:pointer;transition:.2s;letter-spacing:.3px;display:flex;align-items:center;gap:6px;}
+    .btn-pdf{background:var(--verde);color:#fff;flex:1;max-width:240px;justify-content:center;}
+    .btn-pdf:hover{background:var(--verde-oscuro);}
+    .btn-limpiar{background:transparent;color:var(--texto-claro);border:1.5px solid var(--borde);}
+    .btn-limpiar:hover{background:var(--gris-fondo);color:var(--texto);}
 
     /* ── PRINT ── */
     @media print {
-
       /* ── Eliminar URL, título y márgenes del navegador ── */
       @page {
         size: A4 portrait;
@@ -1146,18 +215,8 @@
         print-color-adjust: exact;
       }
 
-      body {
-        background: #fff;
-        padding: 0;
-        font-size: 9pt;
-      }
-
-      .hoja {
-        box-shadow: none;
-        border-radius: 0;
-        max-width: 100%;
-        border-top: 3px solid var(--verde);
-      }
+      body { background: #fff; padding: 0; font-size: 9pt; }
+      .hoja { box-shadow: none; border-radius: 0; max-width: 100%; border-top: 3px solid var(--verde); }
 
       /* ── Ocultar elementos no deseados en impresión ── */
       .barra-controles,
@@ -1165,764 +224,595 @@
       .btn-firma-open,
       .modal-overlay,
       .firma-overlay,
-      .no-print {
-        display: none !important;
-      }
+      .no-print { display: none !important; }
 
       /* ── Ocultar columnas Venta y Bon. (solo informativas para el comercial) ── */
       .col-venta,
       .col-bon,
-      .td-toggle {
-        display: none !important;
-      }
+      .td-toggle { display: none !important; }
 
-      .meta-input,
-      .tc-input {
-        border: none !important;
-        background: transparent !important;
-      }
-
-      .cant-input {
-        border: none !important;
-        background: transparent !important;
-      }
-
-      #comentarios {
-        display: none !important;
-      }
-
-      #obs-print-block {
-        display: block !important;
-      }
-
-      .tabla-scroll {
-        overflow: visible;
-      }
-
-      table {
-        min-width: auto;
-        width: 100%;
-      }
-
-      .btn-toggle {
-        pointer-events: none;
-        font-size: 8px;
-      }
+      .meta-input, .tc-input { border: none !important; background: transparent !important; }
+      .cant-input { border: none !important; background: transparent !important; }
+      #comentarios { display: none !important; }
+      #obs-print-block { display: block !important; }
+      .tabla-scroll { overflow: visible; }
+      table { min-width: auto; width: 100%; }
+      .btn-toggle { pointer-events: none; font-size: 8px; }
 
       /* Colores forzados */
-      thead th {
-        background: var(--gris-fondo) !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .total-final {
-        background: var(--verde) !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .fila-venta-on {
-        background: #f0fdf4 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .badge-soles {
-        background: var(--amarillo) !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .badge-usd {
-        background: var(--verde) !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .banco-header-soles {
-        background: #fff8e8 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .banco-header-usd {
-        background: #eef9f3 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .banco-col-header {
-        background: #f1f5f9 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .cabecera {
-        background: linear-gradient(135deg, #fafffe 0%, #f0faf5 100%) !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
+      thead th { background: var(--gris-fondo) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .total-final { background: var(--verde) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .fila-venta-on { background: #f0fdf4 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .badge-soles { background: var(--amarillo) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .badge-usd { background: var(--verde) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .banco-header-soles { background: #fff8e8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .banco-header-usd { background: #eef9f3 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .banco-col-header { background: #f1f5f9 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .cabecera { background: linear-gradient(135deg, #fafffe 0%, #f0faf5 100%) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
       /* Solo filas activas */
-      tbody tr.fila-prod:not(.fila-venta-on):not(.fila-bon-on) {
-        display: none !important;
-      }
+      tbody tr.fila-prod:not(.fila-venta-on):not(.fila-bon-on) { display: none !important; }
 
       /* Segunda página forzada */
-      .segunda-pagina {
-        page-break-before: always;
-        break-before: page;
-      }
+      .segunda-pagina { page-break-before: always; break-before: page; }
 
       /* Compactar tabla para A4 portrait */
-      .cabecera {
-        padding: 12px 18px;
-      }
-
-      .tabla-wrap {
-        padding: 10px 18px 0;
-      }
-
-      .totales-bloque {
-        padding: 4px 18px 12px;
-      }
-
-      .firma-section {
-        padding: 0 18px 10px;
-      }
-
-      .meta-wrap {
-        padding: 0 18px;
-      }
-
-      thead th {
-        font-size: 7pt;
-        padding: 4px 4px;
-      }
-
-      td {
-        padding: 3px 3px;
-        font-size: 8.5pt;
-      }
-
-      .td-desc {
-        font-size: 8pt;
-      }
-
-      .btn-toggle {
-        font-size: 7.5pt;
-        padding: 2px 5px;
-        width: 40px;
-      }
-
-      .cant-input {
-        width: 40px;
-        font-size: 9pt;
-      }
-
-      .precio-cell,
-      .total-cell {
-        font-size: 8.5pt;
-      }
-
-      .info-final-wrap {
-        padding: 16px 18px;
-      }
+      .cabecera { padding: 12px 18px; }
+      .tabla-wrap { padding: 10px 18px 0; }
+      .totales-bloque { padding: 4px 18px 12px; }
+      .firma-section { padding: 0 18px 10px; }
+      .meta-wrap { padding: 0 18px; }
+      thead th { font-size: 7pt; padding: 4px 4px; }
+      td { padding: 3px 3px; font-size: 8.5pt; }
+      .td-desc { font-size: 8pt; }
+      .btn-toggle { font-size: 7.5pt; padding: 2px 5px; width: 40px; }
+      .cant-input { width: 40px; font-size: 9pt; }
+      .precio-cell, .total-cell { font-size: 8.5pt; }
+      .info-final-wrap { padding: 16px 18px; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- MODAL VENDEDOR -->
-  <div id="vendor-modal" class="modal-overlay" style="display:none;">
-    <div class="modal-box">
-      <div class="modal-logo">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnq6Feqkt6u1mNaYUtUF0iZNjNJVeIB1JMqw&s"
-          alt="Solvet" onerror="this.style.display='none'">
-      </div>
-      <h3>Acceso al Cotizador PETS</h3>
-      <p>Seleccione su identificador comercial para continuar</p>
-      <select class="modal-sel" id="vendor-select">
-        <option value="Junior Oviedo">Junior Oviedo</option>
-        <option value="Janeth Vera">Janeth Vera</option>
-        <option value="Alejandra Honores">Alejandra Honores</option>
-        <option value="Adriana Butron">Adriana Butron</option>
-        <option value="Rodrigo Caceres">Rodrigo Caceres</option>
-      </select>
-      <button class="btn-ingresar" onclick="guardarVendedor()">Generar Sesión →</button>
+<!-- MODAL VENDEDOR -->
+<div id="vendor-modal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <div class="modal-logo">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnq6Feqkt6u1mNaYUtUF0iZNjNJVeIB1JMqw&s" alt="Solvet" onerror="this.style.display='none'">
     </div>
+    <h3>Acceso al Cotizador PETS</h3>
+    <p>Seleccione su identificador comercial para continuar</p>
+    <select class="modal-sel" id="vendor-select">
+      <option value="Junior Oviedo">Junior Oviedo</option>
+      <option value="Janeth Vera">Janeth Vera</option>
+      <option value="Alejandra Honores">Alejandra Honores</option>
+      <option value="Adriana Butron">Adriana Butron</option>
+      <option value="Rodrigo Caceres">Rodrigo Caceres</option>
+    </select>
+    <button class="btn-ingresar" onclick="guardarVendedor()">Generar Sesión →</button>
   </div>
+</div>
 
-  <!-- MODAL FIRMA DIGITAL -->
-  <div id="firma-modal" class="firma-overlay">
-    <div class="firma-box">
-      <div style="display:flex;align-items:center;justify-content:space-between;">
-        <div>
-          <div style="font-weight:700;font-size:16px;">✍️ Firma digital del cliente</div>
-          <div style="font-size:12px;color:var(--texto-claro);margin-top:3px;">Dibuja con el dedo o el mouse dentro del
-            recuadro</div>
-        </div>
-        <button onclick="closeFirmaModal()"
-          style="background:none;border:none;cursor:pointer;color:var(--texto-claro);font-size:22px;padding:4px 8px;line-height:1;border-radius:6px;">✕</button>
-      </div>
-      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-        <div style="display:flex;gap:8px;" id="firma-colors">
-          <button class="firma-color-btn active" style="background:#1a3a5c;"
-            onclick="setFirmaColor('#1a3a5c',this)"></button>
-          <button class="firma-color-btn" style="background:#007934;" onclick="setFirmaColor('#007934',this)"></button>
-          <button class="firma-color-btn" style="background:#111;" onclick="setFirmaColor('#111111',this)"></button>
-          <button class="firma-color-btn" style="background:#991111;" onclick="setFirmaColor('#991111',this)"></button>
-        </div>
-        <div class="firma-pen-size">
-          <svg width="8" height="8" viewBox="0 0 10 10" fill="var(--texto-claro)">
-            <circle cx="5" cy="5" r="5" />
-          </svg>
-          <input type="range" id="firma-pen-range" min="1" max="8" step="0.5" value="2.8"
-            oninput="updateFirmaPen(this.value)">
-          <div id="firma-pen-dot" class="firma-pen-dot" style="width:10px;height:10px;background:#1a3a5c;"></div>
-        </div>
-      </div>
-      <div class="firma-canvas-wrap" id="firma-canvas-wrap">
-        <canvas id="firma-canvas"></canvas>
-        <div class="firma-placeholder" id="firma-placeholder">
-          <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#aaa" stroke-width="1.5"
-            stroke-linecap="round">
-            <path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
-          </svg>
-          <span>Firmar aquí</span>
-        </div>
-      </div>
-      <div style="display:flex;gap:10px;">
-        <button onclick="clearFirmaCanvas()"
-          style="flex:1;background:#f1f5f9;border:1px solid var(--borde);border-radius:6px;padding:10px;cursor:pointer;font-family:'Lato';font-size:13px;font-weight:700;">🧹
-          Limpiar</button>
-        <button onclick="guardarFirma()"
-          style="flex:2;background:var(--verde);color:#fff;border:none;border-radius:6px;padding:10px;cursor:pointer;font-family:'Lato';font-size:13px;font-weight:700;">✅
-          Confirmar firma</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="hoja">
-
-    <!-- CABECERA -->
-    <div class="cabecera">
-      <div class="cabecera-izq">
-        <img class="cabecera-logo"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnq6Feqkt6u1mNaYUtUF0iZNjNJVeIB1JMqw&s"
-          alt="Logo Solvet" onerror="this.style.display='none'">
-        <div class="logo-divider"></div>
-        <div class="empresa-info">
-          <h1>Soluciones Veterinarias SAC</h1>
-          <p>RUC: 20504973990<br>Av. Rep. de Panamá 3531 Int. 1303, San Isidro, Lima</p>
-        </div>
-      </div>
-      <div class="cotizacion-box">
-        <h2>Cotización</h2>
-        <div class="numero" id="numero-cotizacion">---</div>
-        <div class="cotizacion-badge">PETS</div>
-      </div>
-    </div>
-
-    <!-- META -->
-    <div class="meta-wrap">
-      <div class="meta">
-        <div class="meta-campo">
-          <div class="meta-label"><span class="meta-label-dot"></span>Cliente / Veterinaria</div>
-          <input class="meta-input" type="text" id="cliente" placeholder="Razón social o nombre...">
-        </div>
-        <div class="meta-campo">
-          <div class="meta-label"><span class="meta-label-dot"></span>RUC / DNI</div>
-          <input class="meta-input" type="text" id="ruc" placeholder="Documento">
-        </div>
-        <div class="meta-campo">
-          <div class="meta-label"><span class="meta-label-dot"></span>Fecha Emisión</div>
-          <input class="meta-input" type="date" id="fecha-emision" onchange="actualizarExpiracion()">
-        </div>
-        <div class="meta-campo">
-          <div class="meta-label"><span class="meta-label-dot"></span>Válido hasta</div>
-          <input class="meta-input" type="date" id="fecha-expiracion" readonly style="color:var(--texto-claro);">
-        </div>
-        <div class="meta-campo">
-          <div class="meta-label"><span class="meta-label-dot"></span>Ejecutivo</div>
-          <input class="meta-input" type="text" id="vendedor-input" readonly style="cursor:pointer;"
-            onclick="abrirModalVendedor()" title="Clic para cambiar">
-        </div>
-      </div>
-    </div>
-
-    <!-- FILTROS -->
-    <div class="filtros-wrap no-print">
-      <span class="filtros-label">Especie:</span>
-      <select class="filtro-select" id="filtro-especie" onchange="renderTabla()">
-        <option value="todos">Todas</option>
-        <option value="Gato">Gato</option>
-        <option value="Perro">Perro</option>
-      </select>
-      <div class="filtro-divider"></div>
-      <span class="filtros-label">Marca:</span>
-      <!-- Multiselect Marca -->
-      <div class="multiselect-wrap" id="ms-wrap">
-        <button type="button" class="multiselect-btn" id="ms-btn" onclick="toggleMultiselect()">
-          <span id="ms-label">Todas</span>
-        </button>
-        <div class="multiselect-dropdown" id="ms-dropdown">
-          <label class="multiselect-item all-item">
-            <input type="checkbox" id="ms-all" checked onchange="toggleAllMarcas(this)"> Todas las marcas
-          </label>
-          <!-- opciones generadas por JS -->
-        </div>
-      </div>
-      <div class="filtro-divider"></div>
-      <input class="filtro-search" type="text" id="filtro-busq" placeholder="Buscar descripción..."
-        oninput="renderTabla()">
-      <div class="sel-info">Seleccionados: <strong id="sel-count">0</strong></div>
-    </div>
-
-    <!-- TABLA -->
-    <div class="tabla-wrap">
-      <div class="tabla-titulo">Detalle de Productos</div>
-      <div class="tabla-scroll">
-        <table>
-          <thead>
-            <tr>
-              <!-- Las columnas Venta y Bon. se ocultan en impresión con la clase col-venta / col-bon -->
-              <th class="col-venta" style="width:52px;">Venta</th>
-              <th class="col-bon" style="width:52px;">Bon.</th>
-              <th style="width:66px;">C.SAP</th>
-              <th class="th-left">Descripción</th>
-              <th style="width:68px;">Cant. V</th>
-              <th style="width:68px;">Cant. B</th>
-              <th style="width:96px;">Precio C/IGV</th>
-              <th style="width:96px;">Total</th>
-            </tr>
-          </thead>
-          <tbody id="tbody-prods"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- TOTALES -->
-    <div class="totales-bloque">
-      <div class="totales-tabla">
-        <div class="totales-inner">
-          <div class="total-final totales-fila-usd">
-            <!-- CAMBIO: Moneda → Soles (S/) -->
-            <span class="t-label">Total S/ (c/IGV)</span>
-            <span class="t-valor" id="total-usd">S/ 0.00</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FIRMA -->
-    <div class="firma-section">
-      <div class="seccion-titulo">
-        <span class="seccion-titulo-icon">
-          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
-            <path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
-          </svg>
-        </span>
-        Firma Digital del Cliente
-      </div>
-      <button class="btn-firma-open no-print" id="btn-firma-action" onclick="openFirmaModal()">✍️ Capturar firma del
-        cliente</button>
-      <div id="firma-preview-area"></div>
-    </div>
-
-  </div><!-- /hoja primera pagina -->
-
-  <!-- SEGUNDA PÁGINA: condiciones, comentarios, bancos -->
-  <div class="segunda-pagina">
-    <div class="info-final-wrap">
-
-      <div class="fila-condiciones">
-        <div class="condiciones">
-          <div class="seccion-titulo">
-            <span class="seccion-titulo-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white"
-                stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg></span>
-            Condiciones Comerciales
-          </div>
-          <ul>
-            <li>Precios expresados en Soles (S/) e incluyen I.G.V.</li>
-            <li>Importe mínimo de atención: S/ 1,600.00 + I.G.V.</li>
-            <li>Despachos a provincia sujetos a coordinación logística.</li>
-            <li>Validez de la cotización sujeta a disponibilidad de inventario.</li>
-            <li>Crédito sujeto a evaluación crediticia.</li>
-          </ul>
-        </div>
-        <div id="obs-container">
-          <div class="seccion-titulo">
-            <span class="seccion-titulo-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white"
-                stroke-width="2.5">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-              </svg></span>
-            Comentarios
-          </div>
-          <textarea class="comentarios-input" id="comentarios"
-            placeholder="Notas adicionales del ejecutivo comercial..."></textarea>
-          <div id="obs-print-block"></div>
-        </div>
-      </div>
-
+<!-- MODAL FIRMA DIGITAL -->
+<div id="firma-modal" class="firma-overlay">
+  <div class="firma-box">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
       <div>
-        <div class="seccion-titulo" style="margin-bottom:12px;">
-          <span class="seccion-titulo-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white"
-              stroke-width="2.5">
-              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-              <line x1="1" y1="10" x2="23" y2="10"></line>
-            </svg></span>
-          Cuentas Bancarias Recaudadoras
+        <div style="font-weight:700;font-size:16px;">✍️ Firma digital del cliente</div>
+        <div style="font-size:12px;color:var(--texto-claro);margin-top:3px;">Dibuja con el dedo o el mouse dentro del recuadro</div>
+      </div>
+      <button onclick="closeFirmaModal()" style="background:none;border:none;cursor:pointer;color:var(--texto-claro);font-size:22px;padding:4px 8px;line-height:1;border-radius:6px;">✕</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+      <div style="display:flex;gap:8px;" id="firma-colors">
+        <button class="firma-color-btn active" style="background:#1a3a5c;" onclick="setFirmaColor('#1a3a5c',this)"></button>
+        <button class="firma-color-btn" style="background:#007934;" onclick="setFirmaColor('#007934',this)"></button>
+        <button class="firma-color-btn" style="background:#111;" onclick="setFirmaColor('#111111',this)"></button>
+        <button class="firma-color-btn" style="background:#991111;" onclick="setFirmaColor('#991111',this)"></button>
+      </div>
+      <div class="firma-pen-size">
+        <svg width="8" height="8" viewBox="0 0 10 10" fill="var(--texto-claro)"><circle cx="5" cy="5" r="5"/></svg>
+        <input type="range" id="firma-pen-range" min="1" max="8" step="0.5" value="2.8" oninput="updateFirmaPen(this.value)">
+        <div id="firma-pen-dot" class="firma-pen-dot" style="width:10px;height:10px;background:#1a3a5c;"></div>
+      </div>
+    </div>
+    <div class="firma-canvas-wrap" id="firma-canvas-wrap">
+      <canvas id="firma-canvas"></canvas>
+      <div class="firma-placeholder" id="firma-placeholder">
+        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linecap="round"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+        <span>Firmar aquí</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button onclick="clearFirmaCanvas()" style="flex:1;background:#f1f5f9;border:1px solid var(--borde);border-radius:6px;padding:10px;cursor:pointer;font-family:'Lato';font-size:13px;font-weight:700;">🧹 Limpiar</button>
+      <button onclick="guardarFirma()" style="flex:2;background:var(--verde);color:#fff;border:none;border-radius:6px;padding:10px;cursor:pointer;font-family:'Lato';font-size:13px;font-weight:700;">✅ Confirmar firma</button>
+    </div>
+  </div>
+</div>
+
+<div class="hoja">
+
+  <!-- CABECERA -->
+  <div class="cabecera">
+    <div class="cabecera-izq">
+      <img class="cabecera-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnq6Feqkt6u1mNaYUtUF0iZNjNJVeIB1JMqw&s" alt="Logo Solvet" onerror="this.style.display='none'">
+      <div class="logo-divider"></div>
+      <div class="empresa-info">
+        <h1>Soluciones Veterinarias SAC</h1>
+        <p>RUC: 20504973990<br>Av. Rep. de Panamá 3531 Int. 1303, San Isidro, Lima</p>
+      </div>
+    </div>
+    <div class="cotizacion-box">
+      <h2>Cotización</h2>
+      <div class="numero" id="numero-cotizacion">---</div>
+      <div class="cotizacion-badge">PETS</div>
+    </div>
+  </div>
+
+  <!-- META -->
+  <div class="meta-wrap">
+    <div class="meta">
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Cliente / Veterinaria</div>
+        <input class="meta-input" type="text" id="cliente" placeholder="Razón social o nombre...">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>RUC / DNI</div>
+        <input class="meta-input" type="text" id="ruc" placeholder="Documento">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Fecha Emisión</div>
+        <input class="meta-input" type="date" id="fecha-emision" onchange="actualizarExpiracion()">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Válido hasta</div>
+        <input class="meta-input" type="date" id="fecha-expiracion" readonly style="color:var(--texto-claro);">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Ejecutivo</div>
+        <input class="meta-input" type="text" id="vendedor-input" readonly style="cursor:pointer;" onclick="abrirModalVendedor()" title="Clic para cambiar">
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="filtros-wrap no-print">
+    <span class="filtros-label">Especie:</span>
+    <select class="filtro-select" id="filtro-especie" onchange="renderTabla()">
+      <option value="todos">Todas</option>
+      <option value="Gato">Gato</option>
+      <option value="Perro">Perro</option>
+    </select>
+    <div class="filtro-divider"></div>
+    <span class="filtros-label">Marca:</span>
+    <!-- Multiselect Marca -->
+    <div class="multiselect-wrap" id="ms-wrap">
+      <button type="button" class="multiselect-btn" id="ms-btn" onclick="toggleMultiselect()">
+        <span id="ms-label">Todas</span>
+      </button>
+      <div class="multiselect-dropdown" id="ms-dropdown">
+        <label class="multiselect-item all-item">
+          <input type="checkbox" id="ms-all" checked onchange="toggleAllMarcas(this)"> Todas las marcas
+        </label>
+        <!-- opciones generadas por JS -->
+      </div>
+    </div>
+    <div class="filtro-divider"></div>
+    <input class="filtro-search" type="text" id="filtro-busq" placeholder="Buscar descripción..." oninput="renderTabla()">
+    <div class="sel-info">Seleccionados: <strong id="sel-count">0</strong></div>
+  </div>
+
+  <!-- TABLA -->
+  <div class="tabla-wrap">
+    <div class="tabla-titulo">Detalle de Productos</div>
+    <div class="tabla-scroll">
+      <table>
+        <thead>
+          <tr>
+            <!-- Las columnas Venta y Bon. se ocultan en impresión con la clase col-venta / col-bon -->
+            <th class="col-venta" style="width:52px;">Venta</th>
+            <th class="col-bon" style="width:52px;">Bon.</th>
+            <th style="width:66px;">C.SAP</th>
+            <th class="th-left">Descripción</th>
+            <th style="width:68px;">Cant. V</th>
+            <th style="width:68px;">Cant. B</th>
+            <th style="width:96px;">Precio C/IGV</th>
+            <th style="width:96px;">Total</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-prods"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TOTALES -->
+  <div class="totales-bloque">
+    <div class="totales-tabla">
+      <div class="totales-inner">
+        <div class="total-final totales-fila-usd">
+          <!-- CAMBIO: Moneda → Soles (S/) -->
+          <span class="t-label">Total S/ (c/IGV)</span>
+          <span class="t-valor" id="total-usd">S/ 0.00</span>
         </div>
-        <div class="bancos-stack">
-          <div class="banco-bloque">
-            <div class="banco-header banco-header-soles"><span class="banco-badge badge-soles">Soles (S/)</span></div>
-            <div class="banco-col-header"><span>Banco</span><span>Cuenta Bancaria</span><span>CCI</span></div>
-            <div class="banco-body">
-              <div class="banco-item"><strong>BCP</strong><span class="cuenta">194-1186428-0-19</span><span
-                  class="cci">002-194-001186428019-90</span></div>
-              <div class="banco-item"><strong>CONTINENTAL</strong><span
-                  class="cuenta">0011-0409-09-0100002616</span><span class="cci">011-409-000100002616-09</span></div>
-              <div class="banco-item"><strong>INTERBANK</strong><span class="cuenta">041-3001581651</span><span
-                  class="cci">003-041-003001581651-12</span></div>
-              <div class="banco-item"><strong>SANTANDER</strong><span class="cuenta">0008081530</span><span
-                  class="cci">056-001-000008081530-11</span></div>
-            </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIRMA -->
+  <div class="firma-section">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icon">
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+      </span>
+      Firma Digital del Cliente
+    </div>
+    <button class="btn-firma-open no-print" id="btn-firma-action" onclick="openFirmaModal()">✍️ Capturar firma del cliente</button>
+    <div id="firma-preview-area"></div>
+  </div>
+
+</div><!-- /hoja primera pagina -->
+
+<!-- SEGUNDA PÁGINA: condiciones, comentarios, bancos -->
+<div class="segunda-pagina">
+  <div class="info-final-wrap">
+
+    <div class="fila-condiciones">
+      <div class="condiciones">
+        <div class="seccion-titulo">
+          <span class="seccion-titulo-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+          Condiciones Comerciales
+        </div>
+        <ul>
+          <li>Precios expresados en Soles (S/) e incluyen I.G.V.</li>
+          <li>Importe mínimo de atención: S/ 1,600.00 + I.G.V.</li>
+          <li>Despachos a provincia sujetos a coordinación logística.</li>
+          <li>Validez de la cotización sujeta a disponibilidad de inventario.</li>
+          <li>Crédito sujeto a evaluación crediticia.</li>
+        </ul>
+      </div>
+      <div id="obs-container">
+        <div class="seccion-titulo">
+          <span class="seccion-titulo-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></span>
+          Comentarios
+        </div>
+        <textarea class="comentarios-input" id="comentarios" placeholder="Notas adicionales del ejecutivo comercial..."></textarea>
+        <div id="obs-print-block"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="seccion-titulo" style="margin-bottom:12px;">
+        <span class="seccion-titulo-icon"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></span>
+        Cuentas Bancarias Recaudadoras
+      </div>
+      <div class="bancos-stack">
+        <div class="banco-bloque">
+          <div class="banco-header banco-header-soles"><span class="banco-badge badge-soles">Soles (S/)</span></div>
+          <div class="banco-col-header"><span>Banco</span><span>Cuenta Bancaria</span><span>CCI</span></div>
+          <div class="banco-body">
+            <div class="banco-item"><strong>BCP</strong><span class="cuenta">194-1186428-0-19</span><span class="cci">002-194-001186428019-90</span></div>
+            <div class="banco-item"><strong>CONTINENTAL</strong><span class="cuenta">0011-0409-09-0100002616</span><span class="cci">011-409-000100002616-09</span></div>
+            <div class="banco-item"><strong>INTERBANK</strong><span class="cuenta">041-3001581651</span><span class="cci">003-041-003001581651-12</span></div>
+            <div class="banco-item"><strong>SANTANDER</strong><span class="cuenta">0008081530</span><span class="cci">056-001-000008081530-11</span></div>
           </div>
-          <div class="banco-bloque">
-            <div class="banco-header banco-header-usd"><span class="banco-badge badge-usd">Dólares (USD)</span></div>
-            <div class="banco-col-header"><span>Banco</span><span>Cuenta Bancaria</span><span>CCI</span></div>
-            <div class="banco-body">
-              <div class="banco-item"><strong>BCP</strong><span class="cuenta">194-1191375-1-99</span><span
-                  class="cci">002-194-001191375199-93</span></div>
-              <div class="banco-item"><strong>CONTINENTAL</strong><span
-                  class="cuenta">0011-0409-03-0100002624</span><span class="cci">011-409-000100002624-03</span></div>
-              <div class="banco-item"><strong>INTERBANK</strong><span class="cuenta">041-3001581669</span><span
-                  class="cci">003-041-003001581669-14</span></div>
-              <div class="banco-item"><strong>SANTANDER</strong><span class="cuenta">0008081557</span><span
-                  class="cci">056-001-000008081557-14</span></div>
-            </div>
+        </div>
+        <div class="banco-bloque">
+          <div class="banco-header banco-header-usd"><span class="banco-badge badge-usd">Dólares (USD)</span></div>
+          <div class="banco-col-header"><span>Banco</span><span>Cuenta Bancaria</span><span>CCI</span></div>
+          <div class="banco-body">
+            <div class="banco-item"><strong>BCP</strong><span class="cuenta">194-1191375-1-99</span><span class="cci">002-194-001191375199-93</span></div>
+            <div class="banco-item"><strong>CONTINENTAL</strong><span class="cuenta">0011-0409-03-0100002624</span><span class="cci">011-409-000100002624-03</span></div>
+            <div class="banco-item"><strong>INTERBANK</strong><span class="cuenta">041-3001581669</span><span class="cci">003-041-003001581669-14</span></div>
+            <div class="banco-item"><strong>SANTANDER</strong><span class="cuenta">0008081557</span><span class="cci">056-001-000008081557-14</span></div>
           </div>
         </div>
       </div>
-
     </div>
-  </div><!-- /segunda-pagina -->
 
-  <div class="barra-controles no-print">
-    <button class="btn btn-limpiar" onclick="limpiarCotizacion()">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="1 4 1 10 7 10"></polyline>
-        <path d="M3.51 15a9 9 0 1 0 .49-3.38"></path>
-      </svg>
-      Reiniciar
-    </button>
-    <button class="btn btn-pdf" onclick="imprimirCotizacion()">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="6 9 6 2 18 2 18 9"></polyline>
-        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-        <rect x="6" y="14" width="12" height="8"></rect>
-      </svg>
-      Exportar PDF
-    </button>
   </div>
+</div><!-- /segunda-pagina -->
 
-  <script>
-    // ── CATÁLOGO ── (precios en Soles S/)
-    const PRODS = [
-      { m: "CooKing", c: "Gato", d: "CooKing dry cat food junior-kitten (Salmon) GF recipe 2 kg.", p: 63.20, sap: "" },
-      { m: "CooKing", c: "Gato", d: "CooKing dry cat food adult cat (Salmon) GF recipe 2 kg.", p: 63.20, sap: "" },
-      { m: "CooKing", c: "Gato", d: "CooKing dry cat food adult cat (Salmon) GF recipe 8 kg.", p: 236.00, sap: "" },
-      { m: "CooKing", c: "Gato", d: "CooKing dry cat food sterilized adult cat (Chicken) GF recipe 2 kg.", p: 61.60, sap: "" },
-      { m: "CooKing", c: "Gato", d: "CooKing dry cat food sterilized adult cat (Chicken) GF recipe 8 kg.", p: 220.00, sap: "" },
-      { m: "CooKing", c: "Perro", d: "CooKing dry dog food puppy all breeds (Chicken) GF recipe 2 kg.", p: 62.40, sap: "" },
-      { m: "CooKing", c: "Perro", d: "CooKing dry dog puppy puppy all breeds (Chicken) GF recipe 12 kg.", p: 311.20, sap: "" },
-      { m: "CooKing", c: "Perro", d: "CooKing dry dog food adult all breeds (Lamb) GF recipe 3 kg.", p: 85.60, sap: "" },
-      { m: "CooKing", c: "Perro", d: "CooKing dry dog food adult all breeds (Lamb) GF recipe 12 kg.", p: 295.20, sap: "" },
-      { m: "CooKing", c: "Perro", d: "CooKing dry dog food adult all breeds (Salmon) GF recipe 3 kg.", p: 85.60, sap: "" },
-      { m: "CooKing", c: "Perro", d: "CooKing dry dog food adult all breeds (Salmon) GF recipe 12 kg.", p: 300.00, sap: "" },
-      { m: "CooKing", c: "Perro", d: "CooKing dry dog food senior-light (Chicken) GF recipe 3 kg.", p: 76.80, sap: "" },
-      { m: "CooKing", c: "Perro", d: "CooKing dry dog food senior-light (Chicken) GF recipe 12 kg.", p: 271.20, sap: "" },
-      { m: "Dibaq Sense", c: "Gato", d: "Dibaq Sense dry cat food kitten (Turkey&Salmon) GF recipe 1.5 kg.", p: 88.00, sap: "" },
-      { m: "Dibaq Sense", c: "Gato", d: "Dibaq Sense dry cat food kitten (Turkey&Salmon) GF recipe 6 kg.", p: 231.20, sap: "" },
-      { m: "Dibaq Sense", c: "Gato", d: "Dibaq Sense dry cat food Sterilized (Chicken&Duck) GF recipe 1.5 kg.", p: 88.00, sap: "" },
-      { m: "Dibaq Sense", c: "Gato", d: "Dibaq Sense dry cat food Sterilized (Chicken&Duck) GF recipe 6 kg.", p: 231.20, sap: "" },
-      { m: "Dibaq Sense", c: "Gato", d: "Dibaq Sense dry cat food Urinary (Salmon&Tuna) GF recipe 1.5 kg.", p: 88.00, sap: "" },
-      { m: "Dibaq Sense", c: "Gato", d: "Dibaq Sense dry cat food Urinary (Salmon&Tuna) GF recipe 6 kg.", p: 244.00, sap: "" },
-      { m: "Dibaq Sense", c: "Perro", d: "Dibaq Sense dry dog food puppy (Salmon & Turkey) GF recipe 2 kg.", p: 92.00, sap: "" },
-      { m: "Dibaq Sense", c: "Perro", d: "Dibaq Sense dry dog food puppy (Salmon & Turkey) GF recipe 12 kg.", p: 336.00, sap: "" },
-      { m: "Dibaq Sense", c: "Perro", d: "Dibaq Sense dry dog food adult (Lamb) GF recipe 2 kg.", p: 92.00, sap: "" },
-      { m: "Dibaq Sense", c: "Perro", d: "Dibaq Sense dry dog food adult (Lamb) GF recipe 12 kg.", p: 343.20, sap: "" },
-      { m: "Dibaq Sense", c: "Perro", d: "Dibaq Sense dry dog food adult mini (Lamb) GF recipe 2 kg.", p: 92.00, sap: "" },
-      { m: "Dibaq Sense", c: "Perro", d: "Dibaq Sense dry dog food adult mini (Lamb) GF recipe 6 kg.", p: 231.20, sap: "" },
-      { m: "Dibaq Sense", c: "Perro", d: "Dibaq Sense dry dog food light&senior (Duck&Turkey) GF recipe 2 kg.", p: 92.00, sap: "" },
-      { m: "Dibaq Sense", c: "Perro", d: "Dibaq Sense dry dog food light&senior (Duck&Turkey) GF recipe 12 kg.", p: 343.20, sap: "" },
-      { m: "Dibaq NM", c: "Gato", d: "Dibaq Natural Moments wet cat food kitten (Chicken & Salmon) 70 gr.", p: 7.96, sap: "" },
-      { m: "Dibaq NM", c: "Gato", d: "Dibaq Natural Moments wet cat food sterilized (Turkey & Blueberries) 70 gr.", p: 7.96, sap: "" },
-      { m: "Dibaq NM", c: "Gato", d: "Dibaq Natural Moments wet cat food sterilized (Sardines & Mango) 70 gr.", p: 7.96, sap: "" },
-      { m: "Dibaq NM", c: "Gato", d: "Dibaq Natural Moments wet cat food sterilized (Salmon & Pumpkin) 70 gr.", p: 7.96, sap: "" },
-      { m: "Dibaq NM", c: "Gato", d: "Dibaq Natural Moments wet cat food sterilized (Veal & Papaya) 70 gr.", p: 7.96, sap: "" },
-      { m: "Dibaq NM", c: "Perro", d: "Dibaq Natural Moments wet dog puppy food (Turkey & Banana) 190 gr.", p: 11.31, sap: "" },
-      { m: "Dibaq NM", c: "Perro", d: "Dibaq Natural Moments wet dog food adult (Turkey & Raspberries) 380 gr.", p: 15.99, sap: "" },
-      { m: "Dibaq NM", c: "Perro", d: "Dibaq Natural Moments wet dog food adult (Salmon & Mango) 380 gr.", p: 15.99, sap: "" },
-      { m: "Dibaq NM", c: "Perro", d: "Dibaq Natural Moments wet dog food adult (Lamb & Pear) 380 gr.", p: 15.99, sap: "" },
-      { m: "Dibaq NM", c: "Perro", d: "Dibaq Natural Moments wet dog food adult (Iberian Pork & Melon) 380 gr.", p: 15.99, sap: "" },
-      { m: "Dibaq NM", c: "Perro", d: "Dibaq Natural Moments wet dog food adult (Chicken & Banana) 380 gr.", p: 15.99, sap: "" },
-      { m: "Lovet", c: "Gato", d: "Lovet arena perlada super premium con aroma Aloe Vera 5kg.", p: 14.43, sap: "" },
-      { m: "Lovet", c: "Gato", d: "Lovet arena perlada super premium con aroma Aloe Vera 10kg.", p: 29.25, sap: "" },
-      { m: "Lovet", c: "Gato", d: "Lovet arena perlada super premium con aroma Aloe Vera 20kg.", p: 58.11, sap: "" },
-    ];
+<div class="barra-controles no-print">
+  <button class="btn btn-limpiar" onclick="limpiarCotizacion()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 .49-3.38"></path></svg>
+    Reiniciar
+  </button>
+  <button class="btn btn-pdf" onclick="imprimirCotizacion()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+    Exportar PDF
+  </button>
+</div>
 
-    const estado = PRODS.map(() => ({ venta: false, bon: false, cantV: 0, cantB: 0 }));
-    // CAMBIO: formato Soles
-    const fmt = new Intl.NumberFormat('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+<script>
+// ── CATÁLOGO ── (precios en Soles S/)
+const PRODS = [
+  {m:"CooKing",c:"Gato",d:"CooKing dry cat food junior-kitten (Salmon) GF recipe 2 kg.",p:63.20,sap:""},
+  {m:"CooKing",c:"Gato",d:"CooKing dry cat food adult cat (Salmon) GF recipe 2 kg.",p:63.20,sap:""},
+  {m:"CooKing",c:"Gato",d:"CooKing dry cat food adult cat (Salmon) GF recipe 8 kg.",p:236.00,sap:""},
+  {m:"CooKing",c:"Gato",d:"CooKing dry cat food sterilized adult cat (Chicken) GF recipe 2 kg.",p:61.60,sap:""},
+  {m:"CooKing",c:"Gato",d:"CooKing dry cat food sterilized adult cat (Chicken) GF recipe 8 kg.",p:220.00,sap:""},
+  {m:"CooKing",c:"Perro",d:"CooKing dry dog food puppy all breeds (Chicken) GF recipe 2 kg.",p:62.40,sap:""},
+  {m:"CooKing",c:"Perro",d:"CooKing dry dog puppy puppy all breeds (Chicken) GF recipe 12 kg.",p:311.20,sap:""},
+  {m:"CooKing",c:"Perro",d:"CooKing dry dog food adult all breeds (Lamb) GF recipe 3 kg.",p:85.60,sap:""},
+  {m:"CooKing",c:"Perro",d:"CooKing dry dog food adult all breeds (Lamb) GF recipe 12 kg.",p:295.20,sap:""},
+  {m:"CooKing",c:"Perro",d:"CooKing dry dog food adult all breeds (Salmon) GF recipe 3 kg.",p:85.60,sap:""},
+  {m:"CooKing",c:"Perro",d:"CooKing dry dog food adult all breeds (Salmon) GF recipe 12 kg.",p:300.00,sap:""},
+  {m:"CooKing",c:"Perro",d:"CooKing dry dog food senior-light (Chicken) GF recipe 3 kg.",p:76.80,sap:""},
+  {m:"CooKing",c:"Perro",d:"CooKing dry dog food senior-light (Chicken) GF recipe 12 kg.",p:271.20,sap:""},
+  {m:"Dibaq Sense",c:"Gato",d:"Dibaq Sense dry cat food kitten (Turkey&Salmon) GF recipe 1.5 kg.",p:88.00,sap:""},
+  {m:"Dibaq Sense",c:"Gato",d:"Dibaq Sense dry cat food kitten (Turkey&Salmon) GF recipe 6 kg.",p:231.20,sap:""},
+  {m:"Dibaq Sense",c:"Gato",d:"Dibaq Sense dry cat food Sterilized (Chicken&Duck) GF recipe 1.5 kg.",p:88.00,sap:""},
+  {m:"Dibaq Sense",c:"Gato",d:"Dibaq Sense dry cat food Sterilized (Chicken&Duck) GF recipe 6 kg.",p:231.20,sap:""},
+  {m:"Dibaq Sense",c:"Gato",d:"Dibaq Sense dry cat food Urinary (Salmon&Tuna) GF recipe 1.5 kg.",p:88.00,sap:""},
+  {m:"Dibaq Sense",c:"Gato",d:"Dibaq Sense dry cat food Urinary (Salmon&Tuna) GF recipe 6 kg.",p:244.00,sap:""},
+  {m:"Dibaq Sense",c:"Perro",d:"Dibaq Sense dry dog food puppy (Salmon & Turkey) GF recipe 2 kg.",p:92.00,sap:""},
+  {m:"Dibaq Sense",c:"Perro",d:"Dibaq Sense dry dog food puppy (Salmon & Turkey) GF recipe 12 kg.",p:336.00,sap:""},
+  {m:"Dibaq Sense",c:"Perro",d:"Dibaq Sense dry dog food adult (Lamb) GF recipe 2 kg.",p:92.00,sap:""},
+  {m:"Dibaq Sense",c:"Perro",d:"Dibaq Sense dry dog food adult (Lamb) GF recipe 12 kg.",p:343.20,sap:""},
+  {m:"Dibaq Sense",c:"Perro",d:"Dibaq Sense dry dog food adult mini (Lamb) GF recipe 2 kg.",p:92.00,sap:""},
+  {m:"Dibaq Sense",c:"Perro",d:"Dibaq Sense dry dog food adult mini (Lamb) GF recipe 6 kg.",p:231.20,sap:""},
+  {m:"Dibaq Sense",c:"Perro",d:"Dibaq Sense dry dog food light&senior (Duck&Turkey) GF recipe 2 kg.",p:92.00,sap:""},
+  {m:"Dibaq Sense",c:"Perro",d:"Dibaq Sense dry dog food light&senior (Duck&Turkey) GF recipe 12 kg.",p:343.20,sap:""},
+  {m:"Dibaq NM",c:"Gato",d:"Dibaq Natural Moments wet cat food kitten (Chicken & Salmon) 70 gr.",p:7.96,sap:""},
+  {m:"Dibaq NM",c:"Gato",d:"Dibaq Natural Moments wet cat food sterilized (Turkey & Blueberries) 70 gr.",p:7.96,sap:""},
+  {m:"Dibaq NM",c:"Gato",d:"Dibaq Natural Moments wet cat food sterilized (Sardines & Mango) 70 gr.",p:7.96,sap:""},
+  {m:"Dibaq NM",c:"Gato",d:"Dibaq Natural Moments wet cat food sterilized (Salmon & Pumpkin) 70 gr.",p:7.96,sap:""},
+  {m:"Dibaq NM",c:"Gato",d:"Dibaq Natural Moments wet cat food sterilized (Veal & Papaya) 70 gr.",p:7.96,sap:""},
+  {m:"Dibaq NM",c:"Perro",d:"Dibaq Natural Moments wet dog puppy food (Turkey & Banana) 190 gr.",p:11.31,sap:""},
+  {m:"Dibaq NM",c:"Perro",d:"Dibaq Natural Moments wet dog food adult (Turkey & Raspberries) 380 gr.",p:15.99,sap:""},
+  {m:"Dibaq NM",c:"Perro",d:"Dibaq Natural Moments wet dog food adult (Salmon & Mango) 380 gr.",p:15.99,sap:""},
+  {m:"Dibaq NM",c:"Perro",d:"Dibaq Natural Moments wet dog food adult (Lamb & Pear) 380 gr.",p:15.99,sap:""},
+  {m:"Dibaq NM",c:"Perro",d:"Dibaq Natural Moments wet dog food adult (Iberian Pork & Melon) 380 gr.",p:15.99,sap:""},
+  {m:"Dibaq NM",c:"Perro",d:"Dibaq Natural Moments wet dog food adult (Chicken & Banana) 380 gr.",p:15.99,sap:""},
+  {m:"Lovet",c:"Gato",d:"Lovet arena perlada super premium con aroma Aloe Vera 5kg.",p:14.43,sap:""},
+  {m:"Lovet",c:"Gato",d:"Lovet arena perlada super premium con aroma Aloe Vera 10kg.",p:29.25,sap:""},
+  {m:"Lovet",c:"Gato",d:"Lovet arena perlada super premium con aroma Aloe Vera 20kg.",p:58.11,sap:""},
+];
 
-    // ── MULTISELECT MARCAS ──
-    const MARCAS = [...new Set(PRODS.map(p => p.m))];
-    let marcasSeleccionadas = new Set(MARCAS);
+const estado = PRODS.map(() => ({venta:false, bon:false, cantV:0, cantB:0}));
+// CAMBIO: formato Soles
+const fmt = new Intl.NumberFormat('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2});
 
-    (function poblarMultiselect() {
-      const dd = document.getElementById('ms-dropdown');
-      MARCAS.forEach(m => {
-        const lbl = document.createElement('label');
-        lbl.className = 'multiselect-item';
-        lbl.innerHTML = `<input type="checkbox" class="ms-check" value="${m}" checked onchange="onMarcaChange()"> ${m}`;
-        dd.appendChild(lbl);
-      });
-    })();
+// ── MULTISELECT MARCAS ──
+const MARCAS = [...new Set(PRODS.map(p=>p.m))];
+let marcasSeleccionadas = new Set(MARCAS);
 
-    function toggleMultiselect() {
-      const dd = document.getElementById('ms-dropdown');
-      const btn = document.getElementById('ms-btn');
-      dd.classList.toggle('open');
-      btn.classList.toggle('open');
-    }
+(function poblarMultiselect(){
+  const dd = document.getElementById('ms-dropdown');
+  MARCAS.forEach(m => {
+    const lbl = document.createElement('label');
+    lbl.className = 'multiselect-item';
+    lbl.innerHTML = `<input type="checkbox" class="ms-check" value="${m}" checked onchange="onMarcaChange()"> ${m}`;
+    dd.appendChild(lbl);
+  });
+})();
 
-    document.addEventListener('click', e => {
-      const wrap = document.getElementById('ms-wrap');
-      if (!wrap.contains(e.target)) {
-        document.getElementById('ms-dropdown').classList.remove('open');
-        document.getElementById('ms-btn').classList.remove('open');
-      }
-    });
+function toggleMultiselect(){
+  const dd = document.getElementById('ms-dropdown');
+  const btn = document.getElementById('ms-btn');
+  dd.classList.toggle('open');
+  btn.classList.toggle('open');
+}
 
-    function toggleAllMarcas(chk) {
-      const checks = document.querySelectorAll('.ms-check');
-      checks.forEach(c => { c.checked = chk.checked; });
-      marcasSeleccionadas = chk.checked ? new Set(MARCAS) : new Set();
-      actualizarLabelMultiselect();
-      renderTabla();
-    }
+document.addEventListener('click', e => {
+  const wrap = document.getElementById('ms-wrap');
+  if(!wrap.contains(e.target)){
+    document.getElementById('ms-dropdown').classList.remove('open');
+    document.getElementById('ms-btn').classList.remove('open');
+  }
+});
 
-    function onMarcaChange() {
-      const checks = document.querySelectorAll('.ms-check');
-      marcasSeleccionadas = new Set();
-      checks.forEach(c => { if (c.checked) marcasSeleccionadas.add(c.value); });
-      document.getElementById('ms-all').checked = marcasSeleccionadas.size === MARCAS.length;
-      actualizarLabelMultiselect();
-      renderTabla();
-    }
+function toggleAllMarcas(chk){
+  const checks = document.querySelectorAll('.ms-check');
+  checks.forEach(c => { c.checked = chk.checked; });
+  marcasSeleccionadas = chk.checked ? new Set(MARCAS) : new Set();
+  actualizarLabelMultiselect();
+  renderTabla();
+}
 
-    function actualizarLabelMultiselect() {
-      const lbl = document.getElementById('ms-label');
-      const btn = document.getElementById('ms-btn');
-      const n = marcasSeleccionadas.size;
-      const old = btn.querySelector('.multiselect-badge');
-      if (old) old.remove();
-      if (n === MARCAS.length) { lbl.textContent = 'Todas'; }
-      else if (n === 0) { lbl.textContent = 'Ninguna'; }
-      else if (n === 1) { lbl.textContent = [...marcasSeleccionadas][0]; }
-      else {
-        lbl.textContent = 'Marcas ';
-        const badge = document.createElement('span');
-        badge.className = 'multiselect-badge';
-        badge.textContent = n;
-        btn.insertBefore(badge, btn.querySelector('span').nextSibling);
-      }
-    }
+function onMarcaChange(){
+  const checks = document.querySelectorAll('.ms-check');
+  marcasSeleccionadas = new Set();
+  checks.forEach(c => { if(c.checked) marcasSeleccionadas.add(c.value); });
+  document.getElementById('ms-all').checked = marcasSeleccionadas.size === MARCAS.length;
+  actualizarLabelMultiselect();
+  renderTabla();
+}
 
-    // ── RENDER TABLA ──
-    function renderTabla() {
-      const especie = document.getElementById('filtro-especie').value;
-      const busq = document.getElementById('filtro-busq').value.toLowerCase().trim();
-      const tbody = document.getElementById('tbody-prods');
-      tbody.innerHTML = '';
-      let visibles = 0;
+function actualizarLabelMultiselect(){
+  const lbl = document.getElementById('ms-label');
+  const btn = document.getElementById('ms-btn');
+  const n = marcasSeleccionadas.size;
+  const old = btn.querySelector('.multiselect-badge');
+  if(old) old.remove();
+  if(n === MARCAS.length){ lbl.textContent='Todas'; }
+  else if(n===0){ lbl.textContent='Ninguna'; }
+  else if(n===1){ lbl.textContent=[...marcasSeleccionadas][0]; }
+  else {
+    lbl.textContent='Marcas ';
+    const badge = document.createElement('span');
+    badge.className='multiselect-badge';
+    badge.textContent=n;
+    btn.insertBefore(badge, btn.querySelector('span').nextSibling);
+  }
+}
 
-      PRODS.forEach((p, i) => {
-        if (especie !== 'todos' && p.c !== especie) return;
-        if (marcasSeleccionadas.size > 0 && !marcasSeleccionadas.has(p.m)) return;
-        if (busq && !p.d.toLowerCase().includes(busq) && !p.m.toLowerCase().includes(busq)) return;
-        visibles++;
+// ── RENDER TABLA ──
+function renderTabla(){
+  const especie = document.getElementById('filtro-especie').value;
+  const busq    = document.getElementById('filtro-busq').value.toLowerCase().trim();
+  const tbody   = document.getElementById('tbody-prods');
+  tbody.innerHTML = '';
+  let visibles = 0;
 
-        const e = estado[i];
-        const total = p.p * e.cantV;
-        const tr = document.createElement('tr');
-        tr.className = 'fila-prod' + (e.venta ? ' fila-venta-on' : '') + (e.bon ? ' fila-bon-on' : '');
-        tr.dataset.idx = i;
+  PRODS.forEach((p, i) => {
+    if(especie !== 'todos' && p.c !== especie) return;
+    if(marcasSeleccionadas.size > 0 && !marcasSeleccionadas.has(p.m)) return;
+    if(busq && !p.d.toLowerCase().includes(busq) && !p.m.toLowerCase().includes(busq)) return;
+    visibles++;
 
-        tr.innerHTML = `
+    const e     = estado[i];
+    const total = p.p * e.cantV;
+    const tr    = document.createElement('tr');
+    tr.className = 'fila-prod' + (e.venta ? ' fila-venta-on' : '') + (e.bon ? ' fila-bon-on' : '');
+    tr.dataset.idx = i;
+
+    tr.innerHTML = `
       <td class="td-toggle col-venta">
-        <button type="button" class="btn-toggle ${e.venta ? 'on-venta' : ''}" id="btn-venta-${i}" onclick="toggleVenta(${i})">Venta</button>
+        <button type="button" class="btn-toggle ${e.venta?'on-venta':''}" id="btn-venta-${i}" onclick="toggleVenta(${i})">Venta</button>
       </td>
       <td class="td-toggle col-bon">
-        <button type="button" class="btn-toggle ${e.bon ? 'on-bon' : ''}" id="btn-bon-${i}" onclick="toggleBon(${i})">Bon.</button>
+        <button type="button" class="btn-toggle ${e.bon?'on-bon':''}" id="btn-bon-${i}" onclick="toggleBon(${i})">Bon.</button>
       </td>
       <td class="td-csap">${p.sap || '—'}</td>
       <td class="td-desc">${p.d}</td>
       <td class="td-cant">
         <input type="number" min="0" class="cant-input" id="cantV-${i}"
-          value="${e.cantV || ''}" placeholder="0"
-          ${!e.venta ? 'disabled' : ''}
+          value="${e.cantV||''}" placeholder="0"
+          ${!e.venta?'disabled':''}
           oninput="setCant(${i},'V',this.value)">
       </td>
       <td class="td-cant">
         <input type="number" min="0" class="cant-input bon-input" id="cantB-${i}"
-          value="${e.cantB || ''}" placeholder="0"
-          ${!e.bon ? 'disabled' : ''}
+          value="${e.cantB||''}" placeholder="0"
+          ${!e.bon?'disabled':''}
           oninput="setCant(${i},'B',this.value)">
       </td>
       <td class="precio-cell">S/ ${fmt.format(p.p)}</td>
-      <td class="total-cell${total === 0 ? ' cero' : ''}" id="totalCell-${i}">S/ ${fmt.format(total)}</td>
+      <td class="total-cell${total===0?' cero':''}" id="totalCell-${i}">S/ ${fmt.format(total)}</td>
     `;
-        tbody.appendChild(tr);
-      });
+    tbody.appendChild(tr);
+  });
 
-      if (!visibles) {
-        const tr = document.createElement('tr');
-        tr.className = 'sin-resultados';
-        tr.innerHTML = `<td colspan="8">Sin productos para los filtros seleccionados.</td>`;
-        tbody.appendChild(tr);
-      }
-      actualizarSelCount();
-      calcular();
-    }
+  if(!visibles){
+    const tr = document.createElement('tr');
+    tr.className='sin-resultados';
+    tr.innerHTML=`<td colspan="8">Sin productos para los filtros seleccionados.</td>`;
+    tbody.appendChild(tr);
+  }
+  actualizarSelCount();
+  calcular();
+}
 
-    function toggleVenta(i) {
-      estado[i].venta = !estado[i].venta;
-      if (!estado[i].venta) estado[i].cantV = 0;
-      actualizarFila(i);
-      calcular();
-    }
+function toggleVenta(i){
+  estado[i].venta = !estado[i].venta;
+  if(!estado[i].venta) estado[i].cantV = 0;
+  actualizarFila(i);
+  calcular();
+}
 
-    function toggleBon(i) {
-      estado[i].bon = !estado[i].bon;
-      if (!estado[i].bon) estado[i].cantB = 0;
-      actualizarFila(i);
-    }
+function toggleBon(i){
+  estado[i].bon = !estado[i].bon;
+  if(!estado[i].bon) estado[i].cantB = 0;
+  actualizarFila(i);
+}
 
-    function actualizarFila(i) {
-      const e = estado[i];
-      const btnV = document.getElementById('btn-venta-' + i);
-      if (btnV) btnV.classList.toggle('on-venta', e.venta);
-      const btnB = document.getElementById('btn-bon-' + i);
-      if (btnB) btnB.classList.toggle('on-bon', e.bon);
-      const inpV = document.getElementById('cantV-' + i);
-      if (inpV) { inpV.disabled = !e.venta; inpV.value = e.cantV || ''; }
-      const inpB = document.getElementById('cantB-' + i);
-      if (inpB) { inpB.disabled = !e.bon; inpB.value = e.cantB || ''; }
-      const tr = document.querySelector(`tr[data-idx="${i}"]`);
-      if (tr) { tr.classList.toggle('fila-venta-on', e.venta); tr.classList.toggle('fila-bon-on', e.bon); }
-      actualizarTotal(i);
-      actualizarSelCount();
-    }
+function actualizarFila(i){
+  const e = estado[i];
+  const btnV = document.getElementById('btn-venta-'+i);
+  if(btnV) btnV.classList.toggle('on-venta', e.venta);
+  const btnB = document.getElementById('btn-bon-'+i);
+  if(btnB) btnB.classList.toggle('on-bon', e.bon);
+  const inpV = document.getElementById('cantV-'+i);
+  if(inpV){ inpV.disabled=!e.venta; inpV.value=e.cantV||''; }
+  const inpB = document.getElementById('cantB-'+i);
+  if(inpB){ inpB.disabled=!e.bon; inpB.value=e.cantB||''; }
+  const tr = document.querySelector(`tr[data-idx="${i}"]`);
+  if(tr){ tr.classList.toggle('fila-venta-on',e.venta); tr.classList.toggle('fila-bon-on',e.bon); }
+  actualizarTotal(i);
+  actualizarSelCount();
+}
 
-    function setCant(i, tipo, val) {
-      const v = Math.max(0, parseInt(val) || 0);
-      if (tipo === 'V') estado[i].cantV = v; else estado[i].cantB = v;
-      actualizarTotal(i);
-      calcular();
-    }
+function setCant(i, tipo, val){
+  const v = Math.max(0, parseInt(val)||0);
+  if(tipo==='V') estado[i].cantV=v; else estado[i].cantB=v;
+  actualizarTotal(i);
+  calcular();
+}
 
-    function actualizarTotal(i) {
-      const td = document.getElementById('totalCell-' + i);
-      if (!td) return;
-      const total = PRODS[i].p * estado[i].cantV;
-      // CAMBIO: símbolo S/
-      td.textContent = 'S/ ' + fmt.format(total);
-      td.className = 'total-cell' + (total === 0 ? ' cero' : '');
-    }
+function actualizarTotal(i){
+  const td = document.getElementById('totalCell-'+i);
+  if(!td) return;
+  const total = PRODS[i].p * estado[i].cantV;
+  // CAMBIO: símbolo S/
+  td.textContent = 'S/ '+fmt.format(total);
+  td.className = 'total-cell' + (total===0?' cero':'');
+}
 
-    function calcular() {
-      let total = 0;
-      PRODS.forEach((p, i) => { total += p.p * estado[i].cantV; });
-      // CAMBIO: símbolo S/
-      document.getElementById('total-usd').textContent = 'S/ ' + fmt.format(total);
-    }
+function calcular(){
+  let total=0;
+  PRODS.forEach((p,i)=>{ total += p.p * estado[i].cantV; });
+  // CAMBIO: símbolo S/
+  document.getElementById('total-usd').textContent = 'S/ '+fmt.format(total);
+}
 
-    function actualizarSelCount() {
-      document.getElementById('sel-count').textContent = estado.filter(e => e.venta || e.bon).length;
-    }
+function actualizarSelCount(){
+  document.getElementById('sel-count').textContent=estado.filter(e=>e.venta||e.bon).length;
+}
 
-    // ── INIT ──
-    (function init() {
-      const v = localStorage.getItem('solvet_pets_vendedor');
-      if (!v) { document.getElementById('vendor-modal').style.display = 'flex'; }
-      else { document.getElementById('vendedor-input').value = v; document.getElementById('vendor-select').value = v; actualizarCorrelativoUI(); }
-      const hoy = new Date();
-      document.getElementById('fecha-emision').value = hoy.getFullYear() + '-' + String(hoy.getMonth() + 1).padStart(2, '0') + '-' + String(hoy.getDate()).padStart(2, '0');
-      actualizarExpiracion();
-      renderTabla();
-    })();
+// ── INIT ──
+(function init(){
+  const v=localStorage.getItem('solvet_pets_vendedor');
+  if(!v){ document.getElementById('vendor-modal').style.display='flex'; }
+  else { document.getElementById('vendedor-input').value=v; document.getElementById('vendor-select').value=v; actualizarCorrelativoUI(); }
+  const hoy=new Date();
+  document.getElementById('fecha-emision').value=hoy.getFullYear()+'-'+String(hoy.getMonth()+1).padStart(2,'0')+'-'+String(hoy.getDate()).padStart(2,'0');
+  actualizarExpiracion();
+  renderTabla();
+})();
 
-    function abrirModalVendedor() { const v = localStorage.getItem('solvet_pets_vendedor'); if (v) document.getElementById('vendor-select').value = v; document.getElementById('vendor-modal').style.display = 'flex'; }
-    function guardarVendedor() { const v = document.getElementById('vendor-select').value; localStorage.setItem('solvet_pets_vendedor', v); document.getElementById('vendedor-input').value = v; document.getElementById('vendor-modal').style.display = 'none'; actualizarCorrelativoUI(); }
-    function obtenerIniciales(n) { if (!n) return 'XX'; const p = n.trim().split(' '); return p.length === 1 ? p[0].substring(0, 2).toUpperCase() : (p[0][0] + p[1][0]).toUpperCase(); }
-    function actualizarCorrelativoUI() { const v = localStorage.getItem('solvet_pets_vendedor') || ''; const n = new Date(); document.getElementById('numero-cotizacion').textContent = `${obtenerIniciales(v)}-${String(n.getFullYear()).slice(-2)}${String(n.getMonth() + 1).padStart(2, '0')}${String(n.getDate()).padStart(2, '0')}-${String(n.getHours()).padStart(2, '0')}${String(n.getMinutes()).padStart(2, '0')}`; }
-    function actualizarExpiracion() { const v = document.getElementById('fecha-emision').value; if (v) { const [y, m, d] = v.split('-'); const exp = new Date(y, m - 1, d); exp.setDate(exp.getDate() + 7); document.getElementById('fecha-expiracion').value = exp.getFullYear() + '-' + String(exp.getMonth() + 1).padStart(2, '0') + '-' + String(exp.getDate()).padStart(2, '0'); } }
-    function limpiarCotizacion() { if (!confirm('¿Iniciar una nueva cotización? Se reiniciarán todos los valores.')) return; estado.forEach(e => { e.venta = false; e.bon = false; e.cantV = 0; e.cantB = 0; }); document.getElementById('cliente').value = ''; document.getElementById('ruc').value = ''; document.getElementById('comentarios').value = ''; document.getElementById('filtro-especie').value = 'todos'; document.getElementById('filtro-busq').value = ''; document.querySelectorAll('.ms-check').forEach(c => c.checked = true); document.getElementById('ms-all').checked = true; marcasSeleccionadas = new Set(MARCAS); actualizarLabelMultiselect(); borrarFirma(); renderTabla(); actualizarCorrelativoUI(); window.scrollTo(0, 0); }
+function abrirModalVendedor(){ const v=localStorage.getItem('solvet_pets_vendedor'); if(v) document.getElementById('vendor-select').value=v; document.getElementById('vendor-modal').style.display='flex'; }
+function guardarVendedor(){ const v=document.getElementById('vendor-select').value; localStorage.setItem('solvet_pets_vendedor',v); document.getElementById('vendedor-input').value=v; document.getElementById('vendor-modal').style.display='none'; actualizarCorrelativoUI(); }
+function obtenerIniciales(n){ if(!n) return 'XX'; const p=n.trim().split(' '); return p.length===1?p[0].substring(0,2).toUpperCase():(p[0][0]+p[1][0]).toUpperCase(); }
+function actualizarCorrelativoUI(){ const v=localStorage.getItem('solvet_pets_vendedor')||''; const n=new Date(); document.getElementById('numero-cotizacion').textContent=`${obtenerIniciales(v)}-${String(n.getFullYear()).slice(-2)}${String(n.getMonth()+1).padStart(2,'0')}${String(n.getDate()).padStart(2,'0')}-${String(n.getHours()).padStart(2,'0')}${String(n.getMinutes()).padStart(2,'0')}`; }
+function actualizarExpiracion(){ const v=document.getElementById('fecha-emision').value; if(v){ const [y,m,d]=v.split('-'); const exp=new Date(y,m-1,d); exp.setDate(exp.getDate()+7); document.getElementById('fecha-expiracion').value=exp.getFullYear()+'-'+String(exp.getMonth()+1).padStart(2,'0')+'-'+String(exp.getDate()).padStart(2,'0'); } }
+function limpiarCotizacion(){ if(!confirm('¿Iniciar una nueva cotización? Se reiniciarán todos los valores.')) return; estado.forEach(e=>{e.venta=false;e.bon=false;e.cantV=0;e.cantB=0;}); document.getElementById('cliente').value=''; document.getElementById('ruc').value=''; document.getElementById('comentarios').value=''; document.getElementById('filtro-especie').value='todos'; document.getElementById('filtro-busq').value=''; document.querySelectorAll('.ms-check').forEach(c=>c.checked=true); document.getElementById('ms-all').checked=true; marcasSeleccionadas=new Set(MARCAS); actualizarLabelMultiselect(); borrarFirma(); renderTabla(); actualizarCorrelativoUI(); window.scrollTo(0,0); }
 
-    // CAMBIO: imprimirCotizacion con título limpio para evitar que el navegador muestre la URL
-    function imprimirCotizacion() {
-      const com = document.getElementById('comentarios');
-      const obs = document.getElementById('obs-print-block');
-      const cont = document.getElementById('obs-container');
-      if (!com.value.trim()) { cont.style.display = 'none'; } else { obs.textContent = com.value; }
-      // Guardar título original y limpiarlo para que el navegador no lo muestre en el PDF
-      const tituloOriginal = document.title;
-      document.title = '';
-      window.print();
-      setTimeout(() => { document.title = tituloOriginal; cont.style.display = 'block'; }, 500);
-    }
+// CAMBIO: imprimirCotizacion con título limpio para evitar que el navegador muestre la URL
+function imprimirCotizacion(){
+  const com=document.getElementById('comentarios');
+  const obs=document.getElementById('obs-print-block');
+  const cont=document.getElementById('obs-container');
+  if(!com.value.trim()){cont.style.display='none';}else{obs.textContent=com.value;}
+  // Guardar título original y limpiarlo para que el navegador no lo muestre en el PDF
+  const tituloOriginal = document.title;
+  document.title = '';
+  window.print();
+  setTimeout(()=>{ document.title = tituloOriginal; cont.style.display='block'; }, 500);
+}
 
-    // ── FIRMA ──
-    let firmaDataURL = null, firmaDrawing = false, firmaDirty = false, firmaPenColor = '#1a3a5c', firmaPenWidth = 2.8;
-    function openFirmaModal() { document.getElementById('firma-modal').style.display = 'flex'; setTimeout(initFirmaCanvas, 60); }
-    function closeFirmaModal() { document.getElementById('firma-modal').style.display = 'none'; }
-    function initFirmaCanvas() {
-      const canvas = document.getElementById('firma-canvas'), wrap = document.getElementById('firma-canvas-wrap'), dpr = window.devicePixelRatio || 1, w = wrap.clientWidth || 440, h = 200;
-      canvas.width = w * dpr; canvas.height = h * dpr; canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
-      const ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr); _setCtxStyle(ctx);
-      canvas.onmousedown = _firmaStart; canvas.onmousemove = _firmaMove; canvas.onmouseup = _firmaEnd; canvas.onmouseleave = _firmaEnd;
-      canvas.addEventListener('touchstart', _firmaStart, { passive: false }); canvas.addEventListener('touchmove', _firmaMove, { passive: false }); canvas.addEventListener('touchend', _firmaEnd, { passive: false });
-    }
-    function _setCtxStyle(ctx) { ctx.strokeStyle = firmaPenColor; ctx.lineWidth = firmaPenWidth; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; }
-    function setFirmaColor(color, btn) { firmaPenColor = color; document.querySelectorAll('.firma-color-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); document.getElementById('firma-pen-dot').style.background = color; const c = document.getElementById('firma-canvas'); if (c) _setCtxStyle(c.getContext('2d')); }
-    function updateFirmaPen(val) { firmaPenWidth = parseFloat(val); const dot = document.getElementById('firma-pen-dot'); const s = Math.round(4 + firmaPenWidth * 2); dot.style.width = s + 'px'; dot.style.height = s + 'px'; const c = document.getElementById('firma-canvas'); if (c) c.getContext('2d').lineWidth = firmaPenWidth; }
-    function _getPos(canvas, e) { const rect = canvas.getBoundingClientRect(); const src = e.touches ? e.touches[0] : e; return { x: src.clientX - rect.left, y: src.clientY - rect.top }; }
-    function _firmaStart(e) { e.preventDefault(); firmaDrawing = true; firmaDirty = true; const canvas = document.getElementById('firma-canvas'); _setCtxStyle(canvas.getContext('2d')); const pos = _getPos(canvas, e); canvas.getContext('2d').beginPath(); canvas.getContext('2d').moveTo(pos.x, pos.y); document.getElementById('firma-placeholder').style.opacity = '0'; }
-    function _firmaMove(e) { e.preventDefault(); if (!firmaDrawing) return; const canvas = document.getElementById('firma-canvas'); const pos = _getPos(canvas, e); canvas.getContext('2d').lineTo(pos.x, pos.y); canvas.getContext('2d').stroke(); }
-    function _firmaEnd() { firmaDrawing = false; }
-    function clearFirmaCanvas() { const canvas = document.getElementById('firma-canvas'); canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height); firmaDirty = false; document.getElementById('firma-placeholder').style.opacity = '1'; }
-    function guardarFirma() {
-      if (!firmaDirty) { alert('Por favor, dibuja tu firma antes de confirmar.'); return; }
-      firmaDataURL = document.getElementById('firma-canvas').toDataURL('image/png');
-      document.getElementById('firma-preview-area').innerHTML = `
+// ── FIRMA ──
+let firmaDataURL=null,firmaDrawing=false,firmaDirty=false,firmaPenColor='#1a3a5c',firmaPenWidth=2.8;
+function openFirmaModal(){ document.getElementById('firma-modal').style.display='flex'; setTimeout(initFirmaCanvas,60); }
+function closeFirmaModal(){ document.getElementById('firma-modal').style.display='none'; }
+function initFirmaCanvas(){
+  const canvas=document.getElementById('firma-canvas'), wrap=document.getElementById('firma-canvas-wrap'), dpr=window.devicePixelRatio||1, w=wrap.clientWidth||440, h=200;
+  canvas.width=w*dpr; canvas.height=h*dpr; canvas.style.width=w+'px'; canvas.style.height=h+'px';
+  const ctx=canvas.getContext('2d'); ctx.scale(dpr,dpr); _setCtxStyle(ctx);
+  canvas.onmousedown=_firmaStart; canvas.onmousemove=_firmaMove; canvas.onmouseup=_firmaEnd; canvas.onmouseleave=_firmaEnd;
+  canvas.addEventListener('touchstart',_firmaStart,{passive:false}); canvas.addEventListener('touchmove',_firmaMove,{passive:false}); canvas.addEventListener('touchend',_firmaEnd,{passive:false});
+}
+function _setCtxStyle(ctx){ ctx.strokeStyle=firmaPenColor; ctx.lineWidth=firmaPenWidth; ctx.lineCap='round'; ctx.lineJoin='round'; }
+function setFirmaColor(color,btn){ firmaPenColor=color; document.querySelectorAll('.firma-color-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); document.getElementById('firma-pen-dot').style.background=color; const c=document.getElementById('firma-canvas'); if(c)_setCtxStyle(c.getContext('2d')); }
+function updateFirmaPen(val){ firmaPenWidth=parseFloat(val); const dot=document.getElementById('firma-pen-dot'); const s=Math.round(4+firmaPenWidth*2); dot.style.width=s+'px'; dot.style.height=s+'px'; const c=document.getElementById('firma-canvas'); if(c)c.getContext('2d').lineWidth=firmaPenWidth; }
+function _getPos(canvas,e){ const rect=canvas.getBoundingClientRect(); const src=e.touches?e.touches[0]:e; return{x:src.clientX-rect.left,y:src.clientY-rect.top}; }
+function _firmaStart(e){ e.preventDefault(); firmaDrawing=true; firmaDirty=true; const canvas=document.getElementById('firma-canvas'); _setCtxStyle(canvas.getContext('2d')); const pos=_getPos(canvas,e); canvas.getContext('2d').beginPath(); canvas.getContext('2d').moveTo(pos.x,pos.y); document.getElementById('firma-placeholder').style.opacity='0'; }
+function _firmaMove(e){ e.preventDefault(); if(!firmaDrawing) return; const canvas=document.getElementById('firma-canvas'); const pos=_getPos(canvas,e); canvas.getContext('2d').lineTo(pos.x,pos.y); canvas.getContext('2d').stroke(); }
+function _firmaEnd(){ firmaDrawing=false; }
+function clearFirmaCanvas(){ const canvas=document.getElementById('firma-canvas'); canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height); firmaDirty=false; document.getElementById('firma-placeholder').style.opacity='1'; }
+function guardarFirma(){
+  if(!firmaDirty){alert('Por favor, dibuja tu firma antes de confirmar.');return;}
+  firmaDataURL=document.getElementById('firma-canvas').toDataURL('image/png');
+  document.getElementById('firma-preview-area').innerHTML=`
     <div class="firma-preview-solo">
       <img src="${firmaDataURL}" alt="Firma del cliente">
     </div>
     <button onclick="borrarFirma()" class="no-print" style="background:none;border:none;cursor:pointer;color:var(--rojo);font-size:11px;margin-left:10px;font-family:Lato;font-weight:700;">✕ Borrar</button>`;
-      const btn = document.getElementById('btn-firma-action');
-      btn.style.borderStyle = 'solid'; btn.style.background = 'var(--verde-claro)'; btn.textContent = '✅ Firma capturada (Editar)';
-      closeFirmaModal();
-    }
-    function borrarFirma() { firmaDataURL = null; document.getElementById('firma-preview-area').innerHTML = ''; const btn = document.getElementById('btn-firma-action'); btn.style = ''; btn.textContent = '✍️ Capturar firma del cliente'; }
-  </script>
+  const btn=document.getElementById('btn-firma-action');
+  btn.style.borderStyle='solid'; btn.style.background='var(--verde-claro)'; btn.textContent='✅ Firma capturada (Editar)';
+  closeFirmaModal();
+}
+function borrarFirma(){ firmaDataURL=null; document.getElementById('firma-preview-area').innerHTML=''; const btn=document.getElementById('btn-firma-action'); btn.style=''; btn.textContent='✍️ Capturar firma del cliente'; }
+</script>
 </body>
-
 </html>
