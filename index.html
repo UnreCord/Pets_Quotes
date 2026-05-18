@@ -166,8 +166,8 @@
     .totales-tabla{width:220px;}
     .totales-inner{background:var(--gris-fondo);border:1px solid var(--borde);border-radius:5px;overflow:hidden;}
     .total-final{background:var(--verde);padding:10px 12px!important;border-bottom:none!important;}
-    .total-final .t-label{color:rgba(255,255,255,.85);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;}
-    .total-final .t-valor{font-size:15px;color:#fff;font-weight:900;}
+    .total-final .t-label{color:#ffffff;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.8px;}
+    .total-final .t-valor{font-size:18px;color:#fff;font-weight:900;}
     .totales-fila-usd{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;font-size:11.5px;}
     .t-label{color:var(--texto-claro);font-weight:400;}
     .t-valor{font-weight:700;color:var(--texto);}
@@ -484,7 +484,7 @@
         </div>
         <ul>
           <li>Precios expresados en Soles (S/) e incluyen I.G.V.</li>
-          <li>Importe mínimo de atención: S/ 350.00 inc. IGV (LAVC)</li>
+          <li>Importe mínimo de atención: S/ 400.00 inc. I.G.V.</li>
           <li>Despachos a provincia sujetos a coordinación logística.</li>
           <li>Validez de la cotización sujeta a disponibilidad de inventario.</li>
           <li>Crédito sujeto a evaluación crediticia.</li>
@@ -823,7 +823,13 @@ function obtenerIniciales(n){ if(!n) return 'XX'; const p=n.trim().split(' '); r
 function actualizarCorrelativoUI(){ 
   const v = localStorage.getItem('solvet_pets_vendedor')||''; 
   const n = new Date(); 
-  document.getElementById('numero-cotizacion').textContent = `${obtenerIniciales(v)}-${String(n.getHours()).padStart(2,'0')}${String(n.getMinutes()).padStart(2,'0')}`; 
+  
+  const mes = String(n.getMonth()+1).padStart(2,'0');
+  const dia = String(n.getDate()).padStart(2,'0');
+  const hr = String(n.getHours()).padStart(2,'0');
+  const min = String(n.getMinutes()).padStart(2,'0');
+  
+  document.getElementById('numero-cotizacion').textContent = `${obtenerIniciales(v)}-${mes}${dia}-${hr}${min}`; 
 }
 
 function actualizarExpiracion(){ const v=document.getElementById('fecha-emision').value; if(v){ const [y,m,d]=v.split('-'); const exp=new Date(y,m-1,d); exp.setDate(exp.getDate()+7); document.getElementById('fecha-expiracion').value=exp.getFullYear()+'-'+String(exp.getMonth()+1).padStart(2,'0')+'-'+String(exp.getDate()).padStart(2,'0'); } }
@@ -839,14 +845,25 @@ function imprimirCotizacion(){
   const tituloOriginal = document.title;
   const numCotizacion = document.getElementById('numero-cotizacion').textContent;
   
-  document.title = "Cotización_" + numCotizacion;
+  // Quitamos la tilde a "Cotizacion" para que los móviles no generen caracteres extraños en el nombre del archivo
+  const nuevoTitulo = "Cotizacion_" + numCotizacion;
   
-  window.print();
+  document.title = nuevoTitulo;
   
-  setTimeout(()=>{ 
-    document.title = tituloOriginal; 
-    cont.style.display='block'; 
-  }, 500);
+  // Hack para forzar que Safari (iOS) y Chrome (Android) respeten el nombre modificado
+  history.replaceState(null, nuevoTitulo, "#" + nuevoTitulo);
+  
+  // Damos un tiempo de respiro para que el navegador asimile el cambio de estado y titulo antes de lanzar la impresión
+  setTimeout(() => {
+    window.print();
+    
+    // Restauramos todo después de la impresión
+    setTimeout(()=>{ 
+      document.title = tituloOriginal; 
+      history.replaceState(null, tituloOriginal, window.location.pathname + window.location.search);
+      cont.style.display='block'; 
+    }, 1000);
+  }, 300);
 }
 
 // ── FIRMA ──
