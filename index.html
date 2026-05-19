@@ -99,11 +99,21 @@
     .meta-wrap{background:var(--gris-fondo);border-bottom:1px solid var(--borde);padding:0 28px;}
     .meta{display:grid;grid-template-columns:repeat(6,1fr);align-items:stretch;}
     .meta-campo{padding:9px 12px 9px 0;border-right:1px solid var(--borde);}
+    
+    /* Fila 1: Cliente y RUC */
     .meta-campo:nth-child(1){grid-column:span 4;padding-left:0;border-bottom:1px solid var(--borde);}
     .meta-campo:nth-child(2){grid-column:span 2;padding-right:0;border-right:none;border-bottom:1px solid var(--borde);padding-left:12px;}
-    .meta-campo:nth-child(3){grid-column:span 2;padding-left:0;}
-    .meta-campo:nth-child(4){grid-column:span 2;padding-left:12px;padding-right:12px;}
-    .meta-campo:nth-child(5){grid-column:span 2;padding-right:0;border-right:none;padding-left:12px;}
+    
+    /* Fila 2: Nro Contacto, Dirección, Distrito */
+    .meta-campo:nth-child(3){grid-column:span 2;padding-left:0;border-bottom:1px solid var(--borde);}
+    .meta-campo:nth-child(4){grid-column:span 2;padding-left:12px;padding-right:12px;border-bottom:1px solid var(--borde);}
+    .meta-campo:nth-child(5){grid-column:span 2;padding-right:0;border-right:none;border-bottom:1px solid var(--borde);padding-left:12px;}
+    
+    /* Fila 3: Fechas y Ejecutivo */
+    .meta-campo:nth-child(6){grid-column:span 2;padding-left:0;}
+    .meta-campo:nth-child(7){grid-column:span 2;padding-left:12px;padding-right:12px;}
+    .meta-campo:nth-child(8){grid-column:span 2;padding-right:0;border-right:none;padding-left:12px;}
+    
     .meta-label{font-size:8px;font-weight:700;color:var(--texto-claro);text-transform:uppercase;margin-bottom:3px;letter-spacing:.8px;display:flex;align-items:center;gap:4px;}
     .meta-label-dot{width:4px;height:4px;border-radius:50%;background:var(--verde);display:inline-block;flex-shrink:0;}
     .meta-input{border:none;border-bottom:1.5px solid transparent;font-family:'Lato',sans-serif;font-size:11.5px;color:var(--texto);font-weight:700;padding:2px 0;outline:none;background:transparent;transition:border-color .2s;width:100%;line-height:1.4;}
@@ -381,6 +391,22 @@
         <div class="meta-label"><span class="meta-label-dot"></span>RUC / DNI</div>
         <input class="meta-input" type="text" id="ruc" placeholder="Documento">
       </div>
+      
+      <!-- NUEVOS CAMPOS -->
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Nro. Contacto</div>
+        <input class="meta-input" type="text" id="contacto" placeholder="Teléfono o Celular...">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Dirección</div>
+        <input class="meta-input" type="text" id="direccion" placeholder="Dirección de entrega...">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Distrito</div>
+        <input class="meta-input" type="text" id="distrito" placeholder="Distrito...">
+      </div>
+      <!-- FIN NUEVOS CAMPOS -->
+
       <div class="meta-campo">
         <div class="meta-label"><span class="meta-label-dot"></span>Fecha Emisión</div>
         <input class="meta-input" type="date" id="fecha-emision" onchange="actualizarExpiracion()">
@@ -829,12 +855,39 @@ function actualizarCorrelativoUI(){
   const hr = String(n.getHours()).padStart(2,'0');
   const min = String(n.getMinutes()).padStart(2,'0');
   
-  document.getElementById('numero-cotizacion').textContent = `${obtenerIniciales(v)}-${mes}${dia}-${hr}${min}`; 
+  const correlativo = `${obtenerIniciales(v)}-${mes}${dia}-${hr}${min}`;
+  document.getElementById('numero-cotizacion').textContent = correlativo; 
+  
+  // FORZAR NOMBRE DE ARCHIVO PREDETERMINADO DESDE EL INICIO
+  const nuevoTitulo = "Cotizacion_" + correlativo;
+  document.title = nuevoTitulo;
+  history.replaceState(null, nuevoTitulo, "#" + nuevoTitulo);
 }
 
 function actualizarExpiracion(){ const v=document.getElementById('fecha-emision').value; if(v){ const [y,m,d]=v.split('-'); const exp=new Date(y,m-1,d); exp.setDate(exp.getDate()+7); document.getElementById('fecha-expiracion').value=exp.getFullYear()+'-'+String(exp.getMonth()+1).padStart(2,'0')+'-'+String(exp.getDate()).padStart(2,'0'); } }
 
-function limpiarCotizacion(){ if(!confirm('¿Iniciar una nueva cotización? Se reiniciarán todos los valores.')) return; estado.forEach(e=>{e.venta=false;e.bon=false;e.cantV=0;e.cantB=0;}); document.getElementById('cliente').value=''; document.getElementById('ruc').value=''; document.getElementById('comentarios').value=''; document.getElementById('filtro-especie').value='todos'; document.getElementById('filtro-busq').value=''; document.querySelectorAll('.ms-check').forEach(c=>c.checked=true); document.getElementById('ms-all').checked=true; marcasSeleccionadas=new Set(MARCAS); actualizarLabelMultiselect(); borrarFirma(); renderTabla(); actualizarCorrelativoUI(); window.scrollTo(0,0); }
+function limpiarCotizacion(){ 
+  if(!confirm('¿Iniciar una nueva cotización? Se reiniciarán todos los valores.')) return; 
+  estado.forEach(e=>{e.venta=false;e.bon=false;e.cantV=0;e.cantB=0;}); 
+  
+  document.getElementById('cliente').value=''; 
+  document.getElementById('ruc').value=''; 
+  document.getElementById('contacto').value=''; 
+  document.getElementById('direccion').value=''; 
+  document.getElementById('distrito').value=''; 
+  document.getElementById('comentarios').value=''; 
+  
+  document.getElementById('filtro-especie').value='todos'; 
+  document.getElementById('filtro-busq').value=''; 
+  document.querySelectorAll('.ms-check').forEach(c=>c.checked=true); 
+  document.getElementById('ms-all').checked=true; 
+  marcasSeleccionadas=new Set(MARCAS); 
+  actualizarLabelMultiselect(); 
+  borrarFirma(); 
+  renderTabla(); 
+  actualizarCorrelativoUI(); 
+  window.scrollTo(0,0); 
+}
 
 function imprimirCotizacion(){
   const com=document.getElementById('comentarios');
@@ -842,28 +895,22 @@ function imprimirCotizacion(){
   const cont=document.getElementById('obs-container');
   if(!com.value.trim()){cont.style.display='none';}else{obs.textContent=com.value;}
   
-  const tituloOriginal = document.title;
+  // Asegurarse de que el título esté asignado antes de lanzar la impresión
   const numCotizacion = document.getElementById('numero-cotizacion').textContent;
-  
-  // Quitamos la tilde a "Cotizacion" para que los móviles no generen caracteres extraños en el nombre del archivo
   const nuevoTitulo = "Cotizacion_" + numCotizacion;
-  
   document.title = nuevoTitulo;
-  
-  // Hack para forzar que Safari (iOS) y Chrome (Android) respeten el nombre modificado
   history.replaceState(null, nuevoTitulo, "#" + nuevoTitulo);
   
-  // Damos un tiempo de respiro para que el navegador asimile el cambio de estado y titulo antes de lanzar la impresión
+  // Aumentamos el retraso a 500ms para que el navegador móvil (iOS/Android) 
+  // asimile el cambio de título y lo use para el nombre del PDF
   setTimeout(() => {
     window.print();
     
     // Restauramos todo después de la impresión
     setTimeout(()=>{ 
-      document.title = tituloOriginal; 
-      history.replaceState(null, tituloOriginal, window.location.pathname + window.location.search);
       cont.style.display='block'; 
     }, 1000);
-  }, 300);
+  }, 500);
 }
 
 // ── FIRMA ──
