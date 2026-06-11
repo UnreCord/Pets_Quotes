@@ -57,4 +57,504 @@
 
     /* ── HOJA Y CABECERA ── */
     .hoja{max-width:900px;margin:0 auto;background:var(--blanco);box-shadow:0 4px 24px rgba(0,0,0,.15);border-radius:2px;border-top:4px solid var(--verde);}
-    .cabecera{padding:18px 28px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--borde
+    .cabecera{padding:18px 28px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--borde);background:linear-gradient(135deg,var(--bg-cabecera-1) 0%,var(--bg-cabecera-2) 100%);}
+    .cabecera-izq{display:flex;gap:14px;align-items:center;}
+    .cabecera-logo{width:88px;height:auto;object-fit:contain;}
+    .logo-divider{width:1px;height:40px;background:var(--borde);}
+    .empresa-info h1{font-size:12px;color:var(--texto);font-weight:900;letter-spacing:.5px;}
+    .empresa-info p{font-size:9.5px;color:var(--texto-claro);line-height:1.55;}
+    .cotizacion-box{text-align:right;}
+    .cotizacion-box h2{font-size:8px;text-transform:uppercase;color:var(--texto-claro);font-weight:700;letter-spacing:2px;margin-bottom:4px;}
+    .cotizacion-box .numero{font-size:12px;font-weight:700;color:var(--texto-claro);letter-spacing:.5px;}
+    .cotizacion-badge{display:inline-block;background:var(--verde-claro);color:var(--verde);font-size:8px;font-weight:700;padding:2px 7px;border-radius:20px;margin-top:5px;}
+
+    /* ── META ── */
+    .meta-wrap{background:var(--gris-fondo);border-bottom:1px solid var(--borde);padding:0 28px;}
+    .meta{display:grid;grid-template-columns:repeat(6,1fr);align-items:stretch;}
+    .meta-campo{padding:9px 12px 9px 0;border-right:1px solid var(--borde);}
+    .meta-campo:nth-child(1){grid-column:span 4;padding-left:0;border-bottom:1px solid var(--borde);}
+    .meta-campo:nth-child(2){grid-column:span 2;padding-right:0;border-right:none;border-bottom:1px solid var(--borde);padding-left:12px;}
+    .meta-campo:nth-child(3){grid-column:span 2;padding-left:0;border-bottom:1px solid var(--borde);}
+    .meta-campo:nth-child(4){grid-column:span 2;padding-left:12px;padding-right:12px;border-bottom:1px solid var(--borde);}
+    .meta-campo:nth-child(5){grid-column:span 2;padding-right:0;border-right:none;border-bottom:1px solid var(--borde);padding-left:12px;}
+    .meta-campo:nth-child(6){grid-column:span 2;padding-left:0;}
+    .meta-campo:nth-child(7){grid-column:span 2;padding-left:12px;padding-right:12px;}
+    .meta-campo:nth-child(8){grid-column:span 2;padding-right:0;border-right:none;padding-left:12px;}
+    .meta-label{font-size:8px;font-weight:700;color:var(--texto-claro);text-transform:uppercase;margin-bottom:3px;letter-spacing:.8px;display:flex;align-items:center;gap:4px;}
+    .meta-label-dot{width:4px;height:4px;border-radius:50%;background:var(--verde);display:inline-block;}
+    .meta-input{border:none;border-bottom:1.5px solid transparent;font-family:'Lato',sans-serif;font-size:11.5px;color:var(--texto);font-weight:700;padding:2px 0;outline:none;background:transparent;width:100%;}
+    .meta-input:focus{border-bottom-color:var(--verde);}
+
+    /* ── TABLA DINÁMICA ── */
+    .tabla-wrap{padding:24px 28px 16px;}
+    .tabla-titulo{font-size:9px;font-weight:700;color:var(--texto-claro);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+    .tabla-titulo::after{content:'';flex:1;height:1px;background:var(--borde);}
+    table{width:100%;border-collapse:collapse;}
+    thead th{color:var(--texto-claro);font-size:8px;text-transform:uppercase;padding:8px 5px;text-align:center;border-bottom:2px solid var(--verde);border-top:1px solid var(--borde);letter-spacing:.8px;font-weight:700;}
+    thead th.th-left{text-align:left;}
+    tbody tr{border-bottom:1px solid var(--borde);}
+    td{padding:8px 4px;vertical-align:middle;}
+    
+    .td-index { font-size: 10px; color: var(--texto-claro); font-weight: 700; text-align: center; width: 30px; }
+    .input-producto { width: 100%; border: 1.5px solid transparent; padding: 6px 8px; border-radius: 4px; outline: none; font-family: 'Lato'; font-size: 11px; font-weight: 700; background: var(--gris-fondo); color: var(--texto); transition: 0.2s; }
+    .input-producto:focus { border-color: var(--verde); background: var(--blanco); }
+    
+    .cant-controls { display: flex; align-items: center; justify-content: center; border: 1px solid var(--borde); border-radius: 4px; overflow: hidden; width: 80px; margin: 0 auto; background: var(--blanco); }
+    .cant-controls button { background: var(--gris-fondo); border: none; padding: 6px 10px; cursor: pointer; font-weight: bold; color: var(--texto-claro); transition: 0.2s; font-family: 'Lato'; }
+    .cant-controls button:hover { background: #e2e8f0; color: var(--texto); }
+    .cant-controls input { width: 100%; text-align: center; border: none; border-left: 1px solid var(--borde); border-right: 1px solid var(--borde); outline: none; font-weight: 700; color: var(--texto); font-family: 'Lato'; font-size: 11px; }
+    .cant-controls input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    
+    .td-pu, .td-importe { font-size: 11px; font-weight: 700; color: var(--texto); text-align: right; white-space: nowrap; padding-right: 12px; width: 80px; }
+    .td-importe { color: var(--verde); }
+    
+    /* Input Descuento */
+    .td-dscto { text-align: center; width: 60px; }
+    .input-dscto { width: 45px; border: 1.5px solid var(--borde); border-radius: 4px; padding: 4px; text-align: center; font-family: 'Lato'; font-size: 11px; font-weight: 700; color: var(--texto); background: var(--gris-fondo); outline: none; transition: 0.2s; }
+    .input-dscto:focus { border-color: var(--verde); background: var(--blanco); }
+    .input-dscto::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+    .td-delete { text-align: center; width: 30px; }
+    .btn-delete { background: transparent; border: none; color: var(--texto-claro); font-size: 14px; cursor: pointer; padding: 4px; transition: 0.2s; }
+    .btn-delete:hover { color: var(--rojo); }
+
+    .btn-agregar-item { width: 100%; padding: 12px; margin-top: 16px; border: 2px dashed var(--verde); border-radius: 6px; background: transparent; color: var(--verde); font-family: 'Lato'; font-size: 11px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .btn-agregar-item:hover { background: var(--verde-claro); }
+
+    /* ── CAJA RESUMEN (TOTALES SIMPLIFICADO) ── */
+    .resumen-container { display: flex; justify-content: flex-end; padding: 0 28px 24px; }
+    .resumen-box { width: 260px; border: 1px solid var(--borde); border-radius: 6px; overflow: hidden; background: var(--blanco); }
+    .resumen-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--borde); font-size: 11.5px; color: var(--texto-claro); }
+    .total-usd { background: var(--verde); color: #fff; border-bottom: none; }
+    .total-usd span { color: #fff !important; font-weight: 900; font-size: 14px !important; }
+
+    /* ── FIRMA & SEGUNDA PÁGINA ── */
+    .firma-section{padding:0 28px 14px;}
+    .btn-firma-open{background:transparent;border:1.5px dashed var(--verde);color:var(--verde);font-weight:700;font-family:'Lato';font-size:11px;padding:9px 18px;border-radius:6px;cursor:pointer;}
+    .firma-preview-solo{display:inline-block;border:.5px solid var(--borde);border-radius:6px;background:#fff;padding:4px;}
+    .firma-preview-solo img{max-height:60px;max-width:180px;display:block;}
+    .firma-datos-wrap { display:none; flex-direction:column; align-items:center; width:220px; margin: 0 auto; }
+    .firma-datos-wrap.active { display:flex; }
+    .firma-legal-input { text-align:center; font-family:'Lato',sans-serif; font-size:11.5px; outline:none; background:transparent; border:none; width:100%; color:var(--texto); padding:2px; }
+    #firma-nombre { font-weight:700; border-top: 1.5px solid var(--texto); padding-top: 6px; margin-top: 2px; }
+    #firma-dni { font-weight:400; color:var(--texto-claro); font-size:10px; }
+
+    .segunda-pagina{background:var(--blanco);}
+    .info-final-wrap{border-top:3px solid var(--verde);padding:22px 28px;}
+    .fila-condiciones{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--borde);}
+    .seccion-titulo{font-size:8.5px;color:var(--verde);text-transform:uppercase;font-weight:900;margin-bottom:10px;letter-spacing:1.5px;display:flex;align-items:center;gap:7px;}
+    .seccion-titulo-icon{width:16px;height:16px;border-radius:50%;background:var(--verde);display:flex;align-items:center;justify-content:center;}
+    .condiciones ul{list-style:none;padding:0;font-size:10.5px;color:var(--texto);line-height:1.6;}
+    .condiciones ul li{padding:4px 0;border-bottom:1px solid var(--borde);display:flex;gap:7px;}
+    .condiciones ul li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--amarillo);flex-shrink:0;margin-top:5px;}
+    .comentarios-input{width:100%;border:1.5px solid var(--borde);padding:8px 10px;font-family:'Lato';font-size:11px;background:var(--gris-fondo);outline:none;resize:vertical;min-height:68px;border-radius:4px;color:var(--texto);}
+    #obs-print-block{display:none;white-space:pre-wrap;font-size:11px;}
+
+    /* ── BARRA INFERIOR ── */
+    .barra-controles{position:fixed;bottom:0;left:0;width:100%;background:var(--blanco);box-shadow:0 -1px 0 var(--borde),0 -8px 24px rgba(0,0,0,.15);display:flex;padding:10px 14px;z-index:1000;justify-content:center;gap:8px;}
+    .btn{padding:10px 22px;border:none;border-radius:5px;font-weight:700;font-family:'Lato';font-size:12px;cursor:pointer;}
+    .btn-pdf{background:var(--verde);color:#fff;flex:1;max-width:240px;}
+    .btn-limpiar{background:transparent;color:var(--texto-claro);border:1.5px solid var(--borde);}
+
+    /* ── PRINT ── */
+    @media print {
+      body[data-theme="dark"] {
+        --texto: #1a1a2e !important; --texto-claro: #64748b !important; --gris-fondo: #f8fafc !important;
+        --borde: #e2e8f0 !important; --blanco: #ffffff !important; --bg-body: #ffffff !important;
+        --bg-cabecera-1: #fafffe !important; --bg-cabecera-2: #f0faf5 !important; --verde-claro: #e8f5ee !important;
+      }
+      @page { size: A4 portrait; margin: 8mm 8mm 10mm 8mm; }
+      html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { background: #fff !important; padding: 0; font-size: 9pt; }
+      .hoja { box-shadow: none; border-radius: 0; max-width: 100%; border-top: 3px solid var(--verde); }
+      .barra-controles, .btn-firma-open, .modal-overlay, .firma-overlay, .no-print, .td-delete, .th-delete, .btn-agregar-item { display: none !important; }
+      .meta-input { border: none !important; background: transparent !important; }
+      .cant-controls { border: none !important; background: transparent !important; }
+      .cant-controls button { display: none !important; }
+      .cant-controls input { border: none !important; padding: 0; }
+      .input-producto { border: none !important; background: transparent !important; padding: 0; }
+      .input-dscto { border: none !important; background: transparent !important; padding: 0; }
+      #comentarios { display: none !important; }
+      #obs-print-block { display: block !important; }
+      thead th { background: var(--gris-fondo) !important; font-size: 7pt; padding: 4px; }
+      .total-usd { background: var(--verde) !important; }
+      .segunda-pagina { page-break-before: always; break-before: page; }
+    }
+  </style>
+</head>
+<body>
+
+<datalist id="lista-productos"></datalist>
+
+<div id="vendor-modal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <div class="modal-logo">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnq6Feqkt6u1mNaYUtUF0iZNjNJVeIB1JMqw&s" alt="Solvet">
+    </div>
+    <h3>Acceso al Cotizador PETS</h3>
+    <p>Seleccione su identificador comercial para continuar</p>
+    <select class="modal-sel" id="vendor-select">
+      <option value="Junior Oviedo">Junior Oviedo</option>
+      <option value="Janeth Vera">Janeth Vera</option>
+      <option value="Alejandra Honores">Alejandra Honores</option>
+      <option value="Adriana Butron">Adriana Butron</option>
+      <option value="Rodrigo Caceres">Rodrigo Caceres</option>
+    </select>
+    <button class="btn-ingresar" onclick="guardarVendedor()">Generar Sesión →</button>
+  </div>
+</div>
+
+<div class="hoja">
+  <div class="cabecera">
+    <div class="cabecera-izq">
+      <img class="cabecera-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnq6Feqkt6u1mNaYUtUF0iZNjNJVeIB1JMqw&s" alt="Logo">
+      <div class="logo-divider"></div>
+      <div class="empresa-info">
+        <h1>Soluciones Veterinarias SAC</h1>
+        <p>RUC: 20504973990<br>Av. Rep. de Panamá 3531 Int. 1303, San Isidro, Lima</p>
+      </div>
+    </div>
+    <div class="cotizacion-box">
+      <h2>Cotización</h2>
+      <div class="numero" id="numero-cotizacion">---</div>
+      <div class="cotizacion-badge">PETS</div>
+    </div>
+  </div>
+
+  <div class="meta-wrap">
+    <div class="meta">
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Cliente / Veterinaria</div>
+        <input class="meta-input" type="text" id="cliente" placeholder="Razón social o nombre...">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>RUC / DNI</div>
+        <input class="meta-input" type="text" id="ruc" placeholder="Documento">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Nro. Contacto</div>
+        <input class="meta-input" type="text" id="contacto" placeholder="Teléfono o Celular...">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Dirección</div>
+        <input class="meta-input" type="text" id="direccion" placeholder="Dirección de entrega...">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Distrito</div>
+        <input class="meta-input" type="text" id="distrito" placeholder="Distrito...">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Fecha Emisión</div>
+        <input class="meta-input" type="date" id="fecha-emision" onchange="actualizarExpiracion()">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Válido hasta</div>
+        <input class="meta-input" type="date" id="fecha-expiracion" readonly style="color:var(--texto-claro);">
+      </div>
+      <div class="meta-campo">
+        <div class="meta-label"><span class="meta-label-dot"></span>Ejecutivo</div>
+        <input class="meta-input" type="text" id="vendedor-input" readonly style="cursor:pointer;" onclick="abrirModalVendedor()">
+      </div>
+    </div>
+  </div>
+
+  <div class="tabla-wrap">
+    <div class="tabla-titulo">Detalle de Productos</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30px;">#</th>
+          <th class="th-left">Descripción del Producto</th>
+          <th style="width:100px;">Cantidad</th>
+          <th style="width:80px; text-align:right; padding-right:12px;">P.U.</th>
+          <th style="width:60px; text-align:center;">% Dscto</th>
+          <th style="width:80px; text-align:right; padding-right:12px;">Importe</th>
+          <th class="th-delete" style="width:30px;"></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-items">
+        </tbody>
+    </table>
+    
+    <button class="btn-agregar-item" onclick="agregarFila()">+ Agregar ítem a la cotización</button>
+  </div>
+
+  <div class="resumen-container">
+    <div class="resumen-box">
+      <div class="resumen-row total-usd">
+        <span>TOTAL (S/ inc. IGV)</span>
+        <span id="tot-soles">S/ 0.00</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="firma-section">
+    <div class="firma-datos-wrap active" id="firma-datos-wrap">
+      <input class="firma-legal-input" type="text" id="firma-nombre" placeholder="Nombre completo">
+      <input class="firma-legal-input" type="text" id="firma-dni" placeholder="DNI / CE">
+    </div>
+  </div>
+
+</div>
+
+<div class="segunda-pagina">
+  <div class="info-final-wrap">
+    <div class="fila-condiciones">
+      <div class="condiciones">
+        <div class="seccion-titulo"><span class="seccion-titulo-icon"></span> Condiciones Comerciales</div>
+        <ul>
+          <li>Precios expresados en Soles (S/) e incluyen I.G.V.</li>
+          <li>Importe mínimo de atención: S/ 400.00 inc. I.G.V.</li>
+          <li>Despachos a provincia sujetos a coordinación logística.</li>
+          <li>Validez de la cotización sujeta a disponibilidad de inventario.</li>
+        </ul>
+      </div>
+      <div id="obs-container">
+        <div class="seccion-titulo"><span class="seccion-titulo-icon"></span> Comentarios</div>
+        <textarea class="comentarios-input" id="comentarios" placeholder="Notas adicionales del ejecutivo comercial..."></textarea>
+        <div id="obs-print-block"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="barra-controles no-print">
+  <button class="btn btn-limpiar" onclick="limpiarCotizacion()">Reiniciar</button>
+  <button class="btn btn-pdf" onclick="imprimirCotizacion()">Exportar PDF</button>
+</div>
+
+<script>
+// ── CATÁLOGO DE PRODUCTOS ACTUALIZADO EN SOLES ──
+const PRODS = [
+  // COOKING CAT (SECO)
+  {m:"COOKING",c:"CAT",sap:"00001079",d:"CooKing Cat GF Junior-Kitten (Salmon) 2 kg.",p:79.00},
+  {m:"COOKING",c:"CAT",sap:"00001068",d:"CooKing Cat GF Adult (Salmon) 2 kg.",p:79.00},
+  {m:"COOKING",c:"CAT",sap:"00001067",d:"CooKing Cat GF Adult (Salmon) 8 kg.",p:295.00},
+  {m:"COOKING",c:"CAT",sap:"00001082",d:"CooKing Cat GF Sterilized Adult (Chicken) 2 kg.",p:77.00},
+  {m:"COOKING",c:"CAT",sap:"00001081",d:"CooKing Cat GF Sterilized AdulT (Chicken) 8 kg.",p:275.00},
+  // COOKING DOG (SECO)
+  {m:"COOKING",c:"DOG",sap:"00001075",d:"CooKing Dog GF Puppy all breeds (Chicken) 2 kg.",p:78.00},
+  {m:"COOKING",c:"DOG",sap:"00001074",d:"CooKing Dog GF Puppy all breeds (Chicken) 12 kg.",p:389.00},
+  {m:"COOKING",c:"DOG",sap:"00001078",d:"CooKing Dog GF Adult all breeds (Lamb) 3 kg.",p:107.00},
+  {m:"COOKING",c:"DOG",sap:"00001077",d:"CooKing Dog GF Adult all breeds (Lamb) 12 kg.",p:369.00},
+  {m:"COOKING",c:"DOG",sap:"00001071",d:"CooKing Dog GF Adult all breeds (Salmon) 3 kg.",p:107.00},
+  {m:"COOKING",c:"DOG",sap:"00001070",d:"CooKing Dog GF Adult all breeds (Salmon) 12 kg.",p:375.00},
+  {m:"COOKING",c:"DOG",sap:"00001073",d:"CooKing Dog GF Senior-light (Chicken) 3 kg.",p:96.00},
+  {m:"COOKING",c:"DOG",sap:"00001072",d:"CooKing Dog GF Senior-light (Chicken) 12 kg.",p:339.00},
+  // DIBAQ SENSE CAT (SECO)
+  {m:"DIBAQ SENSE",c:"CAT",sap:"00001140",d:"Dibaq Sense Cat GF Kitten (Turkey&Salmon) 1.5 kg.",p:110.00},
+  {m:"DIBAQ SENSE",c:"CAT",sap:"00001152",d:"Dibaq Sense Cat GF Kitten (Turkey&Salmon) 6 kg.",p:289.00},
+  {m:"DIBAQ SENSE",c:"CAT",sap:"00001142",d:"Dibaq Sense Cat GF Sterilized (Chicken&Duck) 1.5 kg.",p:110.00},
+  {m:"DIBAQ SENSE",c:"CAT",sap:"00001141",d:"Dibaq Sense Cat GF Sterilized (Chicken&Duck) 6 kg.",p:289.00},
+  {m:"DIBAQ SENSE",c:"CAT",sap:"00001144",d:"Dibaq Sense Cat GF Urinary (Salmon&Tuna) 1.5 kg.",p:110.00},
+  {m:"DIBAQ SENSE",c:"CAT",sap:"00001143",d:"Dibaq Sense Cat GF Urinary (Salmon&Tuna) 6 kg.",p:305.00},
+  // DIBAQ SENSE DOG (SECO)
+  {m:"DIBAQ SENSE",c:"DOG",sap:"00001146",d:"Dibaq Sense Dog GF Puppy (Salmon & Turkey) 2 kg.",p:115.00},
+  {m:"DIBAQ SENSE",c:"DOG",sap:"00001145",d:"Dibaq Sense Dog GF Puppy (Salmon & Turkey) 12 kg.",p:420.00},
+  {m:"DIBAQ SENSE",c:"DOG",sap:"00001153",d:"Dibaq Sense Dog GF Adult (Lamb) 2 kg.",p:115.00},
+  {m:"DIBAQ SENSE",c:"DOG",sap:"00001147",d:"Dibaq Sense Dog GF Adult (Lamb) 12 kg.",p:429.00},
+  {m:"DIBAQ SENSE",c:"DOG",sap:"00001149",d:"Dibaq Sense Dog GF Adult mini (Lamb) 2 kg.",p:115.00},
+  {m:"DIBAQ SENSE",c:"DOG",sap:"00001148",d:"Dibaq Sense Dog GF Adult mini (Lamb) 6 kg.",p:289.00},
+  {m:"DIBAQ SENSE",c:"DOG",sap:"00001151",d:"Dibaq Sense Dog GF Light&Senior (Duck&Turkey) 2 kg.",p:115.00},
+  {m:"DIBAQ SENSE",c:"DOG",sap:"00001150",d:"Dibaq Sense Dog GF Light&Senior (Duck&Turkey) 12 kg.",p:429.00},
+  // DIBAQ NATURAL MOMENTS CAT (HÚMEDO)
+  {m:"DIBAQ NATURAL MOMENTS",c:"CAT",sap:"00001154",d:"Dibaq Natural Moments Cat Kitten (Chicken & Salmon) 70 gr.",p:10.20},
+  {m:"DIBAQ NATURAL MOMENTS",c:"CAT",sap:"00001166",d:"Dibaq Natural Moments Cat Sterilized (Turkey & Blueberries) 70 gr.",p:10.20},
+  {m:"DIBAQ NATURAL MOMENTS",c:"CAT",sap:"00001163",d:"Dibaq Natural Moments Cat Sterilized (Sardines & Mango) 70 gr.",p:10.20},
+  {m:"DIBAQ NATURAL MOMENTS",c:"CAT",sap:"00001162",d:"Dibaq Natural Moments Cat Sterilized (Salmon & Pumpkin) 70 gr.",p:10.20},
+  {m:"DIBAQ NATURAL MOMENTS",c:"CAT",sap:"00001161",d:"Dibaq Natural Moments Cat Sterilized (Veal & Papaya) 70 gr.",p:10.20},
+  // DIBAQ NATURAL MOMENTS DOG (HÚMEDO)
+  {m:"DIBAQ NATURAL MOMENTS",c:"DOG",sap:"00001160",d:"Dibaq Natural Moments Dog Puppy (Turkey & Banana) 190 gr.",p:14.50},
+  {m:"DIBAQ NATURAL MOMENTS",c:"DOG",sap:"00001159",d:"Dibaq Natural Moments Dog Adult (Turkey & Raspberries) 380 gr.",p:20.50},
+  {m:"DIBAQ NATURAL MOMENTS",c:"DOG",sap:"00001158",d:"Dibaq Natural Moments Dog Adult (Salmon & Mango) 380 gr.",p:20.50},
+  {m:"DIBAQ NATURAL MOMENTS",c:"DOG",sap:"00001157",d:"Dibaq Natural Moments Dog Adult (Lamb & Pear) 380 gr.",p:20.50},
+  {m:"DIBAQ NATURAL MOMENTS",c:"DOG",sap:"00001156",d:"Dibaq Natural Moments Dog Adult (Iberian Pork & Melon) 380 gr.",p:20.50},
+  {m:"DIBAQ NATURAL MOMENTS",c:"DOG",sap:"00001155",d:"Dibaq Natural Moments Dog Adult (Chicken & Banana) 380 gr.",p:20.50},
+  // LOVET CAT
+  {m:"LOVET",c:"CAT",sap:"00001137",d:"Lovet arena perlada super premium con aroma Aloe Vera 5kg.",p:20.50},
+  {m:"LOVET",c:"CAT",sap:"00001138",d:"Lovet arena perlada super premium con aroma Aloe Vera 10kg.",p:39.50},
+  {m:"LOVET",c:"CAT",sap:"00001139",d:"Lovet arena perlada super premium con aroma Aloe Vera 20kg.",p:76.50}
+];
+
+let itemsCotizacion = [];
+let rowCounter = 0;
+// Usamos el locale base para mantener un formato consistente asegurando las separaciones por miles (,) y decimales (.)
+const fmtNum = new Intl.NumberFormat('en-US',{minimumFractionDigits:2, maximumFractionDigits:2});
+
+function initDatalist() {
+  const dl = document.getElementById('lista-productos');
+  PRODS.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = `[${p.sap || '000000'}] ${p.d}`;
+    dl.appendChild(opt);
+  });
+}
+
+function agregarFila() {
+  const id = rowCounter++;
+  itemsCotizacion.push({ id: id, sap: '', desc: '', cant: 1, pu: 0, dscto: 0 });
+  
+  const tbody = document.getElementById('tbody-items');
+  const tr = document.createElement('tr');
+  tr.id = `row-${id}`;
+  tr.innerHTML = `
+    <td class="td-index">${itemsCotizacion.length}</td>
+    <td class="td-desc">
+      <input list="lista-productos" class="input-producto" id="input-prod-${id}" placeholder="Buscar producto..." onchange="seleccionarProducto(${id}, this.value)">
+    </td>
+    <td class="td-cant">
+      <div class="cant-controls">
+        <button type="button" onclick="cambiarCant(${id}, -1)">-</button>
+        <input type="number" id="cant-${id}" value="1" min="1" onchange="inputCant(${id}, this.value)">
+        <button type="button" onclick="cambiarCant(${id}, 1)">+</button>
+      </div>
+    </td>
+    <td class="td-pu" id="pu-${id}">S/ 0.00</td>
+    <td class="td-dscto">
+      <input type="number" class="input-dscto" id="dscto-${id}" value="0" min="0" max="100" onchange="inputDscto(${id}, this.value)">
+    </td>
+    <td class="td-importe" id="importe-${id}">S/ 0.00</td>
+    <td class="td-delete"><button type="button" class="btn-delete" onclick="eliminarFila(${id})">✕</button></td>
+  `;
+  tbody.appendChild(tr);
+  reindexarFilas();
+}
+
+function seleccionarProducto(id, val) {
+  const item = itemsCotizacion.find(i => i.id === id);
+  const prodEncontrado = PRODS.find(p => `[${p.sap || '000000'}] ${p.d}` === val);
+  
+  if(prodEncontrado) {
+    item.sap = prodEncontrado.sap;
+    item.desc = prodEncontrado.d;
+    item.pu = prodEncontrado.p;
+  } else {
+    item.pu = 0;
+  }
+  actualizarFilaUI(id);
+  calcularTotales();
+}
+
+function cambiarCant(id, delta) {
+  const item = itemsCotizacion.find(i => i.id === id);
+  const nuevaCant = Math.max(1, item.cant + delta);
+  item.cant = nuevaCant;
+  document.getElementById(`cant-${id}`).value = nuevaCant;
+  actualizarFilaUI(id);
+  calcularTotales();
+}
+
+function inputCant(id, val) {
+  const item = itemsCotizacion.find(i => i.id === id);
+  item.cant = Math.max(1, parseInt(val) || 1);
+  document.getElementById(`cant-${id}`).value = item.cant;
+  actualizarFilaUI(id);
+  calcularTotales();
+}
+
+function inputDscto(id, val) {
+  const item = itemsCotizacion.find(i => i.id === id);
+  let descuento = parseFloat(val) || 0;
+  if (descuento < 0) descuento = 0;
+  if (descuento > 100) descuento = 100;
+  item.dscto = descuento;
+  document.getElementById(`dscto-${id}`).value = descuento;
+  actualizarFilaUI(id);
+  calcularTotales();
+}
+
+function actualizarFilaUI(id) {
+  const item = itemsCotizacion.find(i => i.id === id);
+  document.getElementById(`pu-${id}`).textContent = `S/ ${fmtNum.format(item.pu)}`;
+  
+  const importeConDescuento = item.pu * (1 - (item.dscto / 100)) * item.cant;
+  document.getElementById(`importe-${id}`).textContent = `S/ ${fmtNum.format(importeConDescuento)}`;
+}
+
+function eliminarFila(id) {
+  itemsCotizacion = itemsCotizacion.filter(i => i.id !== id);
+  document.getElementById(`row-${id}`).remove();
+  reindexarFilas();
+  calcularTotales();
+}
+
+function reindexarFilas() {
+  const filas = document.querySelectorAll('#tbody-items tr');
+  filas.forEach((tr, index) => {
+    tr.querySelector('.td-index').textContent = index + 1;
+  });
+}
+
+function calcularTotales() {
+  let total = 0;
+  itemsCotizacion.forEach(item => {
+    total += (item.pu * (1 - (item.dscto / 100)) * item.cant);
+  });
+
+  document.getElementById('tot-soles').textContent = `S/ ${fmtNum.format(total)}`;
+}
+
+// ── INIT Y UTILIDADES ──
+(function init(){
+  const v = localStorage.getItem('solvet_pets_vendedor');
+  if(!v) document.getElementById('vendor-modal').style.display='flex';
+  else { document.getElementById('vendedor-input').value=v; document.getElementById('vendor-select').value=v; actualizarCorrelativoUI(); }
+  
+  const hoy=new Date();
+  document.getElementById('fecha-emision').value=hoy.getFullYear()+'-'+String(hoy.getMonth()+1).padStart(2,'0')+'-'+String(hoy.getDate()).padStart(2,'0');
+  actualizarExpiracion();
+  
+  initDatalist();
+  agregarFila(); // Iniciar con una fila vacía
+})();
+
+function guardarVendedor(){ const v=document.getElementById('vendor-select').value; localStorage.setItem('solvet_pets_vendedor',v); document.getElementById('vendedor-input').value=v; document.getElementById('vendor-modal').style.display='none'; actualizarCorrelativoUI(); }
+function abrirModalVendedor(){ const v=localStorage.getItem('solvet_pets_vendedor'); if(v) document.getElementById('vendor-select').value=v; document.getElementById('vendor-modal').style.display='flex'; }
+function obtenerIniciales(n){ if(!n) return 'XX'; const p=n.trim().split(' '); return p.length===1?p[0].substring(0,2).toUpperCase():(p[0][0]+p[1][0]).toUpperCase(); }
+
+function actualizarCorrelativoUI(){ 
+  const v = localStorage.getItem('solvet_pets_vendedor')||''; 
+  const n = new Date(); 
+  const mes = String(n.getMonth()+1).padStart(2,'0');
+  const dia = String(n.getDate()).padStart(2,'0');
+  const hr = String(n.getHours()).padStart(2,'0');
+  const min = String(n.getMinutes()).padStart(2,'0');
+  const correlativo = `${obtenerIniciales(v)}-${mes}${dia}-${hr}${min}`;
+  document.getElementById('numero-cotizacion').textContent = correlativo; 
+}
+
+function actualizarExpiracion(){ const v=document.getElementById('fecha-emision').value; if(v){ const [y,m,d]=v.split('-'); const exp=new Date(y,m-1,d); exp.setDate(exp.getDate()+7); document.getElementById('fecha-expiracion').value=exp.getFullYear()+'-'+String(exp.getMonth()+1).padStart(2,'0')+'-'+String(exp.getDate()).padStart(2,'0'); } }
+
+function limpiarCotizacion(){ 
+  if(!confirm('¿Iniciar una nueva cotización?')) return; 
+  document.getElementById('cliente').value=''; 
+  document.getElementById('ruc').value=''; 
+  document.getElementById('contacto').value=''; 
+  document.getElementById('direccion').value=''; 
+  document.getElementById('distrito').value=''; 
+  document.getElementById('comentarios').value=''; 
+  
+  document.getElementById('tbody-items').innerHTML = '';
+  itemsCotizacion = [];
+  rowCounter = 0;
+  agregarFila();
+  calcularTotales();
+}
+
+function imprimirCotizacion(){
+  const com=document.getElementById('comentarios');
+  const obs=document.getElementById('obs-print-block');
+  const cont=document.getElementById('obs-container');
+  if(!com.value.trim()){cont.style.display='none';}else{obs.textContent=com.value;}
+  
+  const numCotizacion = document.getElementById('numero-cotizacion').textContent;
+  document.title = "Cotizacion_" + numCotizacion;
+  
+  setTimeout(() => {
+    window.print();
+    setTimeout(()=> { cont.style.display='block'; }, 1000);
+  }, 500);
+}
+</script>
+</body>
+</html>
