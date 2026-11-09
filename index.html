@@ -136,7 +136,7 @@
     .tabla-titulo{font-size:9px;font-weight:700;color:var(--texto-claro);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
     .tabla-titulo::after{content:'';flex:1;height:1px;background:var(--borde);}
     .tabla-scroll { overflow-x: auto; }
-    table{width:100%;border-collapse:collapse;min-width:700px;}
+    table{width:100%;border-collapse:collapse;min-width:820px;}
     thead th{background:var(--gris-fondo);color:var(--texto-claro);font-size:7.5px;text-transform:uppercase;padding:6px 5px;text-align:center;border-bottom:2px solid var(--verde);border-top:1px solid var(--borde);letter-spacing:.8px;font-weight:700;white-space:nowrap;}
     thead th.th-left{text-align:left;}
     tbody tr{border-bottom:1px solid var(--borde);transition:background .15s;}
@@ -170,6 +170,16 @@
     .precio-cell{font-size:10.5px;font-weight:700;color:var(--texto);text-align:right;padding-right:7px;white-space:nowrap;}
     .total-cell{font-size:10.5px;font-weight:700;color:var(--verde);text-align:right;padding-right:8px;white-space:nowrap;}
     .total-cell.cero{color:var(--texto-claro);font-weight:400; opacity:0.6;}
+
+    /* Descuento % y Precio Neto */
+    .td-desc-pct{text-align:center;}
+    .desc-wrap{display:inline-flex;align-items:center;justify-content:center;gap:2px;}
+    .cant-input.desc-input{width:46px;display:inline-block;margin:0;}
+    .cant-input.desc-input:focus{border-color:#d97706;}
+    .desc-pct{font-size:10px;font-weight:700;color:var(--texto-claro);}
+    .precio-cell.tachado{text-decoration:line-through;font-weight:400;opacity:.55;}
+    .neto-cell{font-size:10.5px;font-weight:700;color:var(--texto);text-align:right;padding-right:7px;white-space:nowrap;}
+    .neto-cell.con-desc{color:var(--verde);}
 
     /* ── TOTALES ── */
     .totales-bloque{display:flex;justify-content:flex-end;padding:4px 28px 16px;background:var(--blanco);}
@@ -275,7 +285,10 @@
       .td-desc { font-size: 8pt; }
       .btn-toggle { font-size: 7.5pt; padding: 2px 5px; width: 40px; }
       .cant-input { width: 40px; font-size: 9pt; }
-      .precio-cell, .total-cell { font-size: 8.5pt; }
+      .cant-input.desc-input { width: 34px; }
+      .desc-input::placeholder { color: transparent !important; }
+      .desc-wrap.sin-desc .desc-pct { visibility: hidden; }
+      .precio-cell, .total-cell, .neto-cell { font-size: 8.5pt; }
       .info-final-wrap { padding: 16px 18px; }
     }
   </style>
@@ -429,7 +442,9 @@
             <th class="th-left">Descripción</th>
             <th style="width:68px;">Cant. V</th>
             <th style="width:68px;">Cant. B</th>
-            <th style="width:96px;">Precio C/IGV</th>
+            <th style="width:90px;">Precio C/IGV</th>
+            <th style="width:72px;">Desc. %</th>
+            <th style="width:90px;">Precio Neto</th>
             <th style="width:96px;">Total</th>
           </tr>
         </thead>
@@ -596,8 +611,15 @@ const PRODS = [
   {m:"LOVET",c:"Gato",sap:"00001139",d:"Lovet arena perlada super premium con aroma Aloe Vera 20kg.",p:59.70}
 ];
 
-const estado = PRODS.map(() => ({venta:false, bon:false, cantV:0, cantB:0}));
+const estado = PRODS.map(() => ({venta:false, bon:false, cantV:0, cantB:0, desc:0}));
 const fmt = new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+
+// ── CÁLCULO DE PRECIOS CON DESCUENTO ──
+const redondear = n => Math.round((n + Number.EPSILON) * 100) / 100;
+// Precio neto = Precio lista × (1 − desc% / 100)
+function precioNeto(i){ return redondear(PRODS[i].p * (1 - estado[i].desc / 100)); }
+// Total de la fila = Precio neto × Cantidad de venta
+function totalFila(i){ return redondear(precioNeto(i) * estado[i].cantV); }
 
 // ── MULTISELECT MARCAS ──
 const MARCAS = [...new Set(PRODS.map(p=>p.m))];
@@ -678,7 +700,9 @@ function renderTabla(){
     visibles++;
 
     const e     = estado[i];
-    const total = p.p * e.cantV;
+    const neto  = precioNeto(i);
+    const total = totalFila(i);
+    const conDesc = e.desc > 0;
     const tr    = document.createElement('tr');
     tr.className = 'fila-prod' + (e.venta ? ' fila-venta-on' : '') + (e.bon ? ' fila-bon-on' : '');
     tr.dataset.idx = i;
@@ -704,7 +728,17 @@ function renderTabla(){
           ${!e.bon?'disabled':''}
           oninput="setCant(${i},'B',this.value)">
       </td>
-      <td class="precio-cell">S/ ${fmt.format(p.p)}</td>
+      <td class="precio-cell${conDesc?' tachado':''}" id="precioCell-${i}">S/ ${fmt.format(p.p)}</td>
+      <td class="td-desc-pct">
+        <span class="desc-wrap${conDesc?'':' sin-desc'}" id="descWrap-${i}">
+          <input type="number" min="0" max="100" step="0.01" class="cant-input desc-input" id="desc-${i}"
+            value="${e.desc||''}" placeholder="0"
+            ${!e.venta?'disabled':''}
+            oninput="setDesc(${i},this.value)">
+          <span class="desc-pct">%</span>
+        </span>
+      </td>
+      <td class="neto-cell${conDesc?' con-desc':''}" id="netoCell-${i}">S/ ${fmt.format(neto)}</td>
       <td class="total-cell${total===0?' cero':''}" id="totalCell-${i}">S/ ${fmt.format(total)}</td>
     `;
     tbody.appendChild(tr);
@@ -713,7 +747,7 @@ function renderTabla(){
   if(!visibles){
     const tr = document.createElement('tr');
     tr.className='sin-resultados';
-    tr.innerHTML=`<td colspan="8">Sin productos para los filtros seleccionados.</td>`;
+    tr.innerHTML=`<td colspan="10">Sin productos para los filtros seleccionados.</td>`;
     tbody.appendChild(tr);
   }
   actualizarSelCount();
@@ -722,7 +756,7 @@ function renderTabla(){
 
 function toggleVenta(i){
   estado[i].venta = !estado[i].venta;
-  if(!estado[i].venta) estado[i].cantV = 0;
+  if(!estado[i].venta){ estado[i].cantV = 0; estado[i].desc = 0; }
   actualizarFila(i);
   calcular();
 }
@@ -743,6 +777,8 @@ function actualizarFila(i){
   if(inpV){ inpV.disabled=!e.venta; inpV.value=e.cantV||''; }
   const inpB = document.getElementById('cantB-'+i);
   if(inpB){ inpB.disabled=!e.bon; inpB.value=e.cantB||''; }
+  const inpD = document.getElementById('desc-'+i);
+  if(inpD){ inpD.disabled=!e.venta; inpD.value=e.desc||''; }
   const tr = document.querySelector(`tr[data-idx="${i}"]`);
   if(tr){ tr.classList.toggle('fila-venta-on',e.venta); tr.classList.toggle('fila-bon-on',e.bon); }
   actualizarTotal(i);
@@ -756,18 +792,40 @@ function setCant(i, tipo, val){
   calcular();
 }
 
+// Descuento en % (0–100). Recalcula Precio Neto y Total al instante.
+function setDesc(i, val){
+  const inp = document.getElementById('desc-'+i);
+  let v = parseFloat(val);
+  if(isNaN(v) || v < 0){ v = 0; if(inp && val !== '') inp.value = 0; }
+  if(v > 100){ v = 100; if(inp) inp.value = 100; }
+  estado[i].desc = v;
+  actualizarTotal(i);
+  calcular();
+}
+
 function actualizarTotal(i){
+  const e = estado[i];
+  const conDesc = e.desc > 0;
+  const neto = precioNeto(i);
+  const total = totalFila(i);
+
+  const pc = document.getElementById('precioCell-'+i);
+  if(pc) pc.classList.toggle('tachado', conDesc);
+  const nc = document.getElementById('netoCell-'+i);
+  if(nc){ nc.textContent = 'S/ '+fmt.format(neto); nc.className = 'neto-cell' + (conDesc?' con-desc':''); }
+  const dw = document.getElementById('descWrap-'+i);
+  if(dw) dw.classList.toggle('sin-desc', !conDesc);
+
   const td = document.getElementById('totalCell-'+i);
   if(!td) return;
-  const total = PRODS[i].p * estado[i].cantV;
   td.textContent = 'S/ '+fmt.format(total);
   td.className = 'total-cell' + (total===0?' cero':'');
 }
 
 function calcular(){
   let total=0;
-  PRODS.forEach((p,i)=>{ total += p.p * estado[i].cantV; });
-  document.getElementById('total-usd').textContent = 'S/ '+fmt.format(total);
+  PRODS.forEach((p,i)=>{ total += totalFila(i); });
+  document.getElementById('total-usd').textContent = 'S/ '+fmt.format(redondear(total));
 }
 
 function actualizarSelCount(){
@@ -816,7 +874,7 @@ function actualizarExpiracion(){ const v=document.getElementById('fecha-emision'
 
 function limpiarCotizacion(){ 
   if(!confirm('¿Iniciar una nueva cotización? Se reiniciarán todos los valores.')) return; 
-  estado.forEach(e=>{e.venta=false;e.bon=false;e.cantV=0;e.cantB=0;}); 
+  estado.forEach(e=>{e.venta=false;e.bon=false;e.cantV=0;e.cantB=0;e.desc=0;});
   
   document.getElementById('cliente').value=''; 
   document.getElementById('ruc').value=''; 
